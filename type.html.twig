@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="row type-container">
-                <div class="col-lg-6 type">
+                <div class="col-lg-4 type">
                     <div class="type__block">
                         <div class="type__block__body">
                             <div class="flex-1">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 type">
+                <div class="col-lg-4 type">
                     <div class="type__block">
                         <div class="type__block__body">
                             <div class="flex-1">
@@ -56,6 +56,29 @@
                             <a type="button"
                                class="btn btn__blue btn__large type__button"
                                href="{{ path("paprec_public_define_type", {locale: locale, type: 'PONCTUAL'}) }}">
+                                {{ 'Public.Catalog.NextStep'| trans({}, "messages", locale) }}
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 type">
+                    <div class="type__block">
+                        <div class="type__block__body">
+                            <div class="flex-1">
+                                <div class="m-b-20">
+                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution3.Title'| trans({}, "messages", locale) }}</h2></div>
+                                <div>{{ 'Public.Type.Solution3.Message1'| trans({}, "messages", locale) }}</div>
+                                <ul class="m-b-20">
+                                    <li>{{ 'Public.Type.Solution3.Message2'| trans({}, "messages", locale) }}</li>
+                                    <li>{{ 'Public.Type.Solution3.Message3'| trans({}, "messages", locale) }}</li>
+                                    <li>{{ 'Public.Type.Solution3.Message4'| trans({}, "messages", locale) }}</li>
+                                </ul>
+                                <div class="m-b-30">{{ 'Public.Type.Solution3.Message5'| trans({}, "messages", locale) }}</div>
+                            </div>
+                            <a type="button"
+                               class="btn btn__blue btn__large type__button"
+                               href="{{ path("paprec_public_define_type", {locale: locale, type: 'MATERIAL'}) }}">
                                 {{ 'Public.Catalog.NextStep'| trans({}, "messages", locale) }}
                             </a>
                         </div>
