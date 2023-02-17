@@ -1,7 +1,11 @@
 /*COLOR
 ------------------*/
+
+$purple_1: #D7D9FF;
+$purple_2: #2A3084;
+
 $primary: #004A9B; /*bleu*/
-$secondary: #71b24e; /*vert*/
+$secondary: $purple_2; /*vert*/
 $lightgray: #F2F2F2;
 $mdgray: #D8D8D8;
 $darkgray:#4A4A4A;
@@ -31,6 +35,6 @@ $border-radius-lg: 50px;
 // /*----------------
 //       FONTS-SIZE
 // ------------------ */
-$font-title: 32px;
+$font-title: 25px;
 $font-sub-title: 18px;
 $font-text: 12px;

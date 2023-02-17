@@ -210,7 +210,6 @@ input:focus {
       margin-bottom: 15px;
       padding-left: 10px;
 
-
       &__item {
         display: flex;
         margin-bottom: 5px;
@@ -318,6 +317,7 @@ input:focus {
     .border-right {
       border: 1px solid #1A5C99 !important;
     }
+
   }
 }
 
@@ -446,4 +446,78 @@ input:focus {
   }
 
 
+}
+
+.cart {
+  &__block {
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      border-radius: 20px;
+      border: 2px solid $purple_2;
+
+      .top {
+        padding: 30px;
+
+        .card {
+          border-radius: inherit !important;
+          border: 1px solid $purple_2;
+        }
+      }
+
+      .bottom {
+        padding: 15px;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        background-color: $purple_2;
+        color: white;
+        font-size: 13px;
+
+        .link {
+          cursor: pointer;
+          color: #B9FA21;
+        }
+      }
+
+      .number {
+        border: 1px solid;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-right: 13px;
+        padding-left: 13px;
+      }
+
+      .product {
+        margin-left: 5px;
+        font-weight: bold;
+        color: $purple_2;
+        font-size: 14px;
+      }
+
+    }
+  }
+
+  &__button {
+    //max-width: 220px;
+  }
+
+  h3 {
+    text-transform: initial;
+    color: #444444;
+  }
+
+  ul {
+    margin-left: 15px;
+
+    li {
+      list-style: disc !important;
+      padding-left: 10px;
+    }
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
 }

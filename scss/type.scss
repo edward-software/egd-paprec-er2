@@ -9,19 +9,20 @@
   margin-bottom: 30px;
 
   &__block {
-    height: 100%;
+    height: 75%;
     &__body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #F2F2F2;
       padding: 30px;
       height: 100%;
+      background-color: $purple_1;
+      border-radius: 5%;
     }
   }
 
   &__button {
-    max-width: 220px;
+    //max-width: 220px;
   }
 
   h3 {
@@ -40,4 +41,33 @@
   .flex-1 {
     flex: 1;
   }
+}
+
+.arrow-right {
+  display: inline-block;
+  height: 40px;
+  position: relative;
+  line-height: 2.5em;
+  padding-left: 1em;
+  padding-right: 2em;
+  background: #71b24e;
+  color: #71b24e;
+  &:after {
+    // triangle hover color
+    border-left: 20px solid #71b24e;
+  }
+}
+
+.arrow-right:after {
+  // the triangle
+  content: "";
+  position: absolute;
+  border-bottom: 27px solid transparent;
+  border-top: 27px solid transparent;
+  height: 0px;
+  width: 0px;
+  margin-right: -23px;
+  right: 0px;
+  border-left: 22px solid #71b24e;
+  bottom: -2px;
 }

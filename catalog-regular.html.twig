@@ -17,32 +17,32 @@
                     <div class="divider"></div>
                 </div>
             </div>
-            {% set customArea = paprec_customizable_area('catalog_top', locale) %}
-            {% if customArea is not null %}
-                <div class="row m-b-40">
-                    <div class="col-xl-6">
-                        <div class="mytext">{% autoescape false %}{{ customArea.leftContent }}{% endautoescape %}</div>
-                        <div class="image">
-                            {% if customArea.leftPictures and customArea.leftPictures|length > 0 %}
-                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}"
-                                     class="img-fluid"
-                                     alt="Image block left">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="mytext">{% autoescape false %}{{ customArea.rightContent }}{% endautoescape %}</div>
-                        <div class="image">
-                            {% if customArea.rightPictures and customArea.rightPictures|length > 0 %}
-                                <img src="{{ asset('uploads/pictos/' ~ customArea.rightPictures[0].path) }}"
-                                     alt="Image block left">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+{#            {% set customArea = paprec_customizable_area('catalog_top', locale) %}#}
+{#            {% if customArea is not null %}#}
+{#                <div class="row m-b-40">#}
+{#                    <div class="col-xl-6">#}
+{#                        <div class="mytext">{% autoescape false %}{{ customArea.leftContent }}{% endautoescape %}</div>#}
+{#                        <div class="image">#}
+{#                            {% if customArea.leftPictures and customArea.leftPictures|length > 0 %}#}
+{#                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}"#}
+{#                                     class="img-fluid"#}
+{#                                     alt="Image block left">#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xl-6">#}
+{#                        <div class="mytext">{% autoescape false %}{{ customArea.rightContent }}{% endautoescape %}</div>#}
+{#                        <div class="image">#}
+{#                            {% if customArea.rightPictures and customArea.rightPictures|length > 0 %}#}
+{#                                <img src="{{ asset('uploads/pictos/' ~ customArea.rightPictures[0].path) }}"#}
+{#                                     alt="Image block left">#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endif %}#}
 
-            <hr class="m-b-40">
+{#            <hr class="m-b-40">#}
 
             {% for range in ranges %}
                 <div class="range-container">
