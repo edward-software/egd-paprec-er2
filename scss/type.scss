@@ -10,6 +10,7 @@
 
   &__block {
     height: 75%;
+
     &__body {
       display: flex;
       flex-direction: column;
@@ -32,6 +33,7 @@
 
   ul {
     margin-left: 15px;
+
     li {
       list-style: disc !important;
       padding-left: 10px;
@@ -50,11 +52,15 @@
   line-height: 2.5em;
   padding-left: 1em;
   padding-right: 2em;
-  background: #71b24e;
-  color: #71b24e;
+  background: $green_1;
+  color: $green_1;
+  &:hover{
+    color: #FFFFFF;
+  }
+
   &:after {
     // triangle hover color
-    border-left: 20px solid #71b24e;
+    border-left: 20px solid $green_1;
   }
 }
 
@@ -68,6 +74,51 @@
   width: 0px;
   margin-right: -23px;
   right: 0px;
-  border-left: 22px solid #71b24e;
+  border-left: 22px solid $green_1;
   bottom: -2px;
+}
+
+.arrow-left {
+  display: inline-block;
+  height: 40px;
+  position: relative;
+  line-height: 2.5em;
+  padding-left: 1em;
+  padding-right: 2em;
+  background: $green_1;
+  color: $green_1;
+  &:hover{
+    color: #FFFFFF;
+  }
+
+  &:after {
+    // triangle hover color
+    border-left: 20px solid $green_1;
+  }
+}
+
+.arrow-left:before {
+  // the triangle
+  content: "";
+  position: absolute;
+  border-bottom: 27px solid transparent;
+  border-top: 27px solid transparent;
+  height: 0px;
+  width: 0px;
+  margin-left: -23px;
+  left: 0px;
+  border-right: 22px solid $green_1;
+  bottom: -2px;
+}
+
+.bottom-navigation {
+  .be-recalled {
+    a {
+      background-color: $purple_2;
+      line-height: 2.5em;
+      &:hover{
+        color: #FFFFFF;
+      }
+    }
+  }
 }

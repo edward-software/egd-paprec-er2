@@ -17,39 +17,12 @@
                     <div class="divider"></div>
                 </div>
             </div>
-            {#            {% set customArea = paprec_customizable_area('catalog_top', locale) %} #}
-            {#            {% if customArea is not null %} #}
-            {#                <div class="row m-b-40"> #}
-            {#                    <div class="col-xl-6"> #}
-            {#                        <div class="mytext">{% autoescape false %}{{ customArea.leftContent }}{% endautoescape %}</div> #}
-            {#                        <div class="image"> #}
-            {#                            {% if customArea.leftPictures and customArea.leftPictures|length > 0 %} #}
-            {#                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}" #}
-            {#                                     class="img-fluid" #}
-            {#                                     alt="Image block left"> #}
-            {#                            {% endif %} #}
-            {#                        </div> #}
-            {#                    </div> #}
-            {#                    <div class="col-xl-6"> #}
-            {#                        <div class="mytext">{% autoescape false %}{{ customArea.rightContent }}{% endautoescape %}</div> #}
-            {#                        <div class="image"> #}
-            {#                            {% if customArea.rightPictures and customArea.rightPictures|length > 0 %} #}
-            {#                                <img src="{{ asset('uploads/pictos/' ~ customArea.rightPictures[0].path) }}" #}
-            {#                                     alt="Image block left"> #}
-            {#                            {% endif %} #}
-            {#                        </div> #}
-            {#                    </div> #}
-            {#                </div> #}
-            {#            {% endif %} #}
-
-            {#            <hr class="m-b-40"> #}
-
             <div class="row">
                 <div class="col-lg-8">
                     {% for range in ranges %}
                         <div class="range-container">
                             <h2><a data-toggle="collapse"
-                                   href="#rangeProductCollapse__{{ range.id }}">{{ range|rangeLabelTranslation(locale) }}</a>
+                                   href="#rangeProductCollapse__{{ range.id }}" class="title">{{ range|rangeLabelTranslation(locale) }}</a>
                             </h2>
                             <div id="rangeContentContainer__{{ range.id }}">
                                 <div class="row m-b-15 m-t-1">
@@ -65,73 +38,84 @@
                             <div class="row product-container collapse multi-collapse"
                                  id="rangeProductCollapse__{{ range.id }}">
                                 {% for product in range.products %}
-                                    <div class="col-md-4 product" id="productContainer_{{ product.id }}">
+                                    <div class="col-md-6 product" id="productContainer_{{ product.id }}">
                                         <div class="row product__block">
-                                            <div class="col-xl-3 paprec-flex align-items_center">
-                                                <div class="product__image">
-                                                    <img src="{% if product.pilotPictures|length > 0 %}{{ asset('/uploads/pictos/' ~ product.pilotPictures[0].path) }}{% endif %}"
-                                                         alt="#" class="">
+
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <h2 class="color-secondary mb-1 product__title text-center">{{ product|productLabelTranslation(locale) }}</h2>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-9">
-                                                <div class="product__title">
-                                                    <h2 class="color-secondary m-b-20">{{ product|productLabelTranslation(locale) }}</h2>
-                                                </div>
-                                                <div class="product__description">
-                                                    <div class="paprec-flex space-between">
-                                                        <div class="m-b-12">{{ product|productLabelTranslation(locale,'shortDescription') }}</div>
-                                                    </div>
-                                                    <div class="paprec-flex space-between">
-                                                        <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }}
-                                                            :
-                                                        </div>
-                                                        <div class="product__value">{{ product.capacity }} {{ product.capacityUnit }}</div>
-                                                    </div>
-                                                    <div class="paprec-flex space-between">
-                                                        <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }}
-                                                            :
-                                                        </div>
-                                                        <div class="product__value">{{ product.dimensions }}</div>
+                                            <div class="row">
+                                                <div class="col-xl-3 paprec-flex align-items_center">
+                                                    <div class="product__image">
+                                                        <img src="{% if product.pilotPictures|length > 0 %}{{ asset('/uploads/pictos/' ~ product.pilotPictures[0].path) }}{% endif %}"
+                                                             alt="#" class="">
                                                     </div>
                                                 </div>
-                                                <div class="product__quantity paprec-flex">
-                                                    <div>{{ 'Public.Catalog.Quantity'| trans({}, "messages", locale) }}:
-                                                    </div>
-                                                    <div class="paprec-flex product__quantity__container">
-                                                        {% set qtty = '' %}
-                                                        {% for item in cart.content %}
-                                                            {% if item['pId'] == product.id %}
-                                                                {% set qtty = item['qtty'] %}
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                        <div class="paprec-flex">
-                                                            <button class="removeOneToCartButton round-btn round-btn--blue mr-2 {% if qtty == 0 %}round-btn--disable{% endif %}"
-                                                                    id="removeOneToCartButton{{ product.id }}"
-                                                                    data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
-                                                                <i class="fas fa-minus"></i>
-                                                            </button>
-                                                            <select name=""
-                                                                    disabled="disabled"
-                                                                    class="quantityProductSelect"
-                                                                    data-url="{{ path('paprec_public_catalog_addContent', {locale: locale, cartUuid: cart.id}) }}"
-                                                                    data-product="{{ product.id }}"
-                                                                    id="quantityProductSelect_{{ product.id }}">
-                                                                {% for i in 0..100 %}
-                                                                    {% if i == qtty %}
-                                                                        <option value="{{ i }}"
-                                                                                selected="selected">{{ i }}</option>''
-                                                                    {% else %}
-                                                                        <option value="{{ i }}">{{ i }}</option>
-                                                                    {% endif %}
-                                                                {% endfor %}
-                                                            </select>
-                                                            <button class="addOneToCartButton round-btn round-btn--blue ml-2"
-                                                                    id="addOneToCartButton{{ product.id }}"
-                                                                    data-url="{{ path('paprec_public_catalog_addOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
-                                                                <i class="fas fa-plus"></i>
-                                                            </button>
-                                                        </div>
+                                                <div class="col-xl-9">
 
+                                                    <div class="product__description">
+                                                        <div class="paprec-flex space-between">
+                                                            <div class="m-b-12">{{ product|productLabelTranslation(locale,'shortDescription') }}</div>
+                                                        </div>
+                                                        <div class="paprec-flex space-between">
+                                                            <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }}
+                                                                :
+                                                            </div>
+                                                            <div class="product__value">{{ product.capacity }} {{ product.capacityUnit }}</div>
+                                                        </div>
+                                                        <div class="paprec-flex space-between">
+                                                            <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }}
+                                                                :
+                                                            </div>
+                                                            <div class="product__value">{{ product.dimensions }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="product__quantity paprec-flex">
+                                                        <div class="product__label">{{ 'Public.Catalog.Quantity'|trans({}, "messages", locale) }}
+                                                            :
+                                                        </div>
+                                                        <div class="paprec-flex product__quantity__container">
+                                                            {% set qtty = '' %}
+                                                            {% for item in cart.content %}
+                                                                {% if item['pId'] == product.id %}
+                                                                    {% set qtty = item['qtty'] %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            <div class="paprec-flex">
+                                                                <button class="removeOneToCartButton round-btn round-btn--blue mr-2 {% if qtty == 0 %}round-btn--disable{% endif %}"
+                                                                        id="removeOneToCartButton{{ product.id }}"
+                                                                        data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </button>
+                                                                <select name=""
+                                                                        disabled="disabled"
+                                                                        class="quantityProductSelect"
+                                                                        data-url="{{ path('paprec_public_catalog_addContent', {locale: locale, cartUuid: cart.id}) }}"
+                                                                        data-product="{{ product.id }}"
+                                                                        id="quantityProductSelect_{{ product.id }}">
+                                                                    {% for i in 0..100 %}
+                                                                        {% if i == qtty %}
+                                                                            <option value="{{ i }}"
+                                                                                    selected="selected">{{ i }}</option>''
+                                                                        {% else %}
+                                                                            <option value="{{ i }}">{{ i }}</option>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <button class="addOneToCartButton round-btn round-btn--blue ml-2"
+                                                                        id="addOneToCartButton{{ product.id }}"
+                                                                        data-url="{{ path('paprec_public_catalog_addOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +164,9 @@
                                 <div class="bottom">
                                     <div class="text-center">
                                         <div class="need-help mb-2">BESOIN DE CONSEIL OU D'ACCOMPAGNEMENT?</div>
-                                        <div><a class="link">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER VOTRE SOLUTION</div>
+                                        <div><a class="link">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER
+                                            VOTRE SOLUTION
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -188,80 +174,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row product-container">
-                <div class="col-md-6 product">
-                    <div class="row devis">
+            <div class="row mt-5 d-flex justify-content-between bottom-navigation">
 
-                        <div class="col-xl-6 p-20 border-right">
-                            <div class="devis__products-container">
-                                <h2 class="m-b-20">{{ 'Public.Catalog.Quote'| trans({}, "messages", locale) }}</h2>
-                                <div class="devis__recap devis-recap">
-                                    {% for range in ranges %}
-                                        {% for product in range.products %}
-                                            {% for item in cart.content %}
-                                                {% if item['pId'] == product.id %}
-                                                    <div class="devis__recap__item devis-recap-item-{{ product.id }} mb-2">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="number">
-                                                                {{ item['qtty'] }}
-                                                            </div>
-                                                            <div class="product d-flex align-items-center">
-                                                                {{ product|productLabelTranslation(locale) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endfor %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 devis__frequency-container p-20">
-                            <h2 class="m-b-20">{{ 'Public.Catalog.Collect-date'| trans({}, "messages", locale) }}</h2>
+                <div>
+                    <a type="button"
+                       class="btn btn__green btn__large type__button arrow-left ml-5"
+                       href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
+                    </a>
+                </div>
+                <div class="be-recalled">
+                    <a type="button"
+                       class="btn btn__purple-2 btn__large type__button ml-5"
+                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}">{{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                    </a>
+                </div>
 
-                            <div class="devis__frequency-container__content paprec-flex column">
-                                <input placeholder="jj/mm/aaaa"
-                                       data-url="{{ path('paprec_public_catalog_editPonctualDate', {locale: locale, cartUuid: cart.id}) }}"
-                                       type="text"
-                                       id="frequencyPonctualDatepicker">
-
-                            </div>
-                            <button type="button"
-                                    class="btn btn__blue btn__large catalog_next_step_button"
-                                    data-url="{{ path('paprec_public_contact_regulier_index', {locale: locale, cartUuid: cart.id}) }}"
-                                    data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}">
-                                {{ 'Public.Catalog.NextStep'| trans({}, "messages", locale) }}
-                            </button>
-                        </div>
-                    </div>
+                <div>
+                    <a type="button"
+                       class="btn btn__green btn__large type__button arrow-right mr-5 catalog_next_step_button"
+                       data-url="{{ path('paprec_public_contact_regulier_index', {locale: locale, cartUuid: cart.id}) }}"
+                       data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}">{{ 'Public.Catalog.Next-step'| trans({}, "messages", locale)|upper }}
+                    </a>
                 </div>
             </div>
-
-
-            {# <div class=""> #}
-            {# <div class="row"> #}
-            {# <div class="col-md-12 col-lg-6 col-12"> #}
-            {# <h2>{{ 'Public.Catalog.Other-Needs'| trans({}, "messages", locale) }} </h2> #}
-            {# <div style="font-style: italic">{{ 'Public.Catalog.Other-Needs-Info'| trans({}, "messages", locale) }} </div> #}
-            {# </div> #}
-            {# </div> #}
-            {# <div class="row other-needs-container mb-4"> #}
-            {# {% for otherNeed in otherNeeds %} #}
-            {# {% if otherNeed.pictures and otherNeed.pictures|length > 0 %} #}
-            {# <div class="col other-needs-image {% for cartOtherNeed in cart.otherNeeds %}{% if cartOtherNeed.id == otherNeed.id %}active{% endif %}{% endfor %}" #}
-            {# id="otherNeedImage{{ otherNeed.id }}" #}
-            {# data-url="{{ path('paprec_public_catalog_addRemoveOtherNeed', {locale: locale, cartUuid: cart.id, otherNeedId: otherNeed.id}) }}"> #}
-            {# <img src="{{ asset('/uploads/pictos/' ~ otherNeed.pictures[0].path) }}"> #}
-            {# <div class="other-needs-image__title"> #}
-            {# {{ otherNeed.name }} #}
-            {# </div> #}
-            {# <i class="fas fa-check"></i> #}
-            {# </div> #}
-            {# {% endif %} #}
-            {# {% endfor %} #}
-            {# </div> #}
-            {# </div> #}
         </div>
     </section>
     <div id="define-need-button"

@@ -66,11 +66,11 @@ input:focus {
 
     &--blue {
       color: #FFFFFF;
-      background-color: $secondary;
+      background-color: $green_1;
     }
 
     &--disable {
-      background-color: #dedede;
+      background-color: $purple_2;
       cursor: default;
 
       i {
@@ -86,10 +86,18 @@ input:focus {
     padding-left: 30px;
 
     &__block {
-      background-color: $lightgray;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5px;
+      height: 100%;
+      background-color: $purple_1;
+      border-radius: 5%;
+
+      //background-color: $lightgray;
+      //padding-top: 20px;
+      //padding-bottom: 20px;
+      //min-height: 250px;
 
       & select {
         background: none !important;
@@ -116,13 +124,12 @@ input:focus {
 
     &__label {
       font-weight: $font-bold;
-      line-height: 22px;
+      color: $purple_2;
     }
 
-    &__ value {
-      font-size: 16px;
-      font-weight: normal;
-      line-height: 27px;
+    &__value {
+      font-weight: $font-bold;
+      color: $purple_2;
     }
 
     &__image {
@@ -180,6 +187,11 @@ input:focus {
 
       }
 
+    }
+
+    &__title {
+      font-weight: bold;
+      color: $purple_2;
     }
   }
 
@@ -375,6 +387,11 @@ input:focus {
     font-size: 15px;
   }
 
+  .title {
+    font-weight: $font_bold;
+    color: $purple_2;
+  }
+
 }
 
 
@@ -449,6 +466,9 @@ input:focus {
 }
 
 .cart {
+  position: sticky;
+  top: 20px;
+
   &__block {
     &__body {
       display: flex;
