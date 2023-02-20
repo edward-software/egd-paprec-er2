@@ -507,6 +507,7 @@ input:focus {
         padding-bottom: 3px;
         padding-right: 13px;
         padding-left: 13px;
+        max-height: 30px;
       }
 
       .product {
@@ -514,6 +515,16 @@ input:focus {
         font-weight: bold;
         color: $purple_2;
         font-size: 14px;
+
+        .info{
+          padding-top: 3px;
+        }
+
+        .sub-info{
+          font-weight: normal;
+          font-size: 12px;
+          margin-top: -5px;
+        }
       }
 
     }
