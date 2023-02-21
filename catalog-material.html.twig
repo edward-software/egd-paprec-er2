@@ -1,5 +1,5 @@
 {% extends 'public/base_public.html.twig' %}
-{% block title %} Privacia - Catalogue{% endblock %}
+{% block title %} Easy Recyclage - Catalogue{% endblock %}
 {% block breadcrumb_title %}
     {{ 'Public.Catalog.BreadcrumbTitle'| trans({}, "messages", locale) }}
 {% endblock %}
@@ -164,7 +164,7 @@
                                 <div class="bottom">
                                     <div class="text-center">
                                         <div class="need-help mb-2">BESOIN DE CONSEIL OU D'ACCOMPAGNEMENT?</div>
-                                        <div><a class="link">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER
+                                        <div><a class="link" href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER
                                             VOTRE SOLUTION
                                         </div>
                                     </div>

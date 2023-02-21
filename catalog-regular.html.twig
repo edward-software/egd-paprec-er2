@@ -1,5 +1,5 @@
 {% extends 'public/base_public.html.twig' %}
-{% block title %} Privacia - Catalogue{% endblock %}
+{% block title %} Easy Recyclage - Catalogue{% endblock %}
 {% block breadcrumb_title %}
     {{ 'Public.Catalog.BreadcrumbTitle'| trans({}, "messages", locale) }}
 {% endblock %}
@@ -22,7 +22,8 @@
                     {% for range in ranges %}
                         <div class="range-container">
                             <h2><a data-toggle="collapse"
-                                   href="#rangeProductCollapse__{{ range.id }}" class="title">{{ range|rangeLabelTranslation(locale) }}</a>
+                                   href="#rangeProductCollapse__{{ range.id }}"
+                                   class="title">{{ range|rangeLabelTranslation(locale) }}</a>
                             </h2>
                             <div id="rangeContentContainer__{{ range.id }}">
                                 <div class="row m-b-15 m-t-1">
@@ -149,18 +150,20 @@
                                                             <!-- Group of default radios - option Regular-->
                                                             <div class="paprec-flex">
                                                                 <div class="custom-control custom-radio">
-                                                                    <input type="radio" class="custom-control-input"
+                                                                    <input type="radio"
+                                                                           class="custom-control-input"
                                                                            id="regularFrequencyButton__{{ product.id }}"
                                                                            value="regular"
                                                                            data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                            {% if frequency == 'regular' %}checked{% endif %}
-                                                                           name="productFrequencyRadios__{{ product.id }}">
+                                                                           name="productFrequencyRadios__{{ product.id }}"
+                                                                    >
                                                                     <label class="custom-control-label"
                                                                            for="regularFrequencyButton__{{ product.id }}">{{ 'Public.Catalog.Regular'| trans({}, "messages", locale) }}</label>
                                                                 </div>
 
                                                                 <div class="ml-3">
-                                                                    <input class="product__frequency__container__input text-center mr-2"
+                                                                    <input class="product__frequency__container__input text-center mr-2 frequency-input"
                                                                            size="1"
                                                                            type="number"
                                                                            max="9"
@@ -168,7 +171,8 @@
                                                                            {% if frequency != 'regular' %}hidden{% endif %}
                                                                            data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                            id="productFrequencyTimesInput__{{ product.id }}"
-                                                                           value="{{ frequencyTimes }}"/>
+                                                                           value="{{ frequencyTimes }}"
+                                                                           style="color: grey"/>
                                                                     <span class="devis__frequence__times no-wrap"
                                                                           id="textFrequencyTimes__{{ product.id }}"
                                                                           {% if frequency != 'regular' %}hidden{% endif %}>{{ 'Public.Catalog.Times'| trans({}, "messages", locale) }}</span>
@@ -245,12 +249,12 @@
                                                                             </div>
                                                                             <div class="product d-flex flex-column">
                                                                                 <div class="info">
-                                                                                {{ product|productLabelTranslation(locale) }}
+                                                                                    {{ product|productLabelTranslation(locale) }}
                                                                                 </div>
                                                                                 <div class="sub-info">{{ ('Public.Catalog.' ~ (item['frequency']|capitalize))|trans({}, "messages", locale)|capitalize }}
-                                                                                {% if item['frequency'] == 'regular' %}
-                                                                                    <span>{{ item['frequencyTimes'] }} {{ 'Public.Catalog.Times'| trans({}, "messages", locale) }} {{ ('Public.Catalog.' ~ item['frequencyInterval']|capitalize)| trans({}, "messages", locale) }}</span>
-                                                                                {% endif %}
+                                                                                    {% if item['frequency'] == 'regular' %}
+                                                                                        <span>{{ item['frequencyTimes'] }} {{ 'Public.Catalog.Times'| trans({}, "messages", locale) }} {{ ('Public.Catalog.' ~ item['frequencyInterval']|capitalize)| trans({}, "messages", locale) }}</span>
+                                                                                    {% endif %}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -287,7 +291,8 @@
                 <div class="be-recalled">
                     <a type="button"
                        class="btn btn__purple-2 btn__large type__button ml-5"
-                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i
+                                class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>
 
@@ -311,6 +316,10 @@
     <script>
         $(function () {
             $('.progress-bar').css('width', '38%').attr('aria-valuenow', '35%');
+
+            $('.frequency-input').on('change', function () {
+                $(this).css('color', 'inherit');
+            });
 
             $(window).scroll(function () {
                 var Bottom = $(window).height() + $(window).scrollTop() >= $(document).height();
