@@ -73,26 +73,26 @@
     {# Navigation #}
     <nav class="navbar navbar-expand-md navbar-light static-top">
         <div class="container menu">
-{#            <a class="navbar-brand" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">#}
-{#                <img class="img-fluid" width="260" src="{{ asset('/build/static/logo-groupe.png') }}" alt="">#}
-{#            </a>#}
-{#            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"#}
-{#                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"#}
-{#                    aria-label="Toggle navigation">#}
-{#                <span class="navbar-toggler-icon"></span>#}
-{#            </button>#}
+            <a class="navbar-brand" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">
+                <img class="img-fluid" src="{{ asset('/build/static/logo-easy-recyclage.png') }}" alt="">
+            </a>
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-{#            <div class="collapse navbar-collapse" id="navbarResponsive">#}
+            <div class="collapse navbar-collapse" id="navbarResponsive">
 
-{#                <ul class="navbar-nav nav ml-5 mr-xl-auto">#}
-{#                    <li class="nav-item active">#}
-{#                        <a class="nav-link"#}
-{#                           href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Home'| trans({}, "messages", locale) }}#}
-{#                            <span class="sr-only">(current)</span>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
+                <ul class="navbar-nav nav ml-5 mr-xl-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link"
+                           href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Home'| trans({}, "messages", locale) }}
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
         </div>
     </nav>

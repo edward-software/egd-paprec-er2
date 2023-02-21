@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
           rel="stylesheet">
-    <title>Account Activation</title>
+    <title>Relance Suivi</title>
 
     <!-- Web Font / @font-face : BEGIN -->
     <!--[if mso]>
@@ -30,7 +30,7 @@ cette semaine vos affaires suivantes sont probablement à mettre à jour ?
 <br>
 <ul>
 {% for qR in quoteRequests %}
-    <li><a href="{{ paprec_back_office_url }}/catalog/followUp/view/{{ followUpByQuoteRequest[qR.id].id }}">{{ ('Commercial.QuoteRequest.Origin.'~ qR.origin|capitalize)|trans }} - {{ qR.number }}</a></li>
+    <li><a href="{{ paprec_back_office_url }}/commercial/followUp/view/{{ followUpByQuoteRequest[qR.id].id }}">{{ ('Commercial.QuoteRequest.Origin.'~ qR.origin|capitalize)|trans }} - {{ qR.number }}</a></li>
 {% endfor %}
 </ul>
 <br>
