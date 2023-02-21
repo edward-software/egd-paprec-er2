@@ -21,16 +21,22 @@
 
 </head>
 <body>
-Bonjour {{ user.firstName }} {{ user.lastName }},
+Bonjour {{ user.firstName }},
 <br>
 <br>
 
 cette semaine vos affaires suivantes sont probablement à mettre à jour ?
 <br>
 <br>
-
-
-Si vous souhaitez faire une mise à jour du suivi, cliquer sur l’affaire et vous arriverez directement sur le back office !
+<ul>
+{% for qR in quoteRequests %}
+    <li><a href="{{ paprec_back_office_url }}/catalog/followUp/view/{{ followUpByQuoteRequest[qR.id].id }}">{{ ('Commercial.QuoteRequest.Origin.'~ qR.origin|capitalize)|trans }} - {{ qR.number }}</a></li>
+{% endfor %}
+</ul>
+<br>
+<br>
+Si vous souhaitez faire une mise à jour du suivi, cliquer sur l’affaire et vous arriverez directement sur le back office
+!
 
 </body>
 </html>

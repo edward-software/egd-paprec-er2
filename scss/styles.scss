@@ -46,7 +46,7 @@ $sides: (top, bottom, left, right); // Leave this variable alone
 
 body {
   font-family: $font-family-2 !important;
-  color: $purple_2 !important;
+  color: $blue_1 !important;
   font-size: $font-text !important;
   line-height: 22px !important;
 }
@@ -122,7 +122,7 @@ a {
     }
 
     &__last {
-      color: $purple_2 !important;
+      color: $blue_1 !important;
     }
 
     .progress {
@@ -140,7 +140,7 @@ a {
     }
 
     .item-active {
-      color: $purple_2 !important;
+      color: $blue_1 !important;
     }
   }
 }
@@ -189,8 +189,8 @@ a {
   }
 
   &__purple-2 {
-    background-color: $purple_2;
-    border: 1.5px solid $purple_2;
+    background-color: $blue_1;
+    border: 1.5px solid $blue_1;
     color: $white;
     text-transform: uppercase;
     font-size: 16px;

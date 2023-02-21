@@ -70,7 +70,7 @@ input:focus {
     }
 
     &--disable {
-      background-color: $purple_2;
+      background-color: $blue_1;
       cursor: default;
 
       i {
@@ -91,7 +91,7 @@ input:focus {
       justify-content: space-between;
       padding: 5px;
       height: 100%;
-      background-color: $purple_1;
+      background-color: $gray_1;
       border-radius: 5%;
 
       //background-color: $lightgray;
@@ -124,12 +124,12 @@ input:focus {
 
     &__label {
       font-weight: $font-bold;
-      color: $purple_2;
+      color: $blue_1;
     }
 
     &__value {
       font-weight: $font-bold;
-      color: $purple_2;
+      color: $blue_1;
     }
 
     &__image {
@@ -191,7 +191,7 @@ input:focus {
 
     &__title {
       font-weight: bold;
-      color: $purple_2;
+      color: $blue_1;
     }
   }
 
@@ -389,7 +389,7 @@ input:focus {
 
   .title {
     font-weight: $font_bold;
-    color: $purple_2;
+    color: $blue_1;
   }
 
 }
@@ -476,14 +476,14 @@ input:focus {
       justify-content: space-between;
       height: 100%;
       border-radius: 20px;
-      border: 2px solid $purple_2;
+      border: 2px solid $blue_1;
 
       .top {
         padding: 30px;
 
         .card {
           border-radius: inherit !important;
-          border: 1px solid $purple_2;
+          border: 1px solid $blue_1;
         }
       }
 
@@ -491,7 +491,7 @@ input:focus {
         padding: 15px;
         border-bottom-left-radius: 18px;
         border-bottom-right-radius: 18px;
-        background-color: $purple_2;
+        background-color: $blue_1;
         color: white;
         font-size: 13px;
 
@@ -513,7 +513,7 @@ input:focus {
       .product {
         margin-left: 5px;
         font-weight: bold;
-        color: $purple_2;
+        color: $blue_1;
         font-size: 14px;
 
         .info{

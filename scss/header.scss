@@ -14,7 +14,7 @@
 
 .top-bar {
   z-index: 9999;
-  background-color: $purple_2;
+  background-color: $blue_1;
 
   &__top-contact {
     display: flex;
@@ -123,7 +123,7 @@
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #f7f7f7;
-    border-bottom: 4px solid $purple_2;
+    border-bottom: 4px solid $blue_1;
     padding: 10px 0;
     top: 40px;
 
@@ -140,7 +140,7 @@
         &:active {
           color: #fff !important;
           text-decoration: none;
-          background-color: $purple_2;
+          background-color: $blue_1;
         }
     }
 

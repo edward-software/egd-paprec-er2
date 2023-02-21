@@ -123,7 +123,7 @@
                                                         </div>
                                                         <div class="paprec-flex product__frequency__container">
                                                             {% set frequency = '' %}
-                                                            {% set frequencyTimes = '0' %}
+                                                            {% set frequencyTimes = '5' %}
                                                             {% set frequencyInterval = '' %}
                                                             {% for item in cart.content %}
                                                                 {% if item['pId'] == product.id %}
@@ -287,7 +287,7 @@
                 <div class="be-recalled">
                     <a type="button"
                        class="btn btn__purple-2 btn__large type__button ml-5"
-                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}">{{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>
 
