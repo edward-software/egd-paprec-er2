@@ -268,11 +268,11 @@
         </tr>
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">Type de contrat</th>
-            <th colspan="3" style="width: 30%;" class="value">{{ missionSheet.contractType }} trad</th>
+            <th colspan="3" style="width: 30%;" class="value"> {{ ('Commercial.MissionSheet.ContractType.'~missionSheet.contractType|capitalize)|trans }}</th>
             <th colspan="1" style="width: 10%;" class="text-center">N° de commande</th>
             <th colspan="2" style="width: 20%;" class="value">{{ missionSheet.orderNumber }}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Factu</th>
-            <th colspan="2" style="width: 20%;" class="value">{{ missionSheet.billingType }} trad</th>
+            <th colspan="2" style="width: 20%;" class="value">{{ ('Commercial.MissionSheet.BillingType.'~missionSheet.billingType|capitalize)|trans }}</th>
         </tr>
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">Date FM</th>
@@ -287,11 +287,11 @@
         </tr>
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">MyPaprec</th>
-            <th colspan="1" style="width: 10%;" class="value">{{ missionSheet.myPaprecAccess }}</th>
+            <th colspan="1" style="width: 10%;" class="value">{% if missionSheet.myPaprecAccess == '0' %}Non{% else %}Oui{% endif %}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Registre</th>
-            <th colspan="1" style="width: 10%;" class="value">{{ missionSheet.wasteTrackingRegisterAccess }}</th>
+            <th colspan="1" style="width: 10%;" class="value">{% if missionSheet.wasteTrackingRegisterAccess == '0' %}Non{% else %}Oui{% endif %}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Reporting</th>
-            <th colspan="1" style="width: 10%;" class="value">{{ missionSheet.reportingAccess }}</th>
+            <th colspan="1" style="width: 10%;" class="value">{% if missionSheet.reportingAccess == '0' %}Non{% else %}Oui{% endif %}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Mail</th>
             <th colspan="3" style="width: 30%;" class="value">{{ quoteRequest.email }}</th>
         </tr>
