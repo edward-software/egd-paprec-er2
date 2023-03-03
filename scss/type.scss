@@ -113,8 +113,8 @@
 
 .bottom-navigation {
   .be-recalled {
-    a {
-      background-color: $blue_1;
+    a, button {
+      background-color: $blue_1 !important;
       line-height: 2.5em;
       &:hover{
         color: #FFFFFF;

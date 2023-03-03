@@ -516,11 +516,11 @@ input:focus {
         color: $blue_1;
         font-size: 14px;
 
-        .info{
+        .info {
           padding-top: 3px;
         }
 
-        .sub-info{
+        .sub-info {
           font-weight: normal;
           font-size: 12px;
           margin-top: -5px;
@@ -550,5 +550,38 @@ input:focus {
 
   .flex-1 {
     flex: 1;
+  }
+}
+
+.contact-page {
+  input, select, textarea {
+    border-radius: 15px;
+    border: 2px solid $blue_1 !important;
+
+    ::placeholder, ::-ms-input-placeholder {
+      color: $blue_1;
+    }
+  }
+
+  input::placeholder {
+    color: $blue_1;
+
+  }
+
+  input::-ms-input-placeholder {
+    color: $blue_1;
+
+  }
+}
+
+.confirm-page {
+  .confirm-text {
+    text-align: center;
+    line-height: 30px;
+
+    p {
+      font-size: 16px;
+      color: $blue_1;
+    }
   }
 }
