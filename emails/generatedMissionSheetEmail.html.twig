@@ -24,11 +24,10 @@
 
 {% if quoteRequest.civility == 'M' %}
     {{ 'Commercial.GeneratedMissionSheetEmail.Dear.M'|trans({}, "messages", locale) }}
-{% elseif quoteRequest.civility == 'Mme' %}
+{% elseif quoteRequest.civility == 'MME' %}
     {{ 'Commercial.GeneratedMissionSheetEmail.Dear.Mrs'|trans({}, "messages", locale) }}
 {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
-
-{{ 'Commercial.GeneratedMissionSheetEmail.Message1'| trans({%number%: quoteRequest.number%}, "messages", locale) }}
+{{ 'Commercial.GeneratedMissionSheetEmail.Message1'| trans({'%number%': quoteRequest.number}, "messages", locale) }}
 <br><br>
 {{ 'Commercial.GeneratedMissionSheetEmail.Regards'| trans({}, "messages", locale) }}
 <br><br>

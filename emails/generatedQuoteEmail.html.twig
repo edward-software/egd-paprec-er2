@@ -24,7 +24,7 @@
 
 {% if quoteRequest.civility == 'M' %}
     {{ 'Commercial.GeneratedQuoteEmail.Dear.M'|trans({}, "messages", locale) }}
-{% elseif quoteRequest.civility == 'Mme' %}
+{% elseif quoteRequest.civility == 'MME' %}
     {{ 'Commercial.GeneratedQuoteEmail.Dear.Mrs'|trans({}, "messages", locale) }}
 {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 

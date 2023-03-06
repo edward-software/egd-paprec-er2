@@ -1,12 +1,12 @@
 {% extends 'public/base_public.html.twig' %}
 {% block gtm %}
-    {% if quoteRequest.type == 'REGULAR' %}
+    {% if quoteRequest.catalog == 'REGULAR' %}
         <!-- Event snippet for Validation Demande Devis Reguliere conversion page -->
         <script>
             gtag('event', 'conversion', {'send_to': 'AW-1046486146/rI1sCO2hwW0QgrmA8wM'});
         </script>
     {% endif %}
-    {% if quoteRequest.type == 'PONCTUAL' %}
+    {% if quoteRequest.catalog == 'PONCTUAL' %}
         <!-- Event snippet for Validation Demande Devis Ponctuelle conversion page -->
         <script>
             gtag('event', 'conversion', {'send_to': 'AW-1046486146/pAR3COHB62kQgrmA8wM'});

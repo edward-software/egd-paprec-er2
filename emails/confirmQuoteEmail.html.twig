@@ -23,7 +23,7 @@
 <body>
 {% if quoteRequest.civility == 'M' %}
     {{ 'Commercial.ConfirmEmail.Dear.M'|trans({}, "messages", locale) }}
-{% elseif quoteRequest.civility == 'Mme' %}
+{% elseif quoteRequest.civility == 'MME' %}
     {{ 'Commercial.ConfirmEmail.Dear.Mrs'|trans({}, "messages", locale) }}
 {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 
@@ -49,10 +49,10 @@
             </td>
             <td>{{ quoteRequestLine.quantity }}</td>
             <td>
-                {% if quoteRequestLine.frequency == 'unknown' %}
+                {% if quoteRequestLine.frequency == 'UNKNOWN' %}
                     {{ 'General.Frequency.Unknown'|trans({}, "messages", app.request.locale) }}
                 {% else %}
-                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval|capitalize %}
+                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
                     {{ quoteRequestLine.frequencyTimes }}
                     x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
                 {% endif %}
