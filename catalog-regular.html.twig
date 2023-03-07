@@ -153,7 +153,7 @@
                                                                     <input type="radio"
                                                                            class="custom-control-input"
                                                                            id="regularFrequencyButton__{{ product.id }}"
-                                                                           value="regular"
+                                                                           value="REGULAR"
                                                                            data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                            {% if frequency == 'REGULAR' %}checked{% endif %}
                                                                            name="productFrequencyRadios__{{ product.id }}"
@@ -180,19 +180,19 @@
                                                                             {% if frequency != 'REGULAR' %}hidden{% endif %}
                                                                             data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                             id="productFrequencyIntervalSelect__{{ product.id }}">
-                                                                        <option value="week"
+                                                                        <option value="WEEK"
                                                                                 {% if frequencyInterval == 'WEEK' %}selected{% endif %}>
                                                                             {{ 'Public.Catalog.WEEK'| trans({}, "messages", locale) }}
                                                                         </option>
-                                                                        <option value="month"
+                                                                        <option value="MONTH"
                                                                                 {% if frequencyInterval == 'MONTH' %}selected{% endif %}>
                                                                             {{ 'Public.Catalog.MONTH'| trans({}, "messages", locale) }}
                                                                         </option>
-                                                                        <option value="bimestre"
+                                                                        <option value="BIMESTRE"
                                                                                 {% if frequencyInterval == 'BIMESTRE' %}selected{% endif %}>
                                                                             {{ 'Public.Catalog.BIMESTRE'| trans({}, "messages", locale) }}
                                                                         </option>
-                                                                        <option value="quarter"
+                                                                        <option value="QUARTER"
                                                                                 {% if frequencyInterval == 'QUARTER' %}selected{% endif %}>
                                                                             {{ 'Public.Catalog.QUARTER'| trans({}, "messages", locale) }}
                                                                         </option>
@@ -205,7 +205,7 @@
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                        id="unknownFrequencyButton__{{ product.id }}"
-                                                                       value="unknown"
+                                                                       value="UNKNOWN"
                                                                        data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                        {% if frequency == 'UNKNOWN' %}checked{% endif %}
                                                                        name="productFrequencyRadios__{{ product.id }}">

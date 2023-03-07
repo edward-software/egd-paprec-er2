@@ -326,7 +326,7 @@
             {% for quoteRequestLine in quoteRequestLines %}
                 <tr>
                     <td>{{ quoteRequestLine.product.wasteClassification }}</td>
-                    <td>{{ quoteRequestLine.product.code }}</td>
+                    <td>{% if quoteRequestLine.product %}{{ quoteRequestLine.product.code }}{% endif %}</td>
                     <td>{{ quoteRequestLine.productName }}</td>
                     <td>{{ quoteRequestLine.quantity }}</td>
                     <td>{% if quoteRequestLine.product.billingUnit %}{{ quoteRequestLine.product.billingUnit.name }}{% endif %}</td>

@@ -447,9 +447,9 @@
                             <td>{{ 'Commercial.PDF.ContractTreatmentCollect'|trans({}, "messages", app.request.locale) }}</td>
                             <td>
                                 {% if line.frequency == 'UNKNOWN' %}
-                                    {{ 'General.Frequency.Unknown'|trans({}, "messages", app.request.locale) }}
+                                    {{ 'General.Frequency.UNKNOWN'|trans({}, "messages", app.request.locale) }}
                                 {% elseif line.frequency == 'PONCTUAL' %}
-                                    {{ 'General.Frequency.Ponctual'|trans({}, "messages", app.request.locale) }}
+                                    {{ 'General.Frequency.PONCTUAL'|trans({}, "messages", app.request.locale) }}
                                 {% else %}
                                     {% set frequencyIntervalName = 'General.Frequency.' ~ line.frequencyInterval %}
                                     {{ line.frequencyTimes }}
@@ -534,7 +534,7 @@
                     <p>
                         <span class="bold">{{ 'Commercial.PDF.ContractDuration'|trans({}, "messages", app.request.locale) }} :</span>
                         {% if quoteRequest.duration is not null %}
-                            {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.month'|trans }}
+                            {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.MONTH'|trans }}
                         {% endif %}
                     </p>
                 </div>
