@@ -332,7 +332,7 @@
                     <td>{% if quoteRequestLine.product.billingUnit %}{{ quoteRequestLine.product.billingUnit.name }}{% endif %}</td>
                     <td>{{ quoteRequestLine.rentalUnitPrice }}</td>
                     <td>{{ quoteRequestLine.totalAmount }}</td>
-                    <td>{{ quoteRequestLine.agency.name }}</td>
+                    <td>{% if quoteRequestLine.agency %}{{ quoteRequestLine.agency.name }}{% endif %}</td>
                 </tr>
             {% endfor %}
         {% endif %}
