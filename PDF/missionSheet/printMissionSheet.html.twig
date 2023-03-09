@@ -264,13 +264,13 @@
             <th colspan="1" style="width: 10%;" class="text-center">N° mnemonique</th>
             <th colspan="1" style="width: 10%;" class="value">{{ missionSheet.mnemonicNumber }}</th>
             <th colspan="1" style="width: 10%;" class="text-center">N° de site(s)</th>
-            <th colspan="3" style="width: 30%;" class="value">(a faire)</th>
+            <th colspan="3" style="width: 30%;" class="value">{{ missionSheet.orderNumber }}</th>
         </tr>
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">Type de contrat</th>
-            <th colspan="3" style="width: 30%;" class="value"> {{ ('Commercial.MissionSheet.ContractType.'~missionSheet.contractType)|trans }}</th>
-            <th colspan="1" style="width: 10%;" class="text-center">N° de commande</th>
-            <th colspan="2" style="width: 20%;" class="value">{{ missionSheet.orderNumber }}</th>
+            <th colspan="6" style="width: 60%;" class="value"> {{ ('Commercial.MissionSheet.ContractType.'~missionSheet.contractType)|trans }}</th>
+{#            <th colspan="1" style="width: 10%;" class="text-center">N° de commande</th>#}
+{#            <th colspan="2" style="width: 20%;" class="value">{{ missionSheet.orderNumber }}</th>#}
             <th colspan="1" style="width: 10%;" class="text-center">Factu</th>
             <th colspan="2" style="width: 20%;" class="value">{{ ('Commercial.MissionSheet.BillingType.'~missionSheet.billingType)|trans }}</th>
         </tr>

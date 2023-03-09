@@ -90,6 +90,11 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, tab
   transform: translateY(-50%);
 }
 
+table.dataTable tbody .cell-action-button > a:not(:last-child) {
+  margin-right: 5px !important;
+}
+
+
 .page-item.active .page-link,
 .btn-primary {
   background-color: #4A90E2;
