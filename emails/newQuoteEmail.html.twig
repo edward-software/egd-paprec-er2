@@ -8,32 +8,130 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
           rel="stylesheet">
     <title>Account Activation</title>
-
-    <!-- Web Font / @font-face : BEGIN -->
-    <!--[if mso]>
     <style>
         * {
-            font-family: Arial, sans-serif !important;
+            font-family: "Red Hat Display", sans-serif !important;
+        }
+
+        body {
+            color: #1C3465;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+
+        table thead th {
+            font-weight: bold;
+        }
+
+        .comment .title {
+            font-weight: bold;
+        }
+
+        .comment .content {
+            border: 1px solid #1C3465;
+            padding: 4px;
+        }
+
+        .last-message {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .link {
+            text-align: center;
+            text-decoration: none #fff !important;
+            color: #fff !important;
+        }
+
+        .button {
+            border-radius: 0;
+            font-size: 14px;
+            height: auto;
+            padding: 20px;
+            margin: 20px;
+            background-color: #A1C639;
+            border: 1.5px solid #A1C639;
+            text-transform: uppercase;
+            text-decoration: none #fff !important;
+            color: #fff !important;
+        }
+
+        .not-working{
+            text-align: center;
         }
     </style>
-    <![endif]-->
-    <!-- Web Font / @font-face : END -->
-
-
 </head>
 <body>
 
-{{ 'Commercial.NewQuoteEmail.Dear'|trans({}, "messages", locale) }},
+<span class="name">{{ quoteRequest.firstName }} {{ quoteRequest.lastName }}, {{ quoteRequest.businessName }}
+, {{ quoteRequest.address }}{% if quoteRequest.postalCode %} {{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}</span> {{ 'Commercial.NewQuoteEmail.Message1'| trans({}, "messages", locale) }}
+
 <br><br>
-{{ 'Commercial.NewQuoteEmail.Message1'| trans({}, "messages", locale) }}
-<br>
-<a href="{{ paprec_back_office_url }}/commercial/quoteRequest/view/{{ quoteRequest.id }}">
-    {{ 'Commercial.NewQuoteEmail.QuoteLink'| trans({}, "messages", locale) }}
-</a>
+{{ 'Commercial.NewQuoteEmail.Message2'| trans({}, "messages", locale) }} :
 <br><br>
-{{ 'Commercial.NewQuoteEmail.Message2'| trans({}, "messages", locale) }}
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>{{ 'Commercial.QuoteRequestLine.Wastes'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.Materials'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.Quantities'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.PassingFrequency'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for quoteRequestLine in quoteRequestLines %}
+        <tr>
+            <td>
+                {{ quoteRequestLine.product.range|rangeLabelTranslation('fr') }}
+            </td>
+            <td>
+                {{ quoteRequestLine.product|productLabelTranslation(app.request.locale) }}
+            </td>
+            <td>{{ quoteRequestLine.quantity }}</td>
+            <td>
+                {% if quoteRequestLine.frequency == 'UNKNOWN' %}
+                    {{ 'General.Frequency.UNKNOWN'|trans({}, "messages", app.request.locale) }}
+                {% else %}
+                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
+                    {{ quoteRequestLine.frequencyTimes }}
+                    x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 <br><br>
-{{ 'Commercial.ConfirmEmail.Partner'| trans({}, "messages", locale) }}
+<div class="comment">
+    <div class="title">
+        {{ 'Commercial.NewQuoteEmail.Message3'| trans({}, "messages", locale) }} :
+    </div>
+    <div class="content">
+        {{ quoteRequest.comment }}
+    </div>
+</div>
+<br><br>
+<div class="last-message">
+    {{ 'Commercial.NewQuoteEmail.Message4'| trans({}, "messages", locale) }}
+</div>
+<br><br>
+<div class="link">
+    <a type="button"
+       class="button"
+       href="{{ paprec_back_office_url }}/commercial/quoteRequest/view/{{ quoteRequest.id }}">
+        Accès back-office
+    </a>
+</div>
+<br><br>
+<div class="not-working">
+    {{ 'Commercial.NewQuoteEmail.Message5'| trans({}, "messages", locale) }} <a
+            href="{{ paprec_back_office_url }}/commercial/quoteRequest/view/{{ quoteRequest.id }}">cliquez
+        ici</a> {{ 'Commercial.NewQuoteEmail.Message6'| trans({}, "messages", locale) }}
+</div>
+<br><br>
+
 <br>
 
 </body>

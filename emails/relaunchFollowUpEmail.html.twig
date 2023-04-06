@@ -8,17 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
           rel="stylesheet">
     <title>Relance Suivi</title>
-
-    <!-- Web Font / @font-face : BEGIN -->
-    <!--[if mso]>
     <style>
         * {
-            font-family: Arial, sans-serif !important;
+            font-family:  "Red Hat Display", sans-serif !important;
         }
     </style>
-    <![endif]-->
-
-
 </head>
 <body>
 Bonjour {{ user.firstName }},
@@ -30,7 +24,7 @@ cette semaine vos affaires suivantes sont probablement à mettre à jour ?
 <br>
 <ul>
 {% for qR in quoteRequests %}
-    <li><a href="{{ paprec_back_office_url }}/commercial/followUp/view/{{ followUpByQuoteRequest[qR.id].id }}">{{ ('Commercial.QuoteRequest.Origin.'~ qR.origin|capitalize)|trans }} - {{ qR.number }}</a></li>
+    <li><a href="{{ paprec_back_office_url }}/commercial/followUp/view/{{ followUpByQuoteRequest[qR.id].id }}">{{ ('Commercial.QuoteRequest.Origin.'~ qR.origin)|trans }} - {{ qR.number }}</a></li>
 {% endfor %}
 </ul>
 <br>

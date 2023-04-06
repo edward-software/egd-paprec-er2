@@ -14,11 +14,9 @@
 .navbar-brand {
   font-size: 0;
   position: absolute;
-  top: -35px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
   height: 121px;
   width: 217px;
-  background: url(/build/static/logo-easy-recyclage.png) center center no-repeat;
   z-index: 2;
 }
 
@@ -89,6 +87,11 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, tab
   top: 50%;
   transform: translateY(-50%);
 }
+
+table.dataTable tbody .cell-action-button > a:not(:last-child) {
+  margin-right: 5px !important;
+}
+
 
 .page-item.active .page-link,
 .btn-primary {

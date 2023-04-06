@@ -11,7 +11,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family:  "Red Hat Display", sans-serif;
             font-weight: 500;
             font-size: 14px;
             color: #4a4a4a;
@@ -400,7 +400,7 @@
 
             <h2>3. {{ 'Commercial.PDF.ServiceTitle'|trans({}, "messages", app.request.locale) }}</h2>
 
-            {% if quoteRequest.type == 'REGULAR' or quoteRequest.type == 'regular' %}
+            {% if quoteRequest.catalog == 'REGULAR' or quoteRequest.catalog == 'regular' %}
 
                 <table style="width: 95%; margin-left: 20px; margin-top: 10px">
                     <tbody>
@@ -446,18 +446,18 @@
                         <tr>
                             <td>{{ 'Commercial.PDF.ContractTreatmentCollect'|trans({}, "messages", app.request.locale) }}</td>
                             <td>
-                                {% if line.frequency == 'unknown' %}
-                                    {{ 'General.Frequency.Unknown'|trans({}, "messages", app.request.locale) }}
-                                {% elseif line.frequency == 'ponctual' %}
-                                    {{ 'General.Frequency.Ponctual'|trans({}, "messages", app.request.locale) }}
+                                {% if line.frequency == 'UNKNOWN' %}
+                                    {{ 'General.Frequency.UNKNOWN'|trans({}, "messages", app.request.locale) }}
+                                {% elseif line.frequency == 'PONCTUAL' %}
+                                    {{ 'General.Frequency.PONCTUAL'|trans({}, "messages", app.request.locale) }}
                                 {% else %}
-                                    {% set frequencyIntervalName = 'General.Frequency.' ~ line.frequencyInterval|capitalize %}
+                                    {% set frequencyIntervalName = 'General.Frequency.' ~ line.frequencyInterval %}
                                     {{ line.frequencyTimes }}
                                     x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
                                 {% endif %}
                             </td>
                             {% set coefValue = 1 %}
-                            {% if line.frequency == 'regular' %}
+                            {% if line.frequency == 'REGULAR' %}
                                 {% set frequencyInterval = line.frequencyInterval %}
                                 {% set coefValue = monthlyCoefValues[frequencyInterval] %}
                             {% endif %}
@@ -476,7 +476,7 @@
                     </tbody>
                 </table>
 
-            {% elseif quoteRequest.type == 'PONCTUAL' or quoteRequest.type == 'ponctual' %}
+            {% elseif quoteRequest.catalog == 'PONCTUAL' or quoteRequest.catalog == 'ponctual' %}
 
                 <table style="width: 95%; margin-left: 20px; margin-top: 10px">
                     <tbody>
@@ -529,12 +529,12 @@
 
 
 
-            {% if quoteRequest.type == 'REGULAR' or quoteRequest.type == 'regular' %}
+            {% if quoteRequest.catalog == 'REGULAR' or quoteRequest.catalog == 'regular' %}
                 <div class="flex">
                     <p>
                         <span class="bold">{{ 'Commercial.PDF.ContractDuration'|trans({}, "messages", app.request.locale) }} :</span>
                         {% if quoteRequest.duration is not null %}
-                            {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.month'|trans }}
+                            {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.MONTH'|trans }}
                         {% endif %}
                     </p>
                 </div>
@@ -548,7 +548,7 @@
                         {% endif %}
                     </p>
                 </div>
-            {% elseif quoteRequest.type == 'PONCTUAL' or quoteRequest.type == 'ponctual' %}
+            {% elseif quoteRequest.catalog == 'PONCTUAL' or quoteRequest.catalog == 'ponctual' %}
                 <div class="flex">
                     <p>
                         <span class="bold">{{ 'Commercial.PDF.PonctualDate'|trans({}, "messages", app.request.locale) }} :</span>

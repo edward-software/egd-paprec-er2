@@ -316,7 +316,7 @@ $(function () {
 
     $('#contact_access_select').change(function () {
         $('.contact_access_input').val(this.value);
-        if ($('.contact_access_input').val() === 'stairs') {
+        if ($('.contact_access_input').val() === 'STAIRS') {
             $('#floorNumber').show();
             $('#paprec_catalogbundle_quote_request_public_floorNumber').focus().select();
         } else {
@@ -398,7 +398,7 @@ function editProductFrequency(url, productId) {
     const frequency = $('input[type=radio][name^="productFrequencyRadios__' + productId + '"]:checked').val();
     let frequencyTimes = null;
     let frequencyInterval = null;
-    if (frequency != 'unknown') {
+    if (frequency != 'UNKNOWN') {
         frequencyTimes = $("#productFrequencyTimesInput__" + productId).val();
         frequencyInterval = $("#productFrequencyIntervalSelect__" + productId).val();
     }

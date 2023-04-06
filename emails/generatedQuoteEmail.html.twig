@@ -8,23 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
           rel="stylesheet">
     <title>Account Activation</title>
-
-    <!-- Web Font / @font-face : BEGIN -->
-    <!--[if mso]>
     <style>
         * {
-            font-family: Arial, sans-serif !important;
+            font-family:  "Red Hat Display", sans-serif !important;
         }
     </style>
-    <![endif]-->
-
-
 </head>
 <body>
 
 {% if quoteRequest.civility == 'M' %}
     {{ 'Commercial.GeneratedQuoteEmail.Dear.M'|trans({}, "messages", locale) }}
-{% elseif quoteRequest.civility == 'Mme' %}
+{% elseif quoteRequest.civility == 'MME' %}
     {{ 'Commercial.GeneratedQuoteEmail.Dear.Mrs'|trans({}, "messages", locale) }}
 {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 

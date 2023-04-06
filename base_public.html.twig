@@ -41,6 +41,10 @@
     <link rel="stylesheet" href="{{ asset('build/public.css') }}">
 {#    <link rel="icon" type="image/png" href="{{ asset('build/static/favicon.png') }}">#}
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -72,9 +76,9 @@
 
     {# Navigation #}
     <nav class="navbar navbar-expand-md navbar-light static-top">
-        <div class="container menu">
+        <div class="container menu header-menu">
             <a class="navbar-brand" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">
-                <img class="img-fluid" src="{{ asset('/build/static/logo-easy-recyclage.png') }}" alt="">
+                <img class="img-fluid" src="{{ asset('/build/static/logo-easy-recyclage.png') }}" alt="" width="200" height="100">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"

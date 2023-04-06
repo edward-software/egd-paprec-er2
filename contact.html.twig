@@ -16,142 +16,198 @@
                 </div>
             </div>
             <form id="contactDetailForm" action="" method="post">
-                <div class="row form-container">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="form-group paprec-flex align-items_center m-t-25 m-b-10 col-md-12 ml-4">
-                                {{ form_widget(form.civility, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}
-                                {{ form_errors(form.civility) }}
-                            </div>
-                            <div class="form-group col-md-6">
-                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.FirstName'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.firstName) }}
-                            </div>
-                            <div class="form-group col-md-6">
-                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.LastName'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.lastName) }}
-                            </div>
-                            <div class="form-group col-md-6">
-                                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.Email'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.email) }}
-                            </div>
-                            <div class="form-group col-md-6">
-                                {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.Phone'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.phone) }}
-                                <span id="phone-number-info">
-                                {{ 'Public.Contact.PhoneNumberInfo'| trans({}, "messages", locale) }}
-                            </span>
-                            </div>
-                            <div class="form-group col-md-6 mt-3">
-                                {{ form_widget(form.businessName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.BusinessName'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.businessName) }}
-                                <div class="invalid-feedback">
-                                    Champ non renseigné
+                <div class="form-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                                    <img src="{{ asset('/build/static/user.png') }}" alt="" width="125" height="125">
                                 </div>
-                            </div>
-                            <div class="form-group col-md-6 mt-3">
-                                <select id="contact_access_select" class="form-control">
-                                    <option value="" disabled
-                                            selected>{{ 'Public.Contact.Access'| trans({}, "messages", locale) }}* :
-                                    </option>
-                                    {% for opt in form.access.vars.choices %}
-                                        <option value="{{ opt.value }}"
-                                                {% if form.access.vars.data == opt.value %}selected{% endif %}>{{ opt.label|trans({}, "messages", locale) }}</option>
-                                    {% endfor %}
-                                </select>
-                                {{ form_errors(form.access) }}
-                            </div>
-
-                            <div class="form-group col-md-6  mt-3">
-                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :'), 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
-                                {{ form_errors(form.postalCode) }}
-                            </div>
-                            <div class="form-group col-md-6 mt-3">
-                                <select id="contact_staff_select" class="form-control">
-                                    <option value="" disabled
-                                            selected>{{ 'Public.Contact.Staff'| trans({}, "messages", locale) }} :
-                                    </option>
-                                    {% for opt in form.staff.vars.choices %}
-                                        <option value="{{ opt.value }}"
-                                                {% if form.staff.vars.data == opt.value %}selected{% endif %}>{{ opt.label|trans({}, "messages", locale) }}</option>
-                                    {% endfor %}
-                                </select>
-                                {{ form_errors(form.staff) }}
-                            </div>
-
-                            <div class="form-group address-content col-md-6">
-                                <input id="addressAutocomplete" class="form-control address-content address-field"
-                                       placeholder="{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}* :"/>
-                                {{ form_widget(form.address, {'attr': {'class': 'form-control address-field', 'hidden': true}}) }}
-                                {{ form_errors(form.address) }}
-                            </div>
-
-                            <div class="form-group address-content col-md-6">
-                                {{ form_widget(form.addressDetail, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.AddressDetail'| trans({}, 'messages', locale))}}) }}
-                                {{ form_errors(form.addressDetail) }}
-                            </div>
-
-                            <div class="form-group align-items_center col-md-6">
-                                <label>{{ 'Public.Contact.IsSameAddress'| trans({}, "messages", locale) }}* :</label>
-                                {{ form_widget(form.isSameAddress, {'attr': {'class': 'form-check form-check-inline radio-form is-same-address-input'}}) }}
-                                {{ form_errors(form.isSameAddress) }}
-                            </div>
-                            <div class="form-group col-md-6 address-group">
-                                <label class="billing-address-label col-md-6">{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}
-                                    * :</label>
-                                <input id="billingAddressAutocomplete"
-                                       class="form-control billing-address-field col-md-6"/>
-                            </div>
-                            <div class="form-group col-md-6 address-group">
-                                {{ form_widget(form.billingAddress, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
-                                {{ form_errors(form.billingAddress) }}
-                            </div>
-                            <div class="form-group col-md-6 address-group">
-                                {{ form_widget(form.billingPostalCode, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
-                                {{ form_errors(form.billingPostalCode) }}
-                            </div>
-                            <div class="form-group col-md-6 address-group">
-                                {{ form_widget(form.billingCity, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
-                                {{ form_errors(form.billingCity) }}
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label>{{ 'Public.Contact.IsSameSignatory'| trans({}, "messages", locale) }}* :</label>
-                                {{ form_widget(form.isSameSignatory, {'attr': {'class': 'form-check form-check-inline radio-form is-same-signatory-field'}}) }}
-                                {{ form_errors(form.isSameSignatory) }}
-                            </div>
-                            <div class="form-group signatory-group col-md-6">
-                                {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryLastName1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.signatoryLastName1) }}
-                            </div>
-                            <div class="form-group signatory-group col-md-6">
-                                {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryFirstName1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.signatoryFirstName1) }}
-                            </div>
-                            <div class="form-group signatory-group col-md-6">
-                                {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryTitle1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.signatoryTitle1) }}
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label class="">{{ 'Public.Contact.IsMultisite'| trans({}, "messages", locale) }}*
-                                    :</label>
-                                {{ form_widget(form.isMultisite, {'attr': {'class': 'form-check form-check-inline radio-form pb-2'}}) }}
-                                {{ form_errors(form.isMultisite) }}
-                                <div id="multisite-info">
-                                    {{ 'Public.Contact.isMultisiteInfo'| trans({}, "messages", locale) }}
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="form-group paprec-flex align-items_center m-t-25 m-b-10 col-md-12 ml-4">
+                                            {{ form_widget(form.civility, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}
+                                            {{ form_errors(form.civility) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.FirstName'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.firstName) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.LastName'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.lastName) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.Email'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.email) }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.Phone'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.phone) }}
+                                            <span id="phone-number-info">{{ 'Public.Contact.PhoneNumberInfo'| trans({}, "messages", locale) }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows': '11', 'placeholder': ('Public.Contact.Comment'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.comment) }}
+                            <div class="row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                                    <img src="{{ asset('/build/static/building.png') }}" alt="" width="125"
+                                         height="125">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="form-group col-md-6 mt-3">
+                                            {{ form_widget(form.businessName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.BusinessName'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.businessName) }}
+                                            <div class="invalid-feedback">
+                                                Champ non renseigné
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-3">
+                                                <select id="contact_access_select" class="form-control">
+                                                    <option value="" disabled
+                                                            selected>{{ 'Public.Contact.Access'| trans({}, "messages", locale) }}
+                                                        * :
+                                                    </option>
+                                                    {% for opt in form.access.vars.choices %}
+                                                        <option value="{{ opt.value }}"
+                                                                {% if form.access.vars.data == opt.value %}selected{% endif %}>{{ opt.label|trans({}, "messages", locale) }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                {{ form_errors(form.access) }}
+                                            </div>
+                                            <div class="form-group" id="floorNumber">
+                                                {{ form_widget(form.floorNumber, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.FloorNumber'| trans({}, 'messages', locale)~'* :')}}) }}
+                                                {{ form_errors(form.floorNumber) }}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-6" id="floorNumber">
-                                {{ form_widget(form.floorNumber, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.FloorNumber'| trans({}, 'messages', locale)~'* :')}}) }}
-                                {{ form_errors(form.floorNumber) }}
+                            <div class="row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                                    <img src="{{ asset('/build/static/mailbox.png') }}" alt="" width="125"
+                                         height="125">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-3">
+                                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :'), 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
+                                                {{ form_errors(form.postalCode) }}
+                                            </div>
+                                            <div class="form-group address-content">
+                                                <input id="addressAutocomplete"
+                                                       class="form-control address-content address-field"
+                                                       placeholder="{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}* :"/>
+                                                {{ form_widget(form.address, {'attr': {'class': 'form-control address-field', 'hidden': true}}) }}
+                                                {{ form_errors(form.address) }}
+                                            </div>
+                                            <div class="form-group address-content">
+                                                {{ form_widget(form.addressDetail, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.AddressDetail'| trans({}, 'messages', locale))}}) }}
+                                                {{ form_errors(form.addressDetail) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 mt-3">
+                                            <select id="contact_staff_select" class="form-control">
+                                                <option value="" disabled
+                                                        selected>{{ 'Public.Contact.Staff'| trans({}, "messages", locale) }}
+                                                    :
+                                                </option>
+                                                {% for opt in form.staff.vars.choices %}
+                                                    <option value="{{ opt.value }}"
+                                                            {% if form.staff.vars.data == opt.value %}selected{% endif %}>{{ opt.label|trans({}, "messages", locale) }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            {{ form_errors(form.staff) }}
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group align-items_center">
+                                                <label>{{ 'Public.Contact.IsSameAddress'| trans({}, "messages", locale) }}*
+                                                    :</label>
+                                                {{ form_widget(form.isSameAddress, {'attr': {'class': 'form-check form-check-inline radio-form is-same-address-input'}}) }}
+                                                {{ form_errors(form.isSameAddress) }}
+                                            </div>
+                                            <div class="form-group address-group">
+                                                <label class="billing-address-label">{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}
+                                                    * :</label>
+                                                <input id="billingAddressAutocomplete"
+                                                       class="form-control billing-address-field"/>
+                                            </div>
+                                            <div class="form-group address-group">
+                                                {{ form_widget(form.billingAddress, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                {{ form_errors(form.billingAddress) }}
+                                            </div>
+                                            <div class="form-group address-group">
+                                                {{ form_widget(form.billingPostalCode, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                {{ form_errors(form.billingPostalCode) }}
+                                            </div>
+                                            <div class="form-group address-group">
+                                                {{ form_widget(form.billingCity, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                {{ form_errors(form.billingCity) }}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-md-6">
+                                            <label>{{ 'Public.Contact.IsSameSignatory'| trans({}, "messages", locale) }}
+                                                * :</label>
+                                            {{ form_widget(form.isSameSignatory, {'attr': {'class': 'form-check form-check-inline radio-form is-same-signatory-field'}}) }}
+                                            {{ form_errors(form.isSameSignatory) }}
+                                        </div>
+                                        <div class="form-group signatory-group col-md-6">
+                                            {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryLastName1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.signatoryLastName1) }}
+                                        </div>
+                                        <div class="form-group signatory-group col-md-6">
+                                            {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryFirstName1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.signatoryFirstName1) }}
+                                        </div>
+                                        <div class="form-group signatory-group col-md-6">
+                                            {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryTitle1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.signatoryTitle1) }}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                                    <img src="{{ asset('/build/static/mailbox.png') }}" alt="" width="125"
+                                         height="125">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="">{{ 'Public.Contact.IsMultisite'| trans({}, "messages", locale) }}*
+                                                :</label>
+                                            {{ form_widget(form.isMultisite, {'attr': {'class': 'form-check form-check-inline radio-form pb-2'}}) }}
+                                            {{ form_errors(form.isMultisite) }}
+                                            <div id="multisite-info">
+                                                {{ 'Public.Contact.isMultisiteInfo'| trans({}, "messages", locale) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows': '11', 'placeholder': ('Public.Contact.Comment'| trans({}, 'messages', locale)~'* :')}}) }}
+                                            {{ form_errors(form.comment) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
 
                             {% if cart.otherNeeds and cart.otherNeeds|length > 0 %}
                                 <div class="form-group">
@@ -168,30 +224,29 @@
                             {{ form_widget(form.staff, {'attr': {'class': 'contact_staff_input'}}) }}
                             {{ form_widget(form.access, {'attr': {'class': 'contact_access_input'}}) }}
                         </div>
-                        <div class="row mt-5 d-flex justify-content-between bottom-navigation">
-                            <div>
-                                <a type="button"
-                                   class="btn btn__green btn__large type__button arrow-left ml-5"
-                                   href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
-                                </a>
-                            </div>
-                            <div class="be-recalled">
-                                <button type="submit"
-                                        id="contactDetailFormSubmitButton"
-                                        data-key="{{ google_recaptcha_site_key }}"
-                                        class="btn btn__purple-2 btn__large type__button ml-5">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
-                            </div>
-                            <div>
-                                <a type="button"
-                                   class="btn btn__green btn__large type__button arrow-right mr-5"
-                                   href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i
-                                            class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
-                                </a>
-                            </div>
+                    </div>
+                    <div class="row mt-5 mb-5 d-flex justify-content-between bottom-navigation">
+                        <div>
+                            <a type="button"
+                               class="btn btn__green btn__large type__button arrow-left ml-5"
+                               href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
+                            </a>
+                        </div>
+                        <div class="be-recalled">
+                            <button type="submit"
+                                    id="contactDetailFormSubmitButton"
+                                    data-key="{{ google_recaptcha_site_key }}"
+                                    class="btn btn__purple-2 btn__large type__button ml-5">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
+                        </div>
+                        <div>
+                            <a type="button"
+                               class="btn btn__green btn__large type__button arrow-right mr-5"
+                               href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i
+                                        class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                            </a>
                         </div>
                     </div>
-                </div>
-                {{ form_rest(form) }}
+                    {{ form_rest(form) }}
             </form>
         </div>
     </section>

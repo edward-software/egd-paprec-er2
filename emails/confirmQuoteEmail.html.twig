@@ -8,36 +8,41 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
           rel="stylesheet">
     <title>Account Activation</title>
-
-    <!-- Web Font / @font-face : BEGIN -->
-    <!--[if mso]>
     <style>
         * {
-            font-family: Arial, sans-serif !important;
+            font-family: "Red Hat Display", sans-serif !important;
+        }
+
+        body {
+            color: #1C3465;
+        }
+
+        table thead th {
+            font-weight: bold;
+        }
+        .name {
+            font-weight: bold;
         }
     </style>
-    <![endif]-->
-
-
 </head>
 <body>
-{% if quoteRequest.civility == 'M' %}
-    {{ 'Commercial.ConfirmEmail.Dear.M'|trans({}, "messages", locale) }}
-{% elseif quoteRequest.civility == 'Mme' %}
-    {{ 'Commercial.ConfirmEmail.Dear.Mrs'|trans({}, "messages", locale) }}
-{% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
-
+<div class="name">
+    {% if quoteRequest.civility == 'M' %}
+        {{ 'Commercial.ConfirmEmail.Dear.M'|trans({}, "messages", locale) }}
+    {% elseif quoteRequest.civility == 'MME' %}
+        {{ 'Commercial.ConfirmEmail.Dear.Mrs'|trans({}, "messages", locale) }}
+    {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
+</div>
 {{ 'Commercial.ConfirmEmail.Message1'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale)}, "messages", locale) }}
-<br><br>
-{{ 'Commercial.ConfirmEmail.QuoteRequestRecap'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale)}, "messages", locale) }}
 :
 <br><br>
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>
     <tr>
-        <th>{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
-        <th>{{ 'Commercial.QuoteRequestLine.Quantity'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.Wastes'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.Materials'|trans }}</th>
+        <th>{{ 'Commercial.QuoteRequestLine.Quantities'|trans }}</th>
         <th>{{ 'Commercial.QuoteRequestLine.PassingFrequency'|trans }}</th>
     </tr>
     </thead>
@@ -45,14 +50,17 @@
     {% for quoteRequestLine in quoteRequestLines %}
         <tr>
             <td>
+                {{ quoteRequestLine.product.range|rangeLabelTranslation('fr') }}
+            </td>
+            <td>
                 {{ quoteRequestLine.product|productLabelTranslation(app.request.locale) }}
             </td>
             <td>{{ quoteRequestLine.quantity }}</td>
             <td>
-                {% if quoteRequestLine.frequency == 'unknown' %}
-                    {{ 'General.Frequency.Unknown'|trans({}, "messages", app.request.locale) }}
+                {% if quoteRequestLine.frequency == 'UNKNOWN' %}
+                    {{ 'General.Frequency.UNKNOWN'|trans({}, "messages", app.request.locale) }}
                 {% else %}
-                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval|capitalize %}
+                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
                     {{ quoteRequestLine.frequencyTimes }}
                     x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
                 {% endif %}
@@ -61,27 +69,33 @@
     {% endfor %}
     </tbody>
 </table>
-
 <br><br>
-{{ 'Commercial.ConfirmEmail.Message2'| trans({}, "messages", locale) }}
-<br><br>
+{% if quoteRequest.userInCharge %}
+    <span class="name">
+    {{ quoteRequest.userInCharge.firstName }} {{ quoteRequest.userInCharge.lastName }}</span> {{ 'Commercial.ConfirmEmail.Message2'| trans({}, "messages", locale) }}
+    <br><br>
+    {{ 'Commercial.ConfirmEmail.Message3'| trans({}, "messages", locale) }} <span class="name">{{ quoteRequest.userInCharge.email }}</span>.
+    <br><br>
+    {{ 'Commercial.ConfirmEmail.Message4'| trans({}, "messages", locale) }}
+    <br><br>
+{% endif %}
 {{ 'Commercial.ConfirmEmail.Regards'| trans({}, "messages", locale) }}
 <br><br>
 {{ 'Commercial.ConfirmEmail.Partner'| trans({}, "messages", locale) }}
 <br><br>
 <i>{{ 'Commercial.ConfirmEmail.NoReply'| trans({}, "messages", locale) }}</i>
 <br><br>
-{#{% if salesman %}#}
-{#    <b>{{ salesman.firstName }} {{ salesman.lastName }}</b>#}
-{#    <br>#}
-{#    <u>Téléphone</u> :{{ salesman.phoneNumber }}#}
-{#    <br>#}
-{#    <u>Mobile</u> : {{ salesman.mobileNumber }}#}
-{#    <br>#}
-{#    <u>Email</u> : {{ salesman.email }}#}
-{#    <br>#}
-{#    <u>Titre</u> : {{ salesman.jobTitle }}#}
-{#{% endif %}#}
+{# {% if salesman %} #}
+{#    <b>{{ salesman.firstName }} {{ salesman.lastName }}</b> #}
+{#    <br> #}
+{#    <u>Téléphone</u> :{{ salesman.phoneNumber }} #}
+{#    <br> #}
+{#    <u>Mobile</u> : {{ salesman.mobileNumber }} #}
+{#    <br> #}
+{#    <u>Email</u> : {{ salesman.email }} #}
+{#    <br> #}
+{#    <u>Titre</u> : {{ salesman.jobTitle }} #}
+{# {% endif %} #}
 
 
 </body>
