@@ -131,7 +131,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group align-items_center">
-                                                <label>{{ 'Public.Contact.IsSameAddress'| trans({}, "messages", locale) }}*
+                                                <label>{{ 'Public.Contact.IsSameAddress'| trans({}, "messages", locale) }}
+                                                    *
                                                     :</label>
                                                 {{ form_widget(form.isSameAddress, {'attr': {'class': 'form-check form-check-inline radio-form is-same-address-input'}}) }}
                                                 {{ form_errors(form.isSameAddress) }}
@@ -184,13 +185,14 @@
 
                             <div class="row">
                                 <div class="col-md-2 d-flex justify-content-end align-items-center">
-                                    <img src="{{ asset('/build/static/mailbox.png') }}" alt="" width="125"
+                                    <img src="{{ asset('/build/static/espace.png') }}" alt="" width="125"
                                          height="125">
                                 </div>
                                 <div class="col-md-10">
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label class="">{{ 'Public.Contact.IsMultisite'| trans({}, "messages", locale) }}*
+                                            <label class="">{{ 'Public.Contact.IsMultisite'| trans({}, "messages", locale) }}
+                                                *
                                                 :</label>
                                             {{ form_widget(form.isMultisite, {'attr': {'class': 'form-check form-check-inline radio-form pb-2'}}) }}
                                             {{ form_errors(form.isMultisite) }}
@@ -223,10 +225,11 @@
                             {% endif %}
                             {{ form_widget(form.staff, {'attr': {'class': 'contact_staff_input'}}) }}
                             {{ form_widget(form.access, {'attr': {'class': 'contact_access_input'}}) }}
+
                         </div>
                     </div>
-                    <div class="row mt-5 mb-5 d-flex justify-content-between bottom-navigation">
-                        <div>
+                    <div class="row mt-5 mb-5 bottom-navigation">
+                        <div class="col-5">
                             <a type="button"
                                class="btn btn__green btn__large type__button arrow-left ml-5"
                                href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
@@ -237,13 +240,11 @@
                                     id="contactDetailFormSubmitButton"
                                     data-key="{{ google_recaptcha_site_key }}"
                                     class="btn btn__purple-2 btn__large type__button ml-5">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
-                        </div>
-                        <div>
-                            <a type="button"
-                               class="btn btn__green btn__large type__button arrow-right mr-5"
-                               href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i
-                                        class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
-                            </a>
+{#                            <a type="button"#}
+{#                               class="btn btn__purple-2 btn__large type__button ml-5"#}
+{#                               href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i#}
+{#                                        class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}#}
+{#                            </a>#}
                         </div>
                     </div>
                     {{ form_rest(form) }}

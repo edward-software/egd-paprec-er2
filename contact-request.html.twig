@@ -15,46 +15,52 @@
             </div>
             <form id="contactDetailForm" action="" method="post">
                 <div class="row form-container">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.BusinessName'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.businessName, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.businessName) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.PostalCode'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
-                            {{ form_errors(form.postalCode) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.LastName'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.lastName) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.FirstName'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.firstName) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.Email'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.email) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.Phone'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.phone) }}
-                            <span id="phone-number-info">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.BusinessName'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.businessName, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.businessName) }}
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.PostalCode'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
+                                {{ form_errors(form.postalCode) }}
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.LastName'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.lastName) }}
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.FirstName'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.firstName) }}
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.Email'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>{{ 'Public.Contact.Phone'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.phone) }}
+                                <span id="phone-number-info">
                                 {{ 'Public.Contact.PhoneNumberInfo'| trans({}, "messages", locale) }}
                             </span>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>{{ 'Public.Contact.Need'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.comment, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.comment) }}
+                            </div>
+
+                            <button type="submit"
+                                    id="contactDetailFormSubmitButton"
+                                    data-key="{{ google_recaptcha_site_key }}"
+                                    class="m-y-25 btn btn__blue valid">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
                         </div>
-
-                        <button type="submit"
-                                id="contactDetailFormSubmitButton"
-                                data-key="{{ google_recaptcha_site_key }}"
-                                class="m-y-25 btn btn__blue valid">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
-
                     </div>
                 </div>
                 {{ form_rest(form) }}

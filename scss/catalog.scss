@@ -478,8 +478,26 @@ input:focus {
       border-radius: 20px;
       border: 2px solid $blue_1;
 
+      .cart-picto {
+        bottom: 45px;
+        position: relative;
+        .circle {
+          width: 90px;
+          height: 90px;
+          border-radius: 45px;
+          background: $blue_1;
+
+          img{
+            max-width: 80%;
+            height: auto;
+            margin: 10px;
+          }
+        }
+      }
+
       .top {
-        padding: 30px;
+        padding: 0px 30px 30px 30px;
+        margin-top: -15px;
 
         .card {
           border-radius: inherit !important;

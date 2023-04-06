@@ -17,7 +17,7 @@
 <body>
 {{ 'Commercial.NewContactRequestEmail.Dear'|trans({}, "messages", locale) }},<br><br>
 
-{{ 'Commercial.NewContactRequestEmail.Message1'| trans({}, "messages", locale) }}
+{{ quoteRequest.firstName }} {{ quoteRequest.lastName }}{{ 'Commercial.NewContactRequestEmail.Message1'| trans({}, "messages", locale) }}
 <br><br>
 
 <a href="{{ paprec_back_office_url }}/commercial/quoteRequest/view/{{ quoteRequest.id }}">
@@ -26,7 +26,8 @@
 
 <br><br>
 
-{{ 'Commercial.NewContactRequestEmail.Message2'| trans({}, "messages", locale) }}
+{{ 'Commercial.NewContactRequestEmail.Message2'| trans({}, "messages", locale) }} <br>
+{{ quoteRequest.comment }}
 <br><br>
 {{ 'Commercial.NewContactRequestEmail.Regards'| trans({}, "messages", locale) }}
 <br>

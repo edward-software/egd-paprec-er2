@@ -24,6 +24,7 @@
 
   &__button {
     //max-width: 220px;
+    border-radius: 5px !important;
   }
 
   h3 {
@@ -74,7 +75,7 @@
   width: 0px;
   margin-right: -23px;
   right: 0px;
-  border-left: 22px solid $green_1;
+  border-left: 25px solid $green_1;
   bottom: -2px;
 }
 
@@ -107,7 +108,7 @@
   width: 0px;
   margin-left: -23px;
   left: 0px;
-  border-right: 22px solid $green_1;
+  border-right: 25px solid $green_1;
   bottom: -2px;
 }
 

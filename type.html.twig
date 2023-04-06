@@ -26,8 +26,10 @@
                                 <ul class="m-b-20">
                                     <li>{{ 'Public.Type.Solution1.Message2'| trans({}, "messages", locale) }}</li>
                                     <li>{{ 'Public.Type.Solution1.Message3'| trans({}, "messages", locale) }}</li>
+                                    <li>{{ 'Public.Type.Solution1.Message4'| trans({}, "messages", locale) }}</li>
                                 </ul>
-                                <div class="m-b-30">{{ 'Public.Type.Solution1.Message4'| trans({}, "messages", locale) }}</div>
+                                <div>{{ 'Public.Type.Solution1.Message5'| trans({}, "messages", locale) }}</div>
+                                <div class="m-b-30">{{ 'Public.Type.Solution1.Message6'| trans({}, "messages", locale) }}</div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +52,10 @@
                                 <ul class="m-b-20">
                                     <li>{{ 'Public.Type.Solution2.Message2'| trans({}, "messages", locale) }}</li>
                                     <li>{{ 'Public.Type.Solution2.Message3'| trans({}, "messages", locale) }}</li>
+                                    <li>{{ 'Public.Type.Solution2.Message4'| trans({}, "messages", locale) }}</li>
                                 </ul>
+                                <div>{{ 'Public.Type.Solution2.Message5'| trans({}, "messages", locale) }}</div>
+                                <div class="m-b-30">{{ 'Public.Type.Solution2.Message6'| trans({}, "messages", locale) }}</div>
                             </div>
                         </div>
                     </div>
@@ -75,11 +80,11 @@
                                     <li>{{ 'Public.Type.Solution3.Message3'| trans({}, "messages", locale) }}</li>
                                     <li>{{ 'Public.Type.Solution3.Message4'| trans({}, "messages", locale) }}</li>
                                 </ul>
-                                <div class="m-b-30">{{ 'Public.Type.Solution3.Message5'| trans({}, "messages", locale) }}</div>
+                                <div>{{ 'Public.Type.Solution3.Message5'| trans({}, "messages", locale) }}</div>
+                                <div class="m-b-30">{{ 'Public.Type.Solution3.Message6'| trans({}, "messages", locale) }}</div>
                             </div>
                         </div>
                     </div>
-
                     <div class="mt-2">
                         <a type="button"
                            class="btn btn__blue btn__large type__button col-lg-12"
@@ -90,12 +95,14 @@
                 </div>
 
             </div>
-            <div class="row float-right">
+            <div class="row mt-5 mb-5 d-flex justify-content-center bottom-navigation">
+                <div class="be-recalled">
                     <a type="button"
-                       class="btn btn__green btn__large type__button arrow-right mr-5"
-                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}">
-                        <i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                       class="btn btn__purple-2 btn__large type__button ml-5"
+                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
+                </div>
+
             </div>
         </div>
 

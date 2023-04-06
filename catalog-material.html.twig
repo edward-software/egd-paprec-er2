@@ -130,7 +130,11 @@
                     <div class="cart">
                         <div class="cart__block">
                             <div class="cart__block__body">
-                                <img class="cart-picto img-fluid"></img>
+                                <div class="d-flex justify-content-center cart-picto">
+                                    <div class="circle">
+                                        <img src="{{ asset('/build/static/cart.png') }}" alt="">
+                                    </div>
+                                </div>
                                 <div class="top">
                                     <div class="flex-1">
                                         <div class="m-b-20">
@@ -165,7 +169,9 @@
                                 <div class="bottom">
                                     <div class="text-center">
                                         <div class="need-help mb-2">BESOIN DE CONSEIL OU D'ACCOMPAGNEMENT?</div>
-                                        <div><a class="link" href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER
+                                        <div><a class="link catalog_next_step_button"
+                                                data-url="{{ path('paprec_public_contact_materiel_index', {locale: locale, cartUuid: cart.id}) }}"
+                                                data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}">CLIQUEZ ICI</a> POUR VOUS FAIRE ACCOMPAGNER ET AFFINER
                                             VOTRE SOLUTION
                                         </div>
                                     </div>
@@ -184,15 +190,16 @@
                 </div>
                 <div class="be-recalled">
                     <a type="button"
-                       class="btn btn__purple-2 btn__large type__button ml-5"
-                       href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
+                       class="btn btn__purple-2 btn__large type__button ml-5 catalog_next_step_button"
+                       data-url="{{ path('paprec_public_contact_materiel_index', {locale: locale, cartUuid: cart.id}) }}"
+                       data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>
 
                 <div>
                     <a type="button"
                        class="btn btn__green btn__large type__button arrow-right mr-5 catalog_next_step_button"
-                       data-url="{{ path('paprec_public_contact_regulier_index', {locale: locale, cartUuid: cart.id}) }}"
+                       data-url="{{ path('paprec_public_contact_materiel_index', {locale: locale, cartUuid: cart.id}) }}"
                        data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}">{{ 'Public.Catalog.Next-step'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>
