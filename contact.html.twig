@@ -158,23 +158,25 @@
                                         </div>
 
 
-                                        <div class="form-group col-md-6">
-                                            <label>{{ 'Public.Contact.IsSameSignatory'| trans({}, "messages", locale) }}
-                                                * :</label>
-                                            {{ form_widget(form.isSameSignatory, {'attr': {'class': 'form-check form-check-inline radio-form is-same-signatory-field'}}) }}
-                                            {{ form_errors(form.isSameSignatory) }}
-                                        </div>
-                                        <div class="form-group signatory-group col-md-6">
-                                            {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryLastName1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                            {{ form_errors(form.signatoryLastName1) }}
-                                        </div>
-                                        <div class="form-group signatory-group col-md-6">
-                                            {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryFirstName1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                            {{ form_errors(form.signatoryFirstName1) }}
-                                        </div>
-                                        <div class="form-group signatory-group col-md-6">
-                                            {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryTitle1'| trans({}, 'messages', locale)~'* :')}}) }}
-                                            {{ form_errors(form.signatoryTitle1) }}
+                                        <div class="col-md-6">
+                                            <div class="form-group align-items_center">
+                                                <label>{{ 'Public.Contact.IsSameSignatory'| trans({}, "messages", locale) }}
+                                                    * :</label>
+                                                {{ form_widget(form.isSameSignatory, {'attr': {'class': 'form-check form-check-inline radio-form is-same-signatory-field'}}) }}
+                                                {{ form_errors(form.isSameSignatory) }}
+                                            </div>
+                                            <div class="form-group signatory-group">
+                                                {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryLastName1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                                {{ form_errors(form.signatoryLastName1) }}
+                                            </div>
+                                            <div class="form-group signatory-group">
+                                                {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryFirstName1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                                {{ form_errors(form.signatoryFirstName1) }}
+                                            </div>
+                                            <div class="form-group signatory-group">
+                                                {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control signatory-field', 'placeholder': ('Public.Contact.SignatoryTitle1'| trans({}, 'messages', locale)~'* :')}}) }}
+                                                {{ form_errors(form.signatoryTitle1) }}
+                                            </div>
                                         </div>
 
 
@@ -240,11 +242,11 @@
                                     id="contactDetailFormSubmitButton"
                                     data-key="{{ google_recaptcha_site_key }}"
                                     class="btn btn__purple-2 btn__large type__button ml-5">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
-{#                            <a type="button"#}
-{#                               class="btn btn__purple-2 btn__large type__button ml-5"#}
-{#                               href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i#}
-{#                                        class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}#}
-{#                            </a>#}
+                            {#                            <a type="button" #}
+                            {#                               class="btn btn__purple-2 btn__large type__button ml-5" #}
+                            {#                               href="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"><i #}
+                            {#                                        class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }} #}
+                            {#                            </a> #}
                         </div>
                     </div>
                     {{ form_rest(form) }}

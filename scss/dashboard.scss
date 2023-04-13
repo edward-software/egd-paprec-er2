@@ -3,5 +3,12 @@
     .colored-row {
       background-color: rgba(0, 0, 0, 0.05) !important;
     }
+
+    .line-number{
+      td{
+        text-align: right;
+
+      }
+    }
   }
 }

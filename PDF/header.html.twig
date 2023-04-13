@@ -28,8 +28,12 @@
 <div class="offer__container">
 
     <div class="offer__header">
-        <img src="{{ absolute_url(asset('build/static/logo-easy-recyclage.png')) }}" alt="logo Easy Recyclage"
-             style="width: 300px;">
+        {% if agency and agency.pilotPictures %}
+            {% for picture in agency.pilotPictures %}
+                <img src="{{ absolute_url(asset('/uploads/pictos/' ~ picture.path)) }}"
+                     style="width: 300px;">
+            {% endfor %}
+        {% endif %}
     </div>
 
 </div>

@@ -35,12 +35,13 @@
 <body>
 
 <div class="footer__container">
-
-    <p>EASY RECYCLAGE</p>
-    <p>{{ 'Commercial.PDF.Footer.StreetName'|trans({}, "messages", app.request.locale) }}</p>
-    <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 10 - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 31</p>
-    <p style="font-size: 12px">{{ 'Commercial.PDF.Footer.OtherReferences'|trans({}, "messages", app.request.locale) }}</p>
-
+    {% if agency %}
+        <p>{{ agency.businessName }}</p>
+        <p>{{ agency.address }} - {{ agency.postalCode }} {{ agency.city }}</p>
+        <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.phoneNumber }}
+            - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.faxNumber }}</p>
+        <p style="font-size: 12px">{{ agency.legalInfoTemplate }}</p>
+    {% endif %}
 </div>
 </body>
 
