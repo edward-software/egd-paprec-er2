@@ -113,6 +113,12 @@
                                                 {{ form_widget(form.addressDetail, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.AddressDetail'| trans({}, 'messages', locale))}}) }}
                                                 {{ form_errors(form.addressDetail) }}
                                             </div>
+
+                                            <div class="form-group">
+                                                    {{ form_widget(form.postalCodeString, {'id': 'postalCodeStringField', 'attr': {'class': 'form-control', 'hidden': true}}) }}
+                                                    {{ form_errors(form.postalCodeString) }}
+                                            </div>
+
                                         </div>
                                         <div class="form-group col-md-6 mt-3">
                                             <select id="contact_staff_select" class="form-control">
@@ -154,6 +160,11 @@
                                             <div class="form-group address-group">
                                                 {{ form_widget(form.billingCity, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
                                                 {{ form_errors(form.billingCity) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_widget(form.billingPostalCodeString, {'id': 'billingPostalCodeString', 'attr': {'class': 'form-control', 'hidden': true}}) }}
+                                                {{ form_errors(form.billingPostalCodeString) }}
                                             </div>
                                         </div>
 
@@ -314,6 +325,7 @@
                             switch (componentType) {
                                 case 'postal_code': {
                                     $('#paprec_catalogbundle_quote_request_public_billingPostalCode').val(component.long_name);
+                                    $('#billingPostalCodeStringField').val(component.long_name);
                                     break;
                                 }
 
@@ -360,6 +372,11 @@
                             var componentType = component.types[0];
 
                             switch (componentType) {
+                                case 'postal_code': {
+                                    $('#postalCodeStringField').val(component.long_name);
+                                    break;
+                                }
+
                                 case 'street_number': {
                                     $('#paprec_catalogbundle_quote_request_public_address').val(component.long_name);
                                     break;

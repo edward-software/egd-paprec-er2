@@ -459,7 +459,7 @@
                             {% set coefValue = 1 %}
                             {% if line.frequency == 'REGULAR' %}
                                 {% set frequencyInterval = line.frequencyInterval %}
-                                {% set coefValue = monthlyCoefValues[frequencyInterval] %}
+                                {% set coefValue = monthlyCoefValues[frequencyInterval|lower] %}
                             {% endif %}
                             <td>{{ quantity * coefValue }}</td>
                             <td>{{ line.treatmentCollectPrice|formatAmount('EUR', app.request.locale) }}</td>
