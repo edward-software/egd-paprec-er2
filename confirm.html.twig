@@ -35,7 +35,7 @@
                                 <p>{{ 'Public.Confirm.Message-1'| trans({}, "messages", locale) }}</p>
                                 <p>{{ 'Public.Confirm.Message-2'| trans({}, "messages", locale) }}</p>
                                 {% if quoteRequest.userInCharge %}
-                                    <p>{{ 'Public.Confirm.Message-3'| trans({}, "messages", locale) }} {{ quoteRequest.userInCharge.firstName }} {{ quoteRequest.userInCharge.lastName }} {{ 'Public.Confirm.Message-5'| trans({}, "messages", locale) }}</p>
+                                    <p>{{ 'Public.Confirm.Message-3'| trans({}, "messages", locale) }} {{ quoteRequest.userInCharge.civility }} {{ quoteRequest.userInCharge.firstName }} {{ quoteRequest.userInCharge.lastName }} {{ 'Public.Confirm.Message-5'| trans({}, "messages", locale) }}</p>
                                     <p>{{ 'Public.Confirm.Message-6'| trans({}, "messages", locale) }}</p>
                                 {% endif %}
                                 <p>{{ 'Public.Confirm.Message-4'| trans({}, "messages", locale) }}</p>
