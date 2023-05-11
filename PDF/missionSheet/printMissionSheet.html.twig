@@ -327,7 +327,7 @@
                 <tr>
                     <td>{{ quoteRequestLine.product.wasteClassification }}</td>
                     <td>{% if quoteRequestLine.product %}{{ quoteRequestLine.product.code }}{% endif %}</td>
-                    <td>{{ quoteRequestLine.productName }}</td>
+                    <td>{% if quoteRequestLine.product %}{{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}{% endif %}</td>
                     <td>{{ quoteRequestLine.quantity }}</td>
                     <td>{% if quoteRequestLine.product.billingUnit %}{{ quoteRequestLine.product.billingUnit.name }}{% endif %}</td>
                     <td>{{ quoteRequestLine.rentalUnitPrice }}</td>
