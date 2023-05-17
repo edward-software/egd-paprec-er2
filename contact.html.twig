@@ -243,10 +243,28 @@
                     </div>
                     <div class="row mt-5 mb-5 bottom-navigation">
                         <div class="col-5">
-                            <a type="button"
-                               class="btn btn__green btn__large type__button arrow-left ml-5"
-                               href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
-                            </a>
+
+                            {% if cart.type == 'REGULAR' %}
+                                <a type="button"
+                                   class="btn btn__green btn__large type__button arrow-left ml-5"
+                                   href="{{ path('paprec_public_regular_catalog_index', {locale: locale, cartUuid: cart.id}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
+                                </a>
+                            {% endif %}
+
+                            {% if cart.type == 'PONCTUAL' %}
+                                <a type="button"
+                                   class="btn btn__green btn__large type__button arrow-left ml-5"
+                                   href="{{ path('paprec_public_ponctual_catalog_index', {locale: locale, cartUuid: cart.id}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
+                                </a>
+                            {% endif %}
+
+                            {% if cart.type == 'MATERIAL' %}
+                                <a type="button"
+                                   class="btn btn__green btn__large type__button arrow-left ml-5"
+                                   href="{{ path('paprec_public_material_catalog_index', {locale: locale, cartUuid: cart.id}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
+                                </a>
+                            {% endif %}
+
                         </div>
                         <div class="be-recalled">
                             <button type="submit"

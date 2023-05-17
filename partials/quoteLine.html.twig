@@ -3,8 +3,64 @@
         <div class="number">
             {{ quantity }}
         </div>
-        <div class="product d-flex align-items-center">
+        <div class="product d-flex align-items-center flex-grow-1">
             {{ product|productLabelTranslation(locale) }}
+        </div>
+        <div>
+            <button class="removeOneToCartButton{{ product.id }} round-btn round-btn--blue mr-2 {% if quantity == 0 %}round-btn--disable{% endif %}"
+                    id="removeOneToCartButton{{ product.id }}"
+                    data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cartUuid, productId: product.id}) }}">
+                <i class="fas fa-minus"></i>
+            </button>
         </div>
     </div>
 </div>
+{% block javascripts %}
+    <script>
+        $(function () {
+            /**
+             * Enlève un seul produit au clic sur le -
+             */
+            $('.removeOneToCartButton{{ product.id }}').click(function () {
+                var url = $(this).data('url');
+                var productId = (this.id).replace('removeOneToCartButton', '');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function (response) {
+                        $(".devis-recap-item-" + productId).remove();
+
+                        if (JSON.stringify(response) !== '{}') {
+                            // On récupère l'HTML du du produit ajouté et on l'insère dans le récap du devis (=panier)
+                            var htmlToDisplay = response.trim();
+                            $(".devis-recap").append(htmlToDisplay);
+                        }
+                        // On met à jour la valeur du <select> de qtty du produit
+                        $('#quantityProductSelect_' + productId).val($('.devis-recap-item-' + productId).data('qtty'));
+                        disableButtonsFromQuantity($('#quantityProductSelect_' + productId).val(), productId);
+                    }
+                })
+            });
+
+            /**
+             * Désactive les buttons d'un produit sur la page catalog en fonction de la quantité et du productId
+             * si la quantité est égale à 0, alors on ne peut pas "Add One" ou "Add to quote"
+             * @param quantity
+             * @param productId
+             */
+            function disableButtonsFromQuantity(quantity, productId) {
+                if (quantity < 1) {
+                    $('#addProductToQuoteButton_' + productId).prop('disabled', true);
+                    $('#removeOneToCartButton' + productId).prop('disabled', true);
+                    $('#removeOneToCartButton' + productId).addClass('round-btn--disable');
+                } else {
+                    $('#addProductToQuoteButton_' + productId).prop('disabled', false);
+                    $('#removeOneToCartButton' + productId).prop('disabled', false);
+                    $('#removeOneToCartButton' + productId).removeClass('round-btn--disable');
+                }
+            }
+
+        });
+
+    </script>
+{% endblock %}

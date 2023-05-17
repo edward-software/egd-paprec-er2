@@ -33,51 +33,90 @@ input:focus {
 //  z-index: 1;
 //  width: 400px;
 //}
+.round-btn {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  font-size: 14px;
+  border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-in-out;
+  flex-direction: column;
 
+  &:focus {
+    outline: 0 !important;
+  }
+
+  i {
+    //padding-top: 2px;
+  }
+
+  &:hover:not(.round-btn--disable) {
+    //color: #fff !important;
+    //background-color: rgba(255, 196, 0, 0.8) !important;
+    //background-color: $primary;
+  }
+
+  &--blue {
+    color: #FFFFFF;
+    background-color: $green_1;
+  }
+
+  &--disable {
+    background-color: $blue_1;
+    cursor: default;
+
+    i {
+      color: $white !important;
+    }
+  }
+}
 .product-container {
 
   margin-bottom: 40px;
 
-  .round-btn {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    font-size: 14px;
-    border-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all .3s ease-in-out;
-    flex-direction: column;
-
-    &:focus {
-      outline: 0 !important;
-    }
-
-    i {
-      //padding-top: 2px;
-    }
-
-    &:hover:not(.round-btn--disable) {
-      //color: #fff !important;
-      //background-color: rgba(255, 196, 0, 0.8) !important;
-      //background-color: $primary;
-    }
-
-    &--blue {
-      color: #FFFFFF;
-      background-color: $green_1;
-    }
-
-    &--disable {
-      background-color: $blue_1;
-      cursor: default;
-
-      i {
-        color: $white !important;
-      }
-    }
-  }
+  //.round-btn {
+  //  height: 25px;
+  //  width: 25px;
+  //  border-radius: 50%;
+  //  font-size: 14px;
+  //  border-color: transparent;
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //  transition: all .3s ease-in-out;
+  //  flex-direction: column;
+  //
+  //  &:focus {
+  //    outline: 0 !important;
+  //  }
+  //
+  //  i {
+  //    //padding-top: 2px;
+  //  }
+  //
+  //  &:hover:not(.round-btn--disable) {
+  //    //color: #fff !important;
+  //    //background-color: rgba(255, 196, 0, 0.8) !important;
+  //    //background-color: $primary;
+  //  }
+  //
+  //  &--blue {
+  //    color: #FFFFFF;
+  //    background-color: $green_1;
+  //  }
+  //
+  //  &--disable {
+  //    background-color: $blue_1;
+  //    cursor: default;
+  //
+  //    i {
+  //      color: $white !important;
+  //    }
+  //  }
+  //}
 
 
   .product {

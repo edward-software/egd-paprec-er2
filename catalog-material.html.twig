@@ -152,8 +152,15 @@
                                                                             <div class="number">
                                                                                 {{ item['qtty'] }}
                                                                             </div>
-                                                                            <div class="product d-flex align-items-center">
+                                                                            <div class="product d-flex align-items-center flex-grow-1">
                                                                                 {{ product|productLabelTranslation(locale) }}
+                                                                            </div>
+                                                                            <div>
+                                                                                <button class="removeOneToCartButton round-btn round-btn--blue mr-2 {% if item['qtty'] == 0 %}round-btn--disable{% endif %}"
+                                                                                        id="removeOneToCartButton{{ product.id }}"
+                                                                                        data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
+                                                                                    <i class="fas fa-minus"></i>
+                                                                                </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -191,7 +198,7 @@
                 <div class="be-recalled">
                     <a type="button"
                        class="btn btn__purple-2 btn__large type__button ml-5 catalog_next_step_button"
-                       data-url="{{ path('paprec_public_contact_materiel_index', {locale: locale, cartUuid: cart.id}) }}"
+                       data-url="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"
                        data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>

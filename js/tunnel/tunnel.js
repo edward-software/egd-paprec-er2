@@ -201,6 +201,7 @@ $(function () {
      * Enlève un seul produit au clic sur le -
      */
     $('.removeOneToCartButton').click(function () {
+        console.log('ok');
         var url = $(this).data('url');
         var productId = (this.id).replace('removeOneToCartButton', '');
         $.ajax({
