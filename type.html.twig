@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-12">
 {#                    <h1>{{ 'Public.Type.Title'| trans({}, "messages", locale) }}</h1>#}
-                    <h1>{% autoescape false %}{{ catalogTop.leftContent }}{% endautoescape %}</h1>
+                    <h1>{% autoescape false %}{% if catalogTop %}{{ catalogTop.leftContent }}{% endif %}{% endautoescape %}</h1>
                     <div class="divider"></div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="col-lg-4 type">
                     <div class="type__block">
                         <div class="type__block__body">
-                            {% autoescape false %}{{ catalogFirstBlock.leftContent }}{% endautoescape %}
+                            {% autoescape false %}{% if catalogFirstBlock %}{{ catalogFirstBlock.leftContent }}{% endif %}{% endautoescape %}
 {#                            <div class="flex-1">#}
 {#                                <div class="m-b-20">#}
 {#                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution1.Title'| trans({}, "messages", locale) }}</h2>#}
@@ -46,7 +46,7 @@
                 <div class="col-lg-4 type">
                     <div class="type__block">
                         <div class="type__block__body">
-                            {% autoescape false %}{{ catalogSecondBlock.leftContent }}{% endautoescape %}
+                            {% autoescape false %}{% if catalogSecondBlock %}{{ catalogSecondBlock.leftContent }}{% endif %}{% endautoescape %}
 {#                            <div class="flex-1">#}
 {#                                <div class="m-b-20">#}
 {#                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution2.Title'| trans({}, "messages", locale) }}</h2>#}
@@ -73,7 +73,7 @@
                 <div class="col-lg-4 type">
                     <div class="type__block">
                         <div class="type__block__body">
-                            {% autoescape false %}{{ catalogThirdBlock.leftContent }}{% endautoescape %}
+                            {% autoescape false %}{% if catalogThirdBlock %}{{ catalogThirdBlock.leftContent }}{% endif %}{% endautoescape %}
 {#                            <div class="flex-1">#}
 {#                                <div class="m-b-20">#}
 {#                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution3.Title'| trans({}, "messages", locale) }}</h2>#}
