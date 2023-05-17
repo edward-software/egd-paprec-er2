@@ -140,9 +140,9 @@
                                                                 {% if not frequencyTimes %}
                                                                     {% set frequencyTimes = product.frequencyTimes %}
                                                                 {% endif %}
-                                                                {% if not frequencyInterval %}
-                                                                    {% set frequencyInterval = product.frequencyInterval %}
-                                                                {% endif %}
+{#                                                                {% if not frequencyInterval %}#}
+{#                                                                    {% set frequencyInterval = product.frequencyInterval %}#}
+{#                                                                {% endif %}#}
                                                             {% elseif frequency and frequency == 'UNKNOWN' %}
                                                                 {% set frequencyTimes = null %}
                                                                 {% set frequencyInterval = null %}
@@ -181,7 +181,7 @@
                                                                             data-url="{{ path('paprec_public_catalog_editProductFrequency', {locale: locale, cartUuid: cart.id, productId: product.id}) }}"
                                                                             id="productFrequencyIntervalSelect__{{ product.id }}">
                                                                         <option value="WEEK"
-                                                                                {% if frequencyInterval == 'WEEK' %}selected{% endif %}>
+                                                                                {% if not frequencyInterval or frequencyInterval == 'WEEK' %}selected{% endif %}>
                                                                             {{ 'Public.Catalog.WEEK'| trans({}, "messages", locale) }}
                                                                         </option>
                                                                         <option value="MONTH"
