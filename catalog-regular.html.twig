@@ -60,18 +60,22 @@
                                                         <div class="paprec-flex space-between">
                                                             <div class="m-b-12">{{ product|productLabelTranslation(locale,'shortDescription') }}</div>
                                                         </div>
+                                                        {% if product.hideCapacity == 0 or product.hideCapacity == null %}
                                                         <div class="paprec-flex space-between">
                                                             <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }}
                                                                 :
                                                             </div>
                                                             <div class="product__value">{{ product.capacity }} {{ product.capacityUnit }}</div>
                                                         </div>
+                                                        {% endif %}
+                                                        {% if product.hideDimension == 0 or product.hideDimension == null %}
                                                         <div class="paprec-flex space-between">
                                                             <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }}
                                                                 :
                                                             </div>
                                                             <div class="product__value">{{ product.dimensions }}</div>
                                                         </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,6 +122,7 @@
 
                                                         </div>
                                                     </div>
+                                                    {% if product.hideFrequency == 0 or product.hideFrequency == null %}
                                                     <div class="product__frequency paprec-flex">
                                                         <div class="no-wrap">{{ 'Public.Catalog.Frequency'| trans({}, "messages", locale) }}
                                                             :
@@ -201,6 +206,7 @@
 
                                                             </div>
 
+
                                                             <!-- Group of default radios - option Unknown -->
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
@@ -214,9 +220,9 @@
                                                                 </label>
                                                             </div>
 
-
                                                         </div>
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
