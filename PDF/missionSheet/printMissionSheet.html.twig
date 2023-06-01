@@ -316,13 +316,15 @@
             <th colspan="10" style="width: 100%;" class="text-center">Prestations facturees</th>
         </tr>
         <tr>
-            <th style="width: 10%;" class="text-center">Code déchet</th>
-            <th style="width: 20%;" class="text-center">Code prestation</th>
-            <th style="width: 20%;" class="text-center">Libellé produit</th>
-            <th style="width: 10%;" class="text-center">Quantité</th>
-            <th style="width: 10%;" class="text-center">Unité</th>
-            <th style="width: 10%;" class="text-center">Prix U. H.T. (€)</th>
-            <th style="width: 10%;" class="text-center">Montant HT (€)</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.ProductCode'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.ProductRange'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.ProductBillingUnit'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.Quantity'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.PassingFrequency'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.TreatmentCollect'|trans }}</th>
+            <th style="width: 10%;" class="text-center">{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
             <th style="width: 10%;" class="text-center">Entité d'exploitation</th>
         </tr>
         </thead>
@@ -330,13 +332,72 @@
         {% if quoteRequestLines|length > 0 %}
             {% for quoteRequestLine in quoteRequestLines %}
                 <tr>
-                    <td>{{ quoteRequestLine.product.wasteClassification }}</td>
-                    <td>{% if quoteRequestLine.product %}{{ quoteRequestLine.product.code }}{% endif %}</td>
-                    <td>{% if quoteRequestLine.product %}{{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}{% endif %}</td>
+                    <td>
+                        {{ quoteRequestLine.product.code }}
+                    </td>
+                    <td>
+                        {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
+                    </td>
+                    <td>
+                        {% if quoteRequestLine.product.range %}
+                            {{ quoteRequestLine.product.range|rangeLabelTranslation(app.user.lang) }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if quoteRequestLine.product.billingUnit %}
+                            {{ quoteRequestLine.product.billingUnit.name }}
+                        {% endif %}
+                    </td>
                     <td>{{ quoteRequestLine.quantity }}</td>
-                    <td>{% if quoteRequestLine.product.billingUnit %}{{ quoteRequestLine.product.billingUnit.name }}{% endif %}</td>
-                    <td>{{ quoteRequestLine.rentalUnitPrice }}</td>
-                    <td>{{ quoteRequestLine.totalAmount }}</td>
+                    <td>
+                        {% if quoteRequestLine.frequency != 'REGULAR' %}
+                            {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
+                        {% else %}
+                            {% if quoteRequestLine.frequencyInterval is not empty %}
+                                {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
+                                {{ quoteRequestLine.frequencyTimes }}
+                                x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if quoteRequestLine.editableRentalUnitPrice == 0 %}
+                            0
+                        {% else %}
+
+                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableRentalUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+
+                            {#                                                    {{ ((quoteRequestLine.rentalRate / 1000000000000000) *(quoteRequestLine.editableRentalUnitPrice))|formatAmount('EUR', app.request.locale) }} #}
+
+                            {#                                                    <span class="small"      style="color: {{ color }}">({{ quoteRequest.overallDiscount|formatAmount('PERCENTAGE', app.request.locale) }})</span> #}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ (quoteRequestLine|quoteRequestLineCalculatePrices('treatmentCollectPrice'))|formatAmount('EUR', app.request.locale) }}
+
+                        {#                                                {{ quoteRequestLine.treatmentCollectPrice|formatAmount('EUR', app.request.locale) }} #}
+                        {#                                                <span class="small" #}
+                        {#                                                      style="color: {{ color }}">({{ quoteRequest.overallDiscount|formatAmount('PERCENTAGE', app.request.locale) }})</span> #}
+                    </td>
+                    <td>
+                        {% if quoteRequestLine.editableTreatmentUnitPrice == 0 %}
+                            0
+                        {% else %}
+                            {% if quoteRequestLine.editableTreatmentUnitPrice < 0 %}
+                                <i class="fas fa-exclamation-triangle" data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="Le prix sera indexé mensuellement à la variation de la mercuriale Mercuriale choisie, référence Mois et Année de Référence"></i>
+                            {% endif %}
+
+
+                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableTreatmentUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+
+
+                            {#                                                    {{ ((quoteRequestLine.treatmentRate / 1000000000000000) *(quoteRequestLine.editableTreatmentUnitPrice))|formatAmount('EUR', app.request.locale) }} #}
+                            {#                                                    <span class="small" #}
+                            {#                                                          style="color: {{ color }}">({{ quoteRequest.overallDiscount|formatAmount('PERCENTAGE', app.request.locale) }})</span> #}
+                        {% endif %}
+                    </td>
                     <td>{% if quoteRequestLine.agency %}{{ quoteRequestLine.agency.name }}{% endif %}</td>
                 </tr>
             {% endfor %}
@@ -354,7 +415,6 @@
             <th style="width: 10%;" class="text-center">Code déchet</th>
             <th style="width: 20%;" class="text-center">Code prestation</th>
             <th style="width: 20%;" class="text-center">Libellé produit</th>
-            <th style="width: 10%;" class="text-center">Unité</th>
             <th style="width: 10%;" class="text-center">Entité d'exploitation</th>
         </tr>
         </thead>
@@ -367,7 +427,6 @@
                     <td>
                         {% if missionSheetLine.missionSheetProduct %}{{ missionSheetLine.missionSheetProduct|missionSheetProductLabelTranslation(app.user.lang) }}{% endif %}
                     </td>
-                    <td>{% if missionSheetLine.missionSheetProduct.billingUnit %}{{ missionSheetLine.missionSheetProduct.billingUnit.name }}{% endif %}</td>
                     <td>{% if missionSheetLine.agency %}{{ missionSheetLine.agency.name }}{% endif %}</td>
                 </tr>
             {% endfor %}
