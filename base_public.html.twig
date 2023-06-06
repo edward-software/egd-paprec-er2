@@ -57,50 +57,50 @@
 
 </head>
 <body>
-<header>
-    <div class="top-bar">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Top Contact -->
-                <div class="col-6 col-md-9">
-                    <div class="top-bar__top-contact">
-                    </div>
-                </div>
+{#<header>#}
+{#    <div class="top-bar">#}
+{#        <div class="container">#}
+{#            <div class="row align-items-center">#}
+{#                <!-- Top Contact -->#}
+{#                <div class="col-6 col-md-9">#}
+{#                    <div class="top-bar__top-contact">#}
+{#                    </div>#}
+{#                </div>#}
 
-                <!-- Top Flags -->
-                <div class="col-6 col-md-3 pr-0">
-                </div>
-            </div>
-        </div>
-    </div>
+{#                <!-- Top Flags -->#}
+{#                <div class="col-6 col-md-3 pr-0">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
-    {# Navigation #}
-    <nav class="navbar navbar-expand-md navbar-light static-top">
-        <div class="container menu header-menu">
-            <a class="navbar-brand" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">
-                <img class="img-fluid" src="{{ asset('/build/static/logo-easy-recyclage.png') }}" alt="" width="200" height="100">
-            </a>
-            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+{#    #}{# Navigation #}
+{#    <nav class="navbar navbar-expand-md navbar-light static-top">#}
+{#        <div class="container menu header-menu">#}
+{#            <a class="navbar-brand" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">#}
+{#                <img class="img-fluid" src="{{ asset('/build/static/logo-easy-recyclage.png') }}" alt="" width="200" height="100">#}
+{#            </a>#}
+{#            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"#}
+{#                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"#}
+{#                    aria-label="Toggle navigation">#}
+{#                <span class="navbar-toggler-icon"></span>#}
+{#            </button>#}
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+{#            <div class="collapse navbar-collapse" id="navbarResponsive">#}
 
-                <ul class="navbar-nav nav ml-5 mr-xl-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link"
-                           href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Home'| trans({}, "messages", locale) }}
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+{#                <ul class="navbar-nav nav ml-5 mr-xl-auto">#}
+{#                    <li class="nav-item active">#}
+{#                        <a class="nav-link"#}
+{#                           href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Home'| trans({}, "messages", locale) }}#}
+{#                            <span class="sr-only">(current)</span>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
 
-        </div>
-    </nav>
-</header>
+{#        </div>#}
+{#    </nav>#}
+{#</header>#}
 <section class="breadcrumb">
     <div class="container">
         <div class="breadcrumb__content">
