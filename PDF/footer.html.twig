@@ -30,6 +30,24 @@
         margin: 0;
     }
 
+    .flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: -moz-box;
+        /*display: box;*/
+        display: flex;
+    }
+
+    .align-item-end {
+        -webkit-box-align: end;
+        -moz-box-align: end;
+        -ms-flex-align: end;
+        -webkit-align-items: end;
+        box-align: end;
+        align-items: flex-end;
+    }
+
 </style>
 
 <body>
@@ -43,6 +61,25 @@
         <p style="font-size: 12px">{{ agency.legalInfoTemplate }}</p>
     {% endif %}
 </div>
+<div class="flex align-item-end">
+    <p class="page-counter"><span id="current"></span></p>
+</div>
+<script>
+    var pdfInfo = {};
+    var x = document.location.search.substring(1).split('&');
+    for (var i in x) {
+        var z = x[i].split('=', 2);
+        pdfInfo[z[0]] = unescape(z[1]);
+    }
+
+    function getPdfInfo() {
+        var page = pdfInfo.page || 1;
+        var pageCount = pdfInfo.topage || 1;
+
+        document.getElementById('current').textContent = page;
+    }
+    getPdfInfo();
+</script>
 </body>
 
 </html>

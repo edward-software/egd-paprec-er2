@@ -11,7 +11,7 @@
     body {
         margin: 0;
         padding: 0;
-        font-family:  "Red Hat Display", sans-serif;
+        font-family: "Red Hat Display", sans-serif;
         font-weight: 500;
         font-size: 14px;
         color: #4a4a4a;
@@ -30,18 +30,59 @@
         margin: 0;
     }
 
+    .flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: -moz-box;
+        /*display: box;*/
+        display: flex;
+    }
+
+    .align-item-end {
+        -webkit-box-align: end;
+        -moz-box-align: end;
+        -ms-flex-align: end;
+        -webkit-align-items: end;
+        box-align: end;
+        align-items: flex-end;
+    }
+
 </style>
 
 <body>
 
 <div class="footer__container">
 
-    <p>EASY RECYCLAGE  REVOIR LE FOOTER</p>
+    <p>EASY RECYCLAGE REVOIR LE FOOTER</p>
     <p>{{ 'Commercial.PDF.Footer.StreetName'|trans({}, "messages", app.request.locale) }}</p>
-    <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 10 - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 31</p>
+    <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 10
+        - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : 01 42 99 43 31</p>
     <p style="font-size: 12px">{{ 'Commercial.PDF.Footer.OtherReferences'|trans({}, "messages", app.request.locale) }}</p>
 
 </div>
+<div style="padding-bottom: 10px;">
+    <div style="float:right;">
+        <p class="page-counter"><span id="current"></span></p>
+    </div>
+</div>
+<script>
+    var pdfInfo = {};
+    var x = document.location.search.substring(1).split('&');
+    for (var i in x) {
+        var z = x[i].split('=', 2);
+        pdfInfo[z[0]] = unescape(z[1]);
+    }
+
+    function getPdfInfo() {
+        var page = pdfInfo.page || 1;
+        var pageCount = pdfInfo.topage || 1;
+
+        document.getElementById('current').textContent = page;
+    }
+
+    getPdfInfo();
+</script>
 </body>
 
 </html>
