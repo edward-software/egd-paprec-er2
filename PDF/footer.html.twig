@@ -54,16 +54,19 @@
 
 <div class="footer__container">
     {% if agency %}
-        <p>{{ agency.businessName }}</p>
-        <p>{{ agency.address }} - {{ agency.postalCode }} {{ agency.city }}</p>
-        <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.phoneNumber }}
-            - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.faxNumber }}</p>
-        <p style="font-size: 12px">{{ agency.legalInfoTemplate }}</p>
+        <p>{{ agency.businessName }} - {{ agency.address }} - {{ agency.postalCode }} {{ agency.city }} - {{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.phoneNumber }} - {{ agency.legalInfoTemplate }}</p>
+{#        <p>{{ agency.address }} - {{ agency.postalCode }} {{ agency.city }}</p>#}
+{#        <p>{{ 'Commercial.PDF.Footer.PhoneNumberTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.phoneNumber }}#}
+{#            - {{ 'Commercial.PDF.Footer.FaxTitle'|trans({}, "messages", app.request.locale) }} : {{ agency.faxNumber }}</p>#}
+{#        <p style="font-size: 12px">{{ agency.legalInfoTemplate }}</p>#}
     {% endif %}
+    <div style="padding-bottom: 10px;">
+        <div style="float: right; right: 200px;">
+            <p class="page-counter"><span id="current"></span></p>
+        </div>
+    </div>
 </div>
-<div class="flex align-item-end">
-    <p class="page-counter"><span id="current"></span></p>
-</div>
+
 <script>
     var pdfInfo = {};
     var x = document.location.search.substring(1).split('&');
