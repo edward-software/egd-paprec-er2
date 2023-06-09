@@ -82,14 +82,14 @@ $(function () {
     //             if (scrollTop <= navbarOffset) {
     //                 $('#define-need-button').fadeOut(duration);
     //                 $('#other-needs-button').fadeOut(duration);
-    //             } else if (scrollTop > navbarOffset && scrollTop < productOffset) {
+    //             } elseif (scrollTop > navbarOffset && scrollTop < productOffset) {
     //                 $('#define-need-button').fadeIn(duration);
     //                 $('#other-needs-button').fadeOut(duration);
     //
-    //             } else if (scrollTop >= productOffset && scrollTop <= ($(document).height() - $(window).height() - (otherNeedsHeight / 2))) {
+    //             } elseif (scrollTop >= productOffset && scrollTop <= ($(document).height() - $(window).height() - (otherNeedsHeight / 2))) {
     //                 $('#define-need-button').fadeOut(duration);
     //                 $('#other-needs-button').fadeIn(duration);
-    //             } else if (scrollTop > ($(document).height() - $(window).height() - (otherNeedsHeight / 2))) {
+    //             } elseif (scrollTop > ($(document).height() - $(window).height() - (otherNeedsHeight / 2))) {
     //                 $('#other-needs-button').fadeOut(duration);
     //             }
     //         }
