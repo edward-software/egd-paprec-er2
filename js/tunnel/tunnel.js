@@ -280,6 +280,7 @@ $(function () {
             $('.address-field').prop("disabled", true);
             $('.address-field').val('');
             $('#multisite-info').show();
+            $('.address-field-1').show().prop('required',false);
         } else if (this.value == 0) {
             $('.address-field').prop("disabled", false);
             $('#multisite-info').hide();
@@ -359,6 +360,7 @@ $(function () {
              * (adresse et précision de l'adresse)
              */
             $('.address-content').show();
+            $('.address-field-1').show().prop('required',true);
         }
     }).keyup(function(){
         /**
@@ -366,6 +368,7 @@ $(function () {
          */
         if ($('#paprec_catalogbundle_quote_request_public_postalCode').val() == '') {
             $('.address-content').hide();
+            $('.address-field-1').show().prop('required',false);
         }
     });
 

@@ -104,9 +104,9 @@
                                             </div>
                                             <div class="form-group address-content">
                                                 <input id="addressAutocomplete"
-                                                       class="form-control address-content address-field"
+                                                       class="form-control address-content address-field address-field-1"
                                                        placeholder="{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}* :"/>
-                                                {{ form_widget(form.address, {'attr': {'class': 'form-control address-field', 'hidden': true}}) }}
+                                                {{ form_widget(form.address, {'attr': {'class': 'form-control address-field address-field-1', 'hidden': true}}) }}
                                                 {{ form_errors(form.address) }}
                                             </div>
                                             <div class="form-group address-content">
