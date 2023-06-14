@@ -189,7 +189,7 @@
         table {
             border-collapse: separate;
             border-spacing: 0;
-            width: 100%;
+            width: 90%;
             margin-bottom: 20px;
         }
 
@@ -495,9 +495,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('totalAmount'))|formatAmount('EUR', app.request.locale) }}
-                            {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
+                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' or quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' or quoteRequestLine.product.catalog == 'MATERIAL' %}
                                 {{ (quoteRequestLine|quoteRequestLineCalculatePrices('totalAmount'))|formatAmount('EUR', app.request.locale) }}
                             {% endif %}
                         </td>
