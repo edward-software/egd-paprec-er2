@@ -248,3 +248,10 @@ DATATABLE
     align-items: center;
   }
 }
+
+
+table {
+  td.line-number {
+    text-align: right;
+  }
+}
