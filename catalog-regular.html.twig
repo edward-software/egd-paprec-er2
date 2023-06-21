@@ -129,7 +129,7 @@
                                                         </div>
                                                         <div class="paprec-flex product__frequency__container">
                                                             {% set frequency = '' %}
-                                                            {% set frequencyTimes = '5' %}
+                                                            {% set frequencyTimes = '' %}
                                                             {% set frequencyInterval = '' %}
                                                             {% for item in cart.content %}
                                                                 {% if item['pId'] == product.id %}
@@ -145,9 +145,9 @@
                                                                 {% if not frequencyTimes %}
                                                                     {% set frequencyTimes = product.frequencyTimes %}
                                                                 {% endif %}
-{#                                                                {% if not frequencyInterval %}#}
-{#                                                                    {% set frequencyInterval = product.frequencyInterval %}#}
-{#                                                                {% endif %}#}
+                                                                {% if not frequencyInterval %}
+                                                                    {% set frequencyInterval = product.frequencyInterval %}
+                                                                {% endif %}
                                                             {% elseif frequency and frequency == 'UNKNOWN' %}
                                                                 {% set frequencyTimes = null %}
                                                                 {% set frequencyInterval = null %}
