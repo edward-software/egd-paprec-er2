@@ -289,13 +289,13 @@
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">Date FM</th>
             <th colspan="3" style="width: 30%;"
-                class="value">{{ date|localizeddate('short', 'none', app.request.locale) }}</th>
+                class="value">{{ date|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Date debut contrat</th>
             <th colspan="2" style="width: 20%;"
-                class="value">{% if quoteRequest.startDate %}{{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale) }}{% endif %}</th>
+                class="value">{% if quoteRequest.startDate %}{{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}{% endif %}</th>
             <th colspan="1" style="width: 10%;" class="text-center">Date fin contrat</th>
             <th colspan="2" style="width: 20%;"
-                class="value">{% if quoteRequest.serviceEndDate %}{{ quoteRequest.serviceEndDate|localizeddate('short', 'none', app.request.locale) }}{% endif %}</th>
+                class="value">{% if quoteRequest.serviceEndDate %}{{ quoteRequest.serviceEndDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}{% endif %}</th>
         </tr>
         <tr>
             <th colspan="1" style="width: 10%;" class="text-center">MyPaprec</th>

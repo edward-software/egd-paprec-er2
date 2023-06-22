@@ -17,7 +17,7 @@
 <body>
 {{ 'Commercial.ConfirmContactRequestEmail.Dear'|trans({}, "messages", locale) }} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 
-{{ 'Commercial.ConfirmContactRequestEmail.Message1'| trans({'%date%': 'now'|localizeddate('short', 'medium', locale)}, "messages", locale) }}
+{{ 'Commercial.ConfirmContactRequestEmail.Message1'| trans({'%date%': 'now'|localizeddate('short', 'medium', locale, timezone)}, "messages", locale) }}
 
 <br><br>
 {{ 'Commercial.ConfirmContactRequestEmail.Message2'| trans({}, "messages", locale) }}

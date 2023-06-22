@@ -544,7 +544,7 @@
                     <p>
                         <span class="bold">{{ 'Commercial.PDF.StartDateContract'|trans({}, "messages", app.request.locale) }} :</span>
                         {% if quoteRequest.startDate is not null %}
-                            {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale) }}
+                            {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
                         {% endif %}
                     </p>
                 </div>
@@ -553,7 +553,7 @@
                     <p>
                         <span class="bold">{{ 'Commercial.PDF.PonctualDate'|trans({}, "messages", app.request.locale) }} :</span>
                         {% if quoteRequest.ponctualDate is not null %}
-                            {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale) }}
+                            {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
                         {% endif %}
                     </p>
                 </div>

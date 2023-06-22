@@ -33,7 +33,7 @@
         {{ 'Commercial.ConfirmEmail.Dear.Mrs'|trans({}, "messages", locale) }}
     {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 </div>
-{{ 'Commercial.ConfirmEmail.Message1'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale)}, "messages", locale) }}
+{{ 'Commercial.ConfirmEmail.Message1'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale, timezone)}, "messages", locale) }}
 :
 <br><br>
 

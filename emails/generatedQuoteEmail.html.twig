@@ -22,7 +22,7 @@
     {{ 'Commercial.GeneratedQuoteEmail.Dear.Mrs'|trans({}, "messages", locale) }}
 {% endif %} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
 
-{{ 'Commercial.GeneratedQuoteEmail.Message1'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale)}, "messages", locale) }}
+{{ 'Commercial.GeneratedQuoteEmail.Message1'| trans({'%date%': quoteRequest.dateCreation|localizeddate('short', 'medium', locale, timezone)}, "messages", locale) }}
 <br><br>
 {{ 'Commercial.GeneratedQuoteEmail.Message2'| trans({}, "messages", locale) }}
 <br><br>

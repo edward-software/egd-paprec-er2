@@ -590,7 +590,7 @@
                     {% if quoteRequest.startDate is not null %}
                         <div>
                             La date de démarrage des prestations est prévue pour
-                            le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale) }}.
+                            le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}.
                         </div>
                     {% endif %}
                 </div>
@@ -600,7 +600,7 @@
                     <div style="margin-top: 5px">
 
                         {% if quoteRequest.ponctualDate is not null %}
-                            {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale) }}
+                            {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
                         {% endif %}
                     </div>
                 </div>
@@ -784,7 +784,7 @@
                         <span class="bold">Pour le client</span><br>
                         <span>{{ quoteRequest.signatoryTitle1 }} {{ quoteRequest.signatoryFirstName1 }} {{ quoteRequest.signatoryLastName1 }}</span><br>
                         <span>(lu et approuve)</span><br>
-                        <span>Le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale) }}</span>
+                        <span>Le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}</span>
                     </p>
                 </div>
 
