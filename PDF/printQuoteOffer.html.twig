@@ -442,12 +442,12 @@
                             {{ quoteRequestLine.product.code }}
                         </td>
                         <td>
-                            {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
-                        </td>
-                        <td>
                             {% if quoteRequestLine.product.range %}
                                 {{ quoteRequestLine.product.range|rangeLabelTranslation(app.user.lang) }}
                             {% endif %}
+                        </td>
+                        <td>
+                            {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
                         </td>
                         <td>
                             {% if quoteRequestLine.product.billingUnit %}
@@ -464,15 +464,19 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if quoteRequestLine.frequency != 'REGULAR' %}
-                                {% if quoteRequestLine.frequency %}
-                                    {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
-                                {% endif %}
+                            {% if quoteRequestLine.product.hideFrequency == 1 %}
+
                             {% else %}
-                                {% if quoteRequestLine.frequencyInterval is not empty %}
-                                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
-                                    {{ quoteRequestLine.frequencyTimes }}
-                                    x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
+                                {% if quoteRequestLine.frequency != 'REGULAR' %}
+                                    {% if quoteRequestLine.frequency %}
+                                        {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
+                                    {% endif %}
+                                {% else %}
+                                    {% if quoteRequestLine.frequencyInterval is not empty %}
+                                        {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
+                                        {{ quoteRequestLine.frequencyTimes }}
+                                        x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         </td>
@@ -590,7 +594,8 @@
                     {% if quoteRequest.startDate is not null %}
                         <div>
                             La date de démarrage des prestations est prévue pour
-                            le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}.
+                            le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
+                            .
                         </div>
                     {% endif %}
                 </div>
@@ -663,12 +668,14 @@
                     <p style="width: 150px">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
                            style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.address }}">
+                           value="{{ quoteRequest.billingAddress }}">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.billingAddress }}"
+                           {% else %}value="{{ quoteRequest.address }}"{% endif %}>
                 </div>
             </div>
 
@@ -677,7 +684,8 @@
                     <p style="width: 150px">{{ 'Commercial.PDF.City'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.city }}">
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.billingCity }}"
+                           {% else %}value="{{ quoteRequest.city }}"{% endif %}>
                 </div>
 
                 <div class="flex">
