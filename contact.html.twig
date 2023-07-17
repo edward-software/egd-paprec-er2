@@ -310,7 +310,7 @@
 
             var codes = {{ codes|json_encode|raw }};
 
-            $('.paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
+            $('#paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
                 source: codes,
                 minLength: 3,
                 delay: 500,
