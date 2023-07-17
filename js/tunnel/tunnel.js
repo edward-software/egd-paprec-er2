@@ -350,27 +350,27 @@ $(function () {
         }
     });
 
-    $('#paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
-        source: '' + $('#paprec_catalogbundle_quote_request_public_postalCode').data('url'),
-        minLength: 1,
-        select: function (event, ui) {
-            // $('#paprec_catalogbundle_quote_request_public_city').val(ui.item.label.substring(ui.item.label.indexOf('-') + 2));
-            /**
-             * Dès qu'un code postal a été sélectionné pour l'adresse de facturation, on affiche les autres champs
-             * (adresse et précision de l'adresse)
-             */
-            $('.address-content').show();
-            $('.address-field-1').show().prop('required',true);
-        }
-    }).keyup(function(){
-        /**
-         * s'il n'y a plus de valeur dans le code postal, on masque les autres champs
-         */
-        if ($('#paprec_catalogbundle_quote_request_public_postalCode').val() == '') {
-            $('.address-content').hide();
-            $('.address-field-1').show().prop('required',false);
-        }
-    });
+    // $('#paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
+    //     source: '' + $('#paprec_catalogbundle_quote_request_public_postalCode').data('url'),
+    //     minLength: 1,
+    //     select: function (event, ui) {
+    //         // $('#paprec_catalogbundle_quote_request_public_city').val(ui.item.label.substring(ui.item.label.indexOf('-') + 2));
+    //         /**
+    //          * Dès qu'un code postal a été sélectionné pour l'adresse de facturation, on affiche les autres champs
+    //          * (adresse et précision de l'adresse)
+    //          */
+    //         $('.address-content').show();
+    //         $('.address-field-1').show().prop('required',true);
+    //     }
+    // }).keyup(function(){
+    //     /**
+    //      * s'il n'y a plus de valeur dans le code postal, on masque les autres champs
+    //      */
+    //     if ($('#paprec_catalogbundle_quote_request_public_postalCode').val() == '') {
+    //         $('.address-content').hide();
+    //         $('.address-field-1').show().prop('required',false);
+    //     }
+    // });
 
 });
 

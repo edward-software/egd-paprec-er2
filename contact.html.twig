@@ -124,7 +124,7 @@
                                                 <label class="">{{ 'Public.Contact.PostalCode'| trans({}, "messages", locale) }}
                                                     *
                                                     :</label>
-                                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :'), 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
+                                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field postal-code-field', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :'), 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
                                                 {{ form_errors(form.postalCode) }}
                                             </div>
                                             <div class="form-group address-content">
@@ -307,6 +307,31 @@
             src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{ google_places_secret_key }}"></script>
     <script>
         $(function () {
+
+            var codes = {{ codes|json_encode|raw }};
+
+            $('.paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
+                source: codes,
+                minLength: 3,
+                delay: 500,
+                select: function (event, ui) {
+                    /**
+                     * Dès qu'un code postal a été sélectionné pour l'adresse de facturation, on affiche les autres champs
+                     * (adresse et précision de l'adresse)
+                     */
+                    $('.address-content').show();
+                    $('.address-field-1').show().prop('required',true);
+                }
+            }).keyup(function(){
+                /**
+                 * s'il n'y a plus de valeur dans le code postal, on masque les autres champs
+                 */
+                if ($('#paprec_catalogbundle_quote_request_public_postalCode').val() == '') {
+                    $('.address-content').hide();
+                    $('.address-field-1').show().prop('required',false);
+                }
+            });
+
             // Par défaut, les champs Signataire sont identiques au contact, donc ils ne doivent pas apparaître en arrivant
             // sur cette page
             $('.signatory-label').hide();
