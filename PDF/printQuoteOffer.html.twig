@@ -653,13 +653,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.CorporateName'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.businessName }}">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           value="{{ quoteRequest.businessName }}">
                 </div>
             </div>
 
@@ -668,14 +668,14 @@
                     <p style="width: 150px">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
                            style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.billingAddress }}">
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.address }}"
+                           {% else %}value="{{ quoteRequest.billingAddress }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
                            style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
-                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.billingAddress }}"
-                           {% else %}value="{{ quoteRequest.address }}"{% endif %}>
+                           value="{{ quoteRequest.address }}">
                 </div>
             </div>
 
@@ -684,13 +684,14 @@
                     <p style="width: 150px">{{ 'Commercial.PDF.City'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
-                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.billingCity }}"
-                           {% else %}value="{{ quoteRequest.city }}"{% endif %}>
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.city }}"
+                           {% else %}value="{{ quoteRequest.billingCity }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           value="{{ quoteRequest.city }}">
                 </div>
             </div>
 
@@ -698,13 +699,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.phone }}">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           value="{{ quoteRequest.phone }}">
                 </div>
             </div>
 
@@ -725,13 +726,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.CommandNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
-                           value="{{ quoteRequest.reference }}">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           value="{{ quoteRequest.reference }}">
                 </div>
             </div>
 
@@ -798,7 +799,7 @@
 
                 <div>
                     <p>
-                        <span class="bold">Pour {% if quoteRequest.userInCharge %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
+                        <span class="bold">Pour {% if quoteRequest.userInCharge and quoteRequest.userInCharge.agency %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
                         {% if quoteRequest.userInCharge is not null and quoteRequest.userInCharge.manager is not null %}
                             <span>{{ quoteRequest.userInCharge.manager.civility }} {{ quoteRequest.userInCharge.manager.firstName }} {{ quoteRequest.userInCharge.manager.lastName }}</span>
                         {% endif %}

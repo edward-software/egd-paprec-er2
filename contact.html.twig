@@ -168,27 +168,30 @@
                                                 {{ form_widget(form.isSameAddress, {'attr': {'class': 'form-check form-check-inline radio-form is-same-address-input'}}) }}
                                                 {{ form_errors(form.isSameAddress) }}
                                             </div>
+{#                                            <div class="form-group address-group">#}
+{#                                                <label class="billing-address-label">{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}#}
+{#                                                    * :</label>#}
+{#                                                <input id="billingAddressAutocomplete"#}
+{#                                                       class="form-control billing-address-field"/>#}
+{#                                            </div>#}
                                             <div class="form-group address-group">
-                                                <label class="billing-address-label">{{ 'Public.Contact.Address'| trans({}, "messages", locale) }}
-                                                    * :</label>
                                                 <input id="billingAddressAutocomplete"
-                                                       class="form-control billing-address-field"/>
-                                            </div>
-                                            <div class="form-group address-group">
-                                                {{ form_widget(form.billingAddress, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                       class="form-control billing-address-field"
+                                                placeholder="{{ 'Public.Contact.Address'| trans({}, 'messages', locale)~'* :' }}"/>
+                                                {{ form_widget(form.billingAddress, {'attr': {'class': 'form-control billing-address-field', 'hidden': true, 'placeholder': ('Public.Contact.Address'| trans({}, 'messages', locale)~'* :')}}) }}
                                                 {{ form_errors(form.billingAddress) }}
                                             </div>
                                             <div class="form-group address-group">
-                                                {{ form_widget(form.billingPostalCode, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                {{ form_widget(form.billingPostalCode, {'attr': {'class': 'form-control billing-address-field', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :')}}) }}
                                                 {{ form_errors(form.billingPostalCode) }}
                                             </div>
                                             <div class="form-group address-group">
-                                                {{ form_widget(form.billingCity, {'attr': {'class': 'form-control billing-address-field', 'hidden': true}}) }}
+                                                {{ form_widget(form.billingCity, {'attr': {'class': 'form-control billing-address-field', 'placeholder': ('Public.Contact.City'| trans({}, 'messages', locale)~'* :')}}) }}
                                                 {{ form_errors(form.billingCity) }}
                                             </div>
 
-                                            <div class="form-group">
-                                                {{ form_widget(form.billingPostalCodeString, {'id': 'billingPostalCodeString', 'attr': {'class': 'form-control', 'hidden': true}}) }}
+                                            <div class="form-group address-group">
+                                                {{ form_widget(form.billingPostalCodeString, {'id': 'billingPostalCodeString', 'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.PostalCode'| trans({}, 'messages', locale)~'* :')}}) }}
                                                 {{ form_errors(form.billingPostalCodeString) }}
                                             </div>
                                         </div>
