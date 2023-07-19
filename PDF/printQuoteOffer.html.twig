@@ -334,8 +334,13 @@
         }
 
         .flex-end {
-            justify-content: flex-end;
+            justify-content: end;
+            -webkit-box-pack: end;
         }
+        /*.part-one-position {*/
+        /*    position: relative;*/
+        /*    left: 70%;*/
+        /*}*/
 
     </style>
 
@@ -351,21 +356,26 @@
 
     <div class="offer__content">
 
+
         <div class="offer__ref">
 
             {# partie 1 #}
 
             <h2>1. {{ 'Commercial.PDF.CustomerTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
-            <p class="flex flex-end">
+            <div class="flex">
+            <div style="width: 60%;"></div>
+            <div style="width: 40%;">
+            <p class="part-one-position">
                 <span class="bold">{{ 'Commercial.PDF.Company'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.businessName }}
             </p>
-            <p class="flex flex-end">
+            <p class="part-one-position">
                 <span class="bold">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.address }}
             </p>
-            <p class="flex flex-end">
+            <p class="part-one-position">
                 <span class="bold">{{ 'Commercial.PDF.PostalCode'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
             </p>
-
+            </div>
+            </div>
             {# partie 2 #}
 
             <div>
