@@ -801,8 +801,8 @@
                         <span class="bold">Pour le client</span><br>
                         <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
                         <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
-                        <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br>
-                        <span>Date (mention "Lu et approuvé")</span><br>
+                        <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br><br>
+                        <span>Date (mention "Lu et approuvé")</span><br><br><br>
                         <span></span>
                     </p>
                 </div>
@@ -815,7 +815,8 @@
                             <br>
                             <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.firstName }}</span>
                             <br>
-                            <span>Date</span><br>
+                            <br>
+                            <span>Date</span><br><br><br>
                         {% endif %}
                     </p>
                 </div>
