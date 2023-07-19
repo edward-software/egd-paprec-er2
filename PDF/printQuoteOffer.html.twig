@@ -333,6 +333,10 @@
             text-align: right;
         }
 
+        .flex-end {
+            justify-content: flex-end;
+        }
+
     </style>
 
 </head>
@@ -340,7 +344,7 @@
 <div class="offer__container">
 
     <div class="offer__title flex space-between">
-        <h1>{{ 'Commercial.PDF.Title'|trans({'%number%': quoteRequest.duration|default(0)}, "messages", app.request.locale) }}
+        <h1>{{ 'Commercial.PDF.Title'|trans({}, "messages", app.request.locale) }}
             - {{ quoteRequest.reference }}</h1>
         <p class="offer__title__date">{{ 'now'|date('d/m/Y') }}</p>
     </div>
@@ -351,288 +355,285 @@
 
             {# partie 1 #}
 
-            <h2>1. {{ 'Commercial.PDF.CustomerTitle'|trans({}, "messages", app.request.locale) }}</h2>
-            <p>
-                <span class="bold">{{ 'Commercial.PDF.Company'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.businessName }}
+            <h2>1. {{ 'Commercial.PDF.CustomerTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+            <p class="flex flex-end">
+                <span class="bold">{{ 'Commercial.PDF.Company'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.businessName }}
             </p>
-            <p>
-                <span class="bold">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.address }}
+            <p class="flex flex-end">
+                <span class="bold">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.address }}
             </p>
-            <p>
-                <span class="bold">{{ 'Commercial.PDF.PostalCode'|trans({}, "messages", app.request.locale) }} :</span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
+            <p class="flex flex-end">
+                <span class="bold">{{ 'Commercial.PDF.PostalCode'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
             </p>
 
             {# partie 2 #}
 
-            <h2>2. {{ 'Commercial.PDF.ContactTitle'|trans({}, "messages", app.request.locale) }}</h2>
-
-            <div class="flex offer__ref-items">
+            <div>
+                <h2>2. {{ 'Commercial.PDF.Summary'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.signatoryLastName1 }}
-                    </p>
+                    Madame, Monsieur,<br><br>
+                    Suite à votre demande, je vous prie de trouver ci-dessous notre proposition commerciale concernant
+                    la gestion de vos déchets. Ce résumé regroupe l’ensemble des prestations souhaitées et un commercial
+                    se tient à votre disposition pour préciser chacune des lignes.
                 </div>
-
+                <br>
                 <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.lastName }}
-                    </p>
+                    <span class="bold">{{ 'Commercial.PDF.OurIntervention'|trans({}, "messages", app.request.locale) }} : </span>
+                    <div>
+                        <ul>
+                            <li>Mise à disposition du matériel sous 48h</li>
+                            <li>Collecte des déchets stockés dans les contenants manipulés par votre personnel</li>
+                            <li>Traitement et recyclage de vos déchets sur nos sites PAPREC, agrées et certifiés</li>
+                            <li>Envoi d’un reporting mensuel</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            <div class="flex offer__ref-items">
+                <br>
                 <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.signatoryFirstName1 }}
-                    </p>
-                </div>
+                    <span class="bold">{{ 'Commercial.PDF.OurPrices'|trans({}, "messages", app.request.locale) }} : </span>
+                    <br>
+                    <br>
+                    <div>
+                        <table class="table table-striped table-bordered table-hover"
+                               cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.ProductBillingUnit'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.PDF.Quantity'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.PDF.PassingFrequency'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.TreatmentCollect'|trans }}</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
+                                <th>{{ 'Commercial.QuoteRequestLine.Package'|trans }} </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for quoteRequestLine in quoteRequest.quoteRequestLines %}
+                                <tr>
+                                    <td>
+                                        {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
+                                    </td>
+                                    <td>
+                                        {% if quoteRequestLine.product.billingUnit %}
+                                            {{ quoteRequestLine.product.billingUnit.name }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="line-number">
+                                        {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
+                                            {{ quoteRequestLine.quantity }}
+                                        {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
+                                            {# RESTE NULL #}
+                                        {% else %}
+                                            {{ quoteRequestLine.quantity }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if quoteRequestLine.product.hideFrequency == 1 %}
 
-                <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.firstName }}
-                    </p>
-                </div>
-            </div>
+                                        {% else %}
+                                            {% if quoteRequestLine.frequency != 'REGULAR' %}
+                                                {% if quoteRequestLine.frequency %}
+                                                    {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
+                                                {% endif %}
+                                            {% else %}
+                                                {% if quoteRequestLine.frequencyInterval is not empty %}
+                                                    {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
+                                                    {{ quoteRequestLine.frequencyTimes }}
+                                                    x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                    <td class="line-number">
+                                        {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
+                                            {{ 0|formatAmount('EUR', app.request.locale) }}
+                                        {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableRentalUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% else %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableRentalUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="line-number">
+                                        {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
+                                            {{ 0|formatAmount('EUR', app.request.locale) }}
+                                        {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('treatmentCollectPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% else %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('treatmentCollectPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="line-number">
+                                        {% if quoteRequestLine.editableTreatmentUnitPrice < 0 %}
+                                            <i class="fas fa-exclamation-triangle" data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="Le prix sera indexé mensuellement à la variation de la mercuriale Mercuriale choisie, référence Mois et Année de Référence"></i>
+                                        {% endif %}
+                                        {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
+                                            {{ 0|formatAmount('EUR', app.request.locale) }}
+                                        {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableTreatmentUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% else %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableTreatmentUnitPrice'))|formatAmount('EUR', app.request.locale) }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="line-number">
+                                        {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' or quoteRequestLine.product.catalog == 'MATERIAL' %}
+                                            {{ (quoteRequestLine|quoteRequestLineCalculatePrices('totalAmount'))|formatAmount('EUR', app.request.locale) }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if quoteRequest.managementFeeCode1 is not empty or quoteRequest.managementFeeDescription1 is not empty or quoteRequest.managementFeeFrequency1 is not empty or (quoteRequest.managementFeeAmount1 is not null and quoteRequest.managementFeeAmount1 >= 0) or quoteRequest.managementFeeCode2 is not empty or quoteRequest.managementFeeDescription2 is not empty or quoteRequest.managementFeeFrequency2 is not empty or (quoteRequest.managementFeeAmount2 is not null and quoteRequest.managementFeeAmount2 >= 0) or quoteRequest.managementFeeCode3 is not empty or quoteRequest.managementFeeDescription3 is not empty or quoteRequest.managementFeeFrequency3 is not empty or (quoteRequest.managementFeeAmount3 is not null and quoteRequest.managementFeeAmount3 >= 0) or quoteRequest.managementFeeCode4 is not empty or quoteRequest.managementFeeDescription4 is not empty or quoteRequest.managementFeeFrequency4 is not empty or (quoteRequest.managementFeeAmount4 is not null and quoteRequest.managementFeeAmount4 >= 0) %}
+                            <table class="table table-striped table-bordered table-hover"
+                                   cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'Commercial.QuoteRequest.ManagementFeeDescription'|trans }}</th>
+                                    <th>{{ 'Commercial.QuoteRequest.ManagementFeeFrequency'|trans }}</th>
+                                    <th>{{ 'Commercial.QuoteRequest.ManagementFeeAmount'|trans }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if quoteRequest.managementFeeCode1 is not empty or quoteRequest.managementFeeDescription1 is not empty or quoteRequest.managementFeeFrequency1 is not empty or (quoteRequest.managementFeeAmount1 is not null and quoteRequest.managementFeeAmount1 >= 0) %}
+                                    <tr>
+                                        <td>{{ quoteRequest.managementFeeDescription1 }}</td>
+                                        <td>{% if quoteRequest.managementFeeFrequency1 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency1)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
+                                        <td>{{ quoteRequest.managementFeeAmount1|formatAmount('EUR', app.request.locale) }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if quoteRequest.managementFeeCode2 is not empty or quoteRequest.managementFeeDescription2 is not empty or quoteRequest.managementFeeFrequency2 is not empty or (quoteRequest.managementFeeAmount2 is not null and quoteRequest.managementFeeAmount2 >= 0) %}
+                                    <tr>
+                                        <td>{{ quoteRequest.managementFeeDescription2 }}</td>
+                                        <td>{% if quoteRequest.managementFeeFrequency2 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency2)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
+                                        <td>{{ quoteRequest.managementFeeAmount2|formatAmount('EUR', app.request.locale) }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if quoteRequest.managementFeeCode3 is not empty or quoteRequest.managementFeeDescription3 is not empty or quoteRequest.managementFeeFrequency3 is not empty or (quoteRequest.managementFeeAmount3 is not null and quoteRequest.managementFeeAmount3 >= 0) %}
+                                    <tr>
+                                        <td>{{ quoteRequest.managementFeeDescription3 }}</td>
+                                        <td>{% if quoteRequest.managementFeeFrequency3 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency3)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
+                                        <td>{{ quoteRequest.managementFeeAmount3|formatAmount('EUR', app.request.locale) }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if quoteRequest.managementFeeCode4 is not empty or quoteRequest.managementFeeDescription4 is not empty or quoteRequest.managementFeeFrequency4 is not empty or (quoteRequest.managementFeeAmount4 is not null and quoteRequest.managementFeeAmount4 >= 0) %}
+                                    <tr>
+                                        <td>{{ quoteRequest.managementFeeDescription4 }}</td>
+                                        <td>{% if quoteRequest.managementFeeFrequency4 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency4)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
+                                        <td>{{ quoteRequest.managementFeeAmount4|formatAmount('EUR', app.request.locale) }}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        {% endif %}
 
-            <div class="flex offer__ref-items">
-                <div>
-                </div>
+                        {% if quoteRequest.catalog == 'REGULAR' or quoteRequest.catalog == 'regular' %}
+                            <div>
+                                <span class="bold">{{ 'Commercial.PDF.ContractDuration'|trans({}, "messages", app.request.locale) }} : </span>
+                                <div style="margin-top: 5px">
+                                    {% if quoteRequest.duration is not null %}
+                                        {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.MONTH'|trans }} à compter de la date de signature du présent contrat, ou de la date spécifiée au point 4.
+                                    {% endif %}
+                                </div>
+                                {% if quoteRequest.startDate is not null %}
+                                    <div>
+                                        La date de démarrage des prestations est prévue pour
+                                        le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
+                                        .
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% elseif quoteRequest.catalog == 'PONCTUAL' or quoteRequest.catalog == 'ponctual' or quoteRequest.catalog == 'MATERIAL' or quoteRequest.catalog == 'material' %}
+                            <div>
+                                <span class="bold">{{ 'Commercial.PDF.PonctualDate'|trans({}, "messages", app.request.locale) }} : </span>
+                                <div style="margin-top: 5px">
 
-                <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.phone }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="flex offer__ref-items">
-                <div></div>
-
-                <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} :</span> {{ quoteRequest.email }}
-                    </p>
+                                    {% if quoteRequest.ponctualDate is not null %}
+                                        {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
 
             {# partie 3 #}
 
-            <h2>3. {{ 'Commercial.PDF.ServiceTitle'|trans({}, "messages", app.request.locale) }}</h2>
-
-            <table class="table table-striped table-bordered table-hover"
-                   cellpadding="0" cellspacing="0" border="0" width="100%">
-                <thead>
-                <tr>
-                    <th>{{ 'Commercial.QuoteRequestLine.PDF.ProductCode'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.ProductRange'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.ProductBillingUnit'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.PDF.Quantity'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.PDF.PassingFrequency'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.TreatmentCollect'|trans }}</th>
-                    <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
-                    <th>{{ 'Commercial.QuoteRequestLine.Package'|trans }} </th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for quoteRequestLine in quoteRequest.quoteRequestLines %}
-                    <tr>
-                        <td>
-                            {{ quoteRequestLine.product.code }}
-                        </td>
-                        <td>
-                            {% if quoteRequestLine.product.range %}
-                                {{ quoteRequestLine.product.range|rangeLabelTranslation(app.user.lang) }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
-                        </td>
-                        <td>
-                            {% if quoteRequestLine.product.billingUnit %}
-                                {{ quoteRequestLine.product.billingUnit.name }}
-                            {% endif %}
-                        </td>
-                        <td class="line-number">
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
-                                {{ quoteRequestLine.quantity }}
-                            {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
-                                {# RESTE NULL #}
-                            {% else %}
-                                {{ quoteRequestLine.quantity }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if quoteRequestLine.product.hideFrequency == 1 %}
-
-                            {% else %}
-                                {% if quoteRequestLine.frequency != 'REGULAR' %}
-                                    {% if quoteRequestLine.frequency %}
-                                        {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
-                                    {% endif %}
-                                {% else %}
-                                    {% if quoteRequestLine.frequencyInterval is not empty %}
-                                        {% set frequencyIntervalName = 'General.Frequency.' ~ quoteRequestLine.frequencyInterval %}
-                                        {{ quoteRequestLine.frequencyTimes }}
-                                        x/ {{ frequencyIntervalName|trans({}, "messages", app.request.locale) }}
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                        </td>
-                        <td class="line-number">
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
-                                {{ 0|formatAmount('EUR', app.request.locale) }}
-                            {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableRentalUnitPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% else %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableRentalUnitPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% endif %}
-                        </td>
-                        <td class="line-number">
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
-                                {{ 0|formatAmount('EUR', app.request.locale) }}
-                            {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('treatmentCollectPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% else %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('treatmentCollectPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% endif %}
-                        </td>
-                        <td class="line-number">
-                            {% if quoteRequestLine.editableTreatmentUnitPrice < 0 %}
-                                <i class="fas fa-exclamation-triangle" data-toggle="tooltip"
-                                   data-placement="top"
-                                   title="Le prix sera indexé mensuellement à la variation de la mercuriale Mercuriale choisie, référence Mois et Année de Référence"></i>
-                            {% endif %}
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
-                                {{ 0|formatAmount('EUR', app.request.locale) }}
-                            {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableTreatmentUnitPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% else %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('editableTreatmentUnitPrice'))|formatAmount('EUR', app.request.locale) }}
-                            {% endif %}
-                        </td>
-                        <td class="line-number">
-                            {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' or quoteRequestLine.product.catalog == 'MATERIAL' %}
-                                {{ (quoteRequestLine|quoteRequestLineCalculatePrices('totalAmount'))|formatAmount('EUR', app.request.locale) }}
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {% if quoteRequest.managementFeeCode1 is not empty or quoteRequest.managementFeeDescription1 is not empty or quoteRequest.managementFeeFrequency1 is not empty or (quoteRequest.managementFeeAmount1 is not null and quoteRequest.managementFeeAmount1 >= 0) or quoteRequest.managementFeeCode2 is not empty or quoteRequest.managementFeeDescription2 is not empty or quoteRequest.managementFeeFrequency2 is not empty or (quoteRequest.managementFeeAmount2 is not null and quoteRequest.managementFeeAmount2 >= 0) or quoteRequest.managementFeeCode3 is not empty or quoteRequest.managementFeeDescription3 is not empty or quoteRequest.managementFeeFrequency3 is not empty or (quoteRequest.managementFeeAmount3 is not null and quoteRequest.managementFeeAmount3 >= 0) or quoteRequest.managementFeeCode4 is not empty or quoteRequest.managementFeeDescription4 is not empty or quoteRequest.managementFeeFrequency4 is not empty or (quoteRequest.managementFeeAmount4 is not null and quoteRequest.managementFeeAmount4 >= 0) %}
-                <table class="table table-striped table-bordered table-hover"
-                       cellpadding="0" cellspacing="0" border="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th>{{ 'Commercial.QuoteRequest.ManagementFeeCode'|trans }}</th>
-                        <th>{{ 'Commercial.QuoteRequest.ManagementFeeDescription'|trans }}</th>
-                        <th>{{ 'Commercial.QuoteRequest.ManagementFeeFrequency'|trans }}</th>
-                        <th>{{ 'Commercial.QuoteRequest.ManagementFeeAmount'|trans }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if quoteRequest.managementFeeCode1 is not empty or quoteRequest.managementFeeDescription1 is not empty or quoteRequest.managementFeeFrequency1 is not empty or (quoteRequest.managementFeeAmount1 is not null and quoteRequest.managementFeeAmount1 >= 0) %}
-                        <tr>
-                            <td>{{ quoteRequest.managementFeeCode1 }}</td>
-                            <td>{{ quoteRequest.managementFeeDescription1 }}</td>
-                            <td>{% if quoteRequest.managementFeeFrequency1 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency1)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
-                            <td>{{ quoteRequest.managementFeeAmount1|formatAmount('EUR', app.request.locale) }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if quoteRequest.managementFeeCode2 is not empty or quoteRequest.managementFeeDescription2 is not empty or quoteRequest.managementFeeFrequency2 is not empty or (quoteRequest.managementFeeAmount2 is not null and quoteRequest.managementFeeAmount2 >= 0) %}
-                        <tr>
-                            <td>{{ quoteRequest.managementFeeCode2 }}</td>
-                            <td>{{ quoteRequest.managementFeeDescription2 }}</td>
-                            <td>{% if quoteRequest.managementFeeFrequency2 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency2)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
-                            <td>{{ quoteRequest.managementFeeAmount2|formatAmount('EUR', app.request.locale) }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if quoteRequest.managementFeeCode3 is not empty or quoteRequest.managementFeeDescription3 is not empty or quoteRequest.managementFeeFrequency3 is not empty or (quoteRequest.managementFeeAmount3 is not null and quoteRequest.managementFeeAmount3 >= 0) %}
-                        <tr>
-                            <td>{{ quoteRequest.managementFeeCode3 }}</td>
-                            <td>{{ quoteRequest.managementFeeDescription3 }}</td>
-                            <td>{% if quoteRequest.managementFeeFrequency3 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency3)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
-                            <td>{{ quoteRequest.managementFeeAmount3|formatAmount('EUR', app.request.locale) }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if quoteRequest.managementFeeCode4 is not empty or quoteRequest.managementFeeDescription4 is not empty or quoteRequest.managementFeeFrequency4 is not empty or (quoteRequest.managementFeeAmount4 is not null and quoteRequest.managementFeeAmount4 >= 0) %}
-                        <tr>
-                            <td>{{ quoteRequest.managementFeeCode4 }}</td>
-                            <td>{{ quoteRequest.managementFeeDescription4 }}</td>
-                            <td>{% if quoteRequest.managementFeeFrequency4 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency4)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
-                            <td>{{ quoteRequest.managementFeeAmount4|formatAmount('EUR', app.request.locale) }}</td>
-                        </tr>
-                    {% endif %}
-
-
-                    </tbody>
-                </table>
-            {% endif %}
             <div>
-                <span class="bold">{{ 'Commercial.PDF.OurIntervention'|trans({}, "messages", app.request.locale) }} :</span>
+                <h2>3. {{ 'Commercial.PDF.Billing'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
-                    <ul>
-                        <li>Mise en place du matériel sous 72h</li>
-                        <li>Collecte des déchets stockés dans les contenants manipulés par votre personnel</li>
-                        <li>Traitement et recyclage de vos déchets sur nos sites Paprec, agréés et certifiés</li>
-                        <li>Envoi d’un reporting mensuel</li>
-                    </ul>
+                    La facturation sera adressée mensuellement en fonction des prix unitaires hors taxes précisés au
+                    point 2 et de l’activité réelle du contrat ou si cela est spécifiée à l’article 4 des présentes
+                    conditions particulières, sur la base d’un montant forfaitaire HT. La TVA sera appliquée aux
+                    montants hors taxes au taux de TVA en vigueur.
                 </div>
             </div>
 
 
-            {% if quoteRequest.catalog == 'REGULAR' or quoteRequest.catalog == 'regular' %}
+            {# partie 4 #}
+
+            <div>
+                <h2>4. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
-                    <span class="bold">{{ 'Commercial.PDF.ContractDuration'|trans({}, "messages", app.request.locale) }} :</span>
-                    <div style="margin-top: 5px">
-                        {% if quoteRequest.duration is not null %}
-                            {{ quoteRequest.duration }} {{ 'Commercial.QuoteRequest.MONTH'|trans }} à compter de la date de signature du présent contrat, ou de la date spécifiée au point 4.
-                        {% endif %}
-                    </div>
-                    {% if quoteRequest.startDate is not null %}
-                        <div>
-                            La date de démarrage des prestations est prévue pour
-                            le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
-                            .
-                        </div>
+                    {% if quoteRequest.comment %}
+                        {{ quoteRequest.comment }}
+                    {% else %}
+                        {{ 'Commercial.PDF.NoComment'|trans({}, "messages", app.request.locale) }}
                     {% endif %}
                 </div>
-            {% elseif quoteRequest.catalog == 'PONCTUAL' or quoteRequest.catalog == 'ponctual' or quoteRequest.catalog == 'MATERIAL' or quoteRequest.catalog == 'material' %}
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.PonctualDate'|trans({}, "messages", app.request.locale) }} :</span>
-                    <div style="margin-top: 5px">
-
-                        {% if quoteRequest.ponctualDate is not null %}
-                            {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-
-        </div>
-
-
-        {# partie 4 #}
-
-        <div>
-            <h2>4. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale) }}</h2>
-            <div>
-                {% if quoteRequest.comment %}
-                    {{ quoteRequest.comment }}
-                {% else %}
-                    {{ 'Commercial.PDF.NoComment'|trans({}, "messages", app.request.locale) }}
-                {% endif %}
             </div>
+
+
+            {# partie 5 #}
+
+            <h2>5. {{ 'Commercial.PDF.ContactTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+
+            <div class="flex offer__ref-items">
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryLastName1 }}
+                </div>
+
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.lastName }}
+                </div>
+            </div>
+
+            <div class="flex offer__ref-items">
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryFirstName1 }}
+                </div>
+
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.firstName }}
+                </div>
+            </div>
+
+            <div class="flex offer__ref-items">
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span>
+                </div>
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
+                </div>
+            </div>
+
+            <div class="flex offer__ref-items">
+                <div></div>
+                <div>
+                    <span class="bold">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.email }}
+                </div>
+            </div>
+
         </div>
 
-
-        {# partie 5 #}
+        {# partie 6 #}
 
         <div class="other">
 
-            <h2>5. {{ 'Commercial.PDF.OtherContractualTitle'|trans({}, "messages", app.request.locale) }}</h2>
+            <h2>6. {{ 'Commercial.PDF.OtherContractualTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
             <div class="flex offer__ref-items">
                 <div>
@@ -766,34 +767,33 @@
         </div>
 
 
-        {# partie 6 #}
+        {# partie 7 #}
 
         <div>
-            <h2>6. {{ 'Commercial.PDF.Acceptance'|trans({}, "messages", app.request.locale) }}</h2>
+            <h2>7. {{ 'Commercial.PDF.Acceptance'|trans({}, "messages", app.request.locale)|upper }}</h2>
             <div>
-                Le Contrat est constitué des conditions particulières détaillées dans le présent Devis aux points 1 à 6
-                de la présente page et des conditions générales de vente détaillées en page 3 du présent document dont
-                le Client reconnait avoir pris connaissance.<br>
-                La facturation sera adressée mensuellement en fonction des prix unitaires précisés au point 3 et de
-                l’activité réelle du contrat, sauf si un budget forfaitaire mensuel est convenu entre les parties et
-                précisé au point 4.
-                L’acceptation du présent devis vaut engagement contractuel.
+                Le contrat est constitué des conditions particulières détaillées dans le présent devis aux points 1 à 7
+                et les conditions générales de vente détaillées en page 3 du présent document dont le client reconnait
+                avoir pris connaissance. <br><br>
+                L’acceptation de ce devis vaut contrat.
             </div>
         </div>
 
-        {# partie 7 #}
+        {# partie 8 #}
         <div class="other">
 
-            <h2>7. {{ 'Commercial.PDF.SignatureTitle'|trans({}, "messages", app.request.locale) }}</h2>
+            <h2>8. {{ 'Commercial.PDF.SignatureTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
             <div class="flex offer__ref-items">
                 <div>
                     <p>
                         {#                        <span class="bold">{{ 'Commercial.PDF.SignatureSubTitle1'|trans({}, "messages", app.request.locale) }}</span> #}
                         <span class="bold">Pour le client</span><br>
-                        <span>{{ quoteRequest.signatoryTitle1 }} {{ quoteRequest.signatoryFirstName1 }} {{ quoteRequest.signatoryLastName1 }}</span><br>
-                        <span>(lu et approuve)</span><br>
-                        <span>Le {{ quoteRequest.startDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}</span>
+                        <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
+                        <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
+                        <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br>
+                        <span>Date (mention "Lu et approuvé")</span><br>
+                        <span></span>
                     </p>
                 </div>
 
@@ -801,7 +801,11 @@
                     <p>
                         <span class="bold">Pour {% if quoteRequest.userInCharge and quoteRequest.userInCharge.agency %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
                         {% if quoteRequest.userInCharge is not null and quoteRequest.userInCharge.manager is not null %}
-                            <span>{{ quoteRequest.userInCharge.manager.civility }} {{ quoteRequest.userInCharge.manager.firstName }} {{ quoteRequest.userInCharge.manager.lastName }}</span>
+                            <span>{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.lastName }}</span>
+                            <br>
+                            <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.firstName }}</span>
+                            <br>
+                            <span>Date</span><br>
                         {% endif %}
                     </p>
                 </div>
