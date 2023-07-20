@@ -31,11 +31,11 @@
         }
 
         h2 {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 15px;
             margin-top: 20px;
-            border-bottom: 1px solid #4a4a4a;
+            /*border-bottom: 1px solid #4a4a4a;*/
             padding-bottom: 5px;
         }
 
@@ -189,7 +189,6 @@
         table {
             border-collapse: separate;
             border-spacing: 0;
-            width: 90%;
             margin-bottom: 20px;
         }
 
@@ -337,6 +336,7 @@
             justify-content: end;
             -webkit-box-pack: end;
         }
+
         /*.part-one-position {*/
         /*    position: relative;*/
         /*    left: 70%;*/
@@ -363,18 +363,18 @@
 
             <h2>1. {{ 'Commercial.PDF.CustomerTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
             <div class="flex">
-            <div style="width: 60%;"></div>
-            <div style="width: 40%;">
-            <p class="part-one-position">
-                <span class="bold">{{ 'Commercial.PDF.Company'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.businessName }}
-            </p>
-            <p class="part-one-position">
-                <span class="bold">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.address }}
-            </p>
-            <p class="part-one-position">
-                <span class="bold">{{ 'Commercial.PDF.PostalCode'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
-            </p>
-            </div>
+                <div style="width: 60%;"></div>
+                <div style="width: 40%;">
+                    <p class="part-one-position">
+                        <span class="bold">{{ 'Commercial.PDF.Company'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.businessName }}
+                    </p>
+                    <p class="part-one-position">
+                        <span class="bold">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.address }}
+                    </p>
+                    <p class="part-one-position">
+                        <span class="bold">{{ 'Commercial.PDF.PostalCode'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
+                    </p>
+                </div>
             </div>
             {# partie 2 #}
 
@@ -412,16 +412,16 @@
                                 <th>{{ 'Commercial.QuoteRequestLine.ProductBillingUnit'|trans }}</th>
                                 <th>{{ 'Commercial.QuoteRequestLine.PDF.Quantity'|trans }}</th>
                                 <th>{{ 'Commercial.QuoteRequestLine.PDF.PassingFrequency'|trans }}</th>
-                                <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
-                                <th>{{ 'Commercial.QuoteRequestLine.TreatmentCollect'|trans }}</th>
-                                <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
-                                <th>{{ 'Commercial.QuoteRequestLine.Package'|trans }} </th>
+                                <th>PU<br>Location<br>(€/mois)</th>
+                                <th>PU<br>Collecte<br>(€/unité)</th>
+                                <th>PU<br>Traitement<br>(€/Tonne)</th>
+                                <th>{{ 'Commercial.QuoteRequestLine.Package'|trans }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for quoteRequestLine in quoteRequest.quoteRequestLines %}
                                 <tr>
-                                    <td>
+                                    <td style="text-align: left;">
                                         {{ quoteRequestLine.product|productLabelTranslation(app.user.lang) }}
                                     </td>
                                     <td>
@@ -429,7 +429,7 @@
                                             {{ quoteRequestLine.product.billingUnit.name }}
                                         {% endif %}
                                     </td>
-                                    <td class="line-number">
+                                    <td>
                                         {% if quoteRequestLine.product.calculationFormula == 'PACKAGE' %}
                                             {{ quoteRequestLine.quantity }}
                                         {% elseif quoteRequestLine.product.calculationFormula == 'UNIT_PRICE' %}
@@ -501,7 +501,7 @@
                                    cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>{{ 'Commercial.QuoteRequest.ManagementFeeDescription'|trans }}</th>
+                                    <th style="width: 75%;">{{ 'Commercial.QuoteRequest.ManagementFeeDescription'|trans }}</th>
                                     <th>{{ 'Commercial.QuoteRequest.ManagementFeeFrequency'|trans }}</th>
                                     <th>{{ 'Commercial.QuoteRequest.ManagementFeeAmount'|trans }}</th>
                                 </tr>
@@ -509,28 +509,28 @@
                                 <tbody>
                                 {% if quoteRequest.managementFeeCode1 is not empty or quoteRequest.managementFeeDescription1 is not empty or quoteRequest.managementFeeFrequency1 is not empty or (quoteRequest.managementFeeAmount1 is not null and quoteRequest.managementFeeAmount1 >= 0) %}
                                     <tr>
-                                        <td>{{ quoteRequest.managementFeeDescription1 }}</td>
+                                        <td style="width: 75%;">{{ quoteRequest.managementFeeDescription1 }}</td>
                                         <td>{% if quoteRequest.managementFeeFrequency1 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency1)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
                                         <td>{{ quoteRequest.managementFeeAmount1|formatAmount('EUR', app.request.locale) }}</td>
                                     </tr>
                                 {% endif %}
                                 {% if quoteRequest.managementFeeCode2 is not empty or quoteRequest.managementFeeDescription2 is not empty or quoteRequest.managementFeeFrequency2 is not empty or (quoteRequest.managementFeeAmount2 is not null and quoteRequest.managementFeeAmount2 >= 0) %}
                                     <tr>
-                                        <td>{{ quoteRequest.managementFeeDescription2 }}</td>
+                                        <td style="width: 75%;">{{ quoteRequest.managementFeeDescription2 }}</td>
                                         <td>{% if quoteRequest.managementFeeFrequency2 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency2)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
                                         <td>{{ quoteRequest.managementFeeAmount2|formatAmount('EUR', app.request.locale) }}</td>
                                     </tr>
                                 {% endif %}
                                 {% if quoteRequest.managementFeeCode3 is not empty or quoteRequest.managementFeeDescription3 is not empty or quoteRequest.managementFeeFrequency3 is not empty or (quoteRequest.managementFeeAmount3 is not null and quoteRequest.managementFeeAmount3 >= 0) %}
                                     <tr>
-                                        <td>{{ quoteRequest.managementFeeDescription3 }}</td>
+                                        <td style="width: 75%;">{{ quoteRequest.managementFeeDescription3 }}</td>
                                         <td>{% if quoteRequest.managementFeeFrequency3 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency3)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
                                         <td>{{ quoteRequest.managementFeeAmount3|formatAmount('EUR', app.request.locale) }}</td>
                                     </tr>
                                 {% endif %}
                                 {% if quoteRequest.managementFeeCode4 is not empty or quoteRequest.managementFeeDescription4 is not empty or quoteRequest.managementFeeFrequency4 is not empty or (quoteRequest.managementFeeAmount4 is not null and quoteRequest.managementFeeAmount4 >= 0) %}
                                     <tr>
-                                        <td>{{ quoteRequest.managementFeeDescription4 }}</td>
+                                        <td style="width: 75%;">{{ quoteRequest.managementFeeDescription4 }}</td>
                                         <td>{% if quoteRequest.managementFeeFrequency4 %}{{ ('General.Frequency.' ~ quoteRequest.managementFeeFrequency4)|trans({}, "messages", app.request.locale) }}{% endif %}</td>
                                         <td>{{ quoteRequest.managementFeeAmount4|formatAmount('EUR', app.request.locale) }}</td>
                                     </tr>
@@ -664,12 +664,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.CorporateName'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.businessName }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
                            value="{{ quoteRequest.businessName }}">
                 </div>
             </div>
@@ -678,14 +679,14 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;"
                            {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.address }}"
                            {% else %}value="{{ quoteRequest.billingAddress }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;"
                            value="{{ quoteRequest.address }}">
                 </div>
             </div>
@@ -694,14 +695,14 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.City'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
                            {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.city }}"
                            {% else %}value="{{ quoteRequest.billingCity }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
                            value="{{ quoteRequest.city }}">
                 </div>
             </div>
@@ -710,12 +711,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.phone }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
                            value="{{ quoteRequest.phone }}">
                 </div>
             </div>
@@ -724,12 +726,12 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.TVAIntracomNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
             </div>
 
@@ -737,12 +739,13 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.CommandNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
+                           {% if quoteRequest.isSameAddress %}value="{{ quoteRequest.reference }}"{% endif %}>
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;"
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;"
                            value="{{ quoteRequest.reference }}">
                 </div>
             </div>
@@ -751,12 +754,12 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.SiretNumber'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
             </div>
 
@@ -765,12 +768,12 @@
                 <div class="flex">
                     <p style="width: 150px">{{ 'Commercial.PDF.CompanyType'|trans({}, "messages", app.request.locale) }}</p>
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
 
                 <div class="flex">
                     <input type="text"
-                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: 1px solid black;">
+                           style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;">
                 </div>
             </div>
 
