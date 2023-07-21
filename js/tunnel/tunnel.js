@@ -341,12 +341,12 @@ $(function () {
             isContactDetailFormSubimitted = true;
             event.preventDefault();
             const siteKey = $('#contactDetailFormSubmitButton').data('key');
-            grecaptcha.ready(function () {
-                grecaptcha.execute(siteKey, {action: 'homepage'}).then(function (token) {
-                    $('#contactDetailForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">')
+            // grecaptcha.ready(function () {
+            //     grecaptcha.execute(siteKey, {action: 'homepage'}).then(function (token) {
+            //         $('#contactDetailForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">')
                     $('#contactDetailForm').submit();
-                });
-            });
+                // });
+            // });
         }
     });
 

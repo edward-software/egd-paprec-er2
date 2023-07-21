@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-6 form-group">
                                 <label>{{ 'Public.Contact.PostalCode'| trans({}, "messages", locale) }}* :</label>
-                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field', 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
+                                {{ form_widget(form.postalCode, {'attr': {'class': 'form-control address-field postal-code-field', 'data-url': path('paprec_public_postalCode_autocomplete') }}) }}
                                 {{ form_errors(form.postalCode) }}
                             </div>
                             <div class="col-6 form-group">
@@ -61,7 +61,7 @@
                                 {{ form_errors(form.recallDate) }}
                             </div>
                             <div class="col-12 form-group">
-                                <label>{{ 'Public.Contact.Need'| trans({}, "messages", locale) }}* :</label>
+                                <label>{{ 'Public.Contact.Need'| trans({}, "messages", locale) }} :</label>
                                 {{ form_widget(form.comment, {'attr': {'class': 'form-control'}}) }}
                                 {{ form_errors(form.comment) }}
                             </div>
@@ -84,6 +84,14 @@
     <script src="https://www.google.com/recaptcha/api.js?render={{ google_recaptcha_site_key }}"></script>
     <script>
         $(function () {
+
+            var codes = {{ codes|json_encode|raw }};
+
+            $('#paprec_catalogbundle_quote_request_public_postalCode').autocomplete({
+                source: codes,
+                minLength: 3,
+                delay: 500,
+            });
 
             $('.progress-bar').css('width', '65%').attr('aria-valuenow', '70%');
 
