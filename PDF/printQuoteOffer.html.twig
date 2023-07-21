@@ -414,8 +414,8 @@
                                 <th style="width: 8%;">{{ 'Commercial.QuoteRequestLine.PDF.PassingFrequency'|trans }}</th>
                                 <th style="width: 8%;">PU<br>Location<br>(€/mois)</th>
                                 <th style="width: 8%;">PU<br>Collecte<br>(€/unité)</th>
-                                <th style="width: 8%;">PU<br>Traitement<br>(€/Tonne)</th>
-                                <th style="width: 8%;">{{ 'Commercial.QuoteRequestLine.Package'|trans }}</th>
+                                <th style="width: 11%;">PU<br>Traitement<br>(€/Tonne)</th>
+                                <th style="width: 11%;">{{ 'Commercial.QuoteRequestLine.Package'|trans }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -502,8 +502,8 @@
                                 <thead>
                                 <tr>
                                     <th style="text-align: left;">{{ 'Commercial.QuoteRequest.ManagementFeeDescription'|trans }}</th>
-                                    <th style="width: 8%;">{{ 'Commercial.QuoteRequest.ManagementFeeFrequency'|trans }}</th>
-                                    <th style="width: 8%;">{{ 'Commercial.QuoteRequest.ManagementFeeAmount'|trans }}</th>
+                                    <th style="width: 11%;">{{ 'Commercial.QuoteRequest.ManagementFeeFrequency'|trans }}</th>
+                                    <th style="width: 11%;">{{ 'Commercial.QuoteRequest.ManagementFeeAmount'|trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -559,7 +559,6 @@
                             <div>
                                 <span class="bold">{{ 'Commercial.PDF.PonctualDate'|trans({}, "messages", app.request.locale) }} : </span>
                                 <div style="margin-top: 5px">
-
                                     {% if quoteRequest.ponctualDate is not null %}
                                         {{ quoteRequest.ponctualDate|localizeddate('short', 'none', app.request.locale, app.user.timezone) }}
                                     {% endif %}
