@@ -342,6 +342,9 @@
         /*    left: 70%;*/
         /*}*/
 
+        .not-breakable-block {
+            page-break-inside: avoid;
+        }
     </style>
 
 </head>
@@ -571,7 +574,7 @@
 
             {# partie 3 #}
 
-            <div>
+            <div class="not-breakable-block">
                 <h2>3. {{ 'Commercial.PDF.Billing'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     La facturation sera adressée mensuellement en fonction des prix unitaires hors taxes précisés au
@@ -584,7 +587,7 @@
 
             {# partie 4 #}
 
-            <div>
+            <div class="not-breakable-block">
                 <h2>4. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     {% if quoteRequest.comment %}
@@ -597,42 +600,44 @@
 
 
             {# partie 5 #}
+            <div class="not-breakable-block">
 
-            <h2>5. {{ 'Commercial.PDF.ContactTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+                <h2>5. {{ 'Commercial.PDF.ContactTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
-            <div class="flex offer__ref-items">
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryLastName1 }}
+                <div class="flex offer__ref-items">
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryLastName1 }}
+                    </div>
+
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.lastName }}
+                    </div>
                 </div>
 
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.lastName }}
-                </div>
-            </div>
+                <div class="flex offer__ref-items">
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryFirstName1 }}
+                    </div>
 
-            <div class="flex offer__ref-items">
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryFirstName1 }}
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.firstName }}
+                    </div>
                 </div>
 
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.firstName }}
+                <div class="flex offer__ref-items">
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span>
+                    </div>
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
+                    </div>
                 </div>
-            </div>
 
-            <div class="flex offer__ref-items">
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span>
-                </div>
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
-                </div>
-            </div>
-
-            <div class="flex offer__ref-items">
-                <div></div>
-                <div>
-                    <span class="bold">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.email }}
+                <div class="flex offer__ref-items">
+                    <div></div>
+                    <div>
+                        <span class="bold">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.email }}
+                    </div>
                 </div>
             </div>
 
@@ -642,164 +647,166 @@
 
         <div class="other">
 
-            <h2>6. {{ 'Commercial.PDF.OtherContractualTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+            <div class="not-breakable-block">
+                <h2>6. {{ 'Commercial.PDF.OtherContractualTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
-            <div class="flex offer__ref-items">
-                <div>
-                    <p>
+                <div class="flex offer__ref-items">
+                    <div>
+                        <p>
                     <span class="bold"
                           style="margin-left: 150px">{{ 'Commercial.PDF.BillingSubTitle'|trans({}, "messages", app.request.locale) }}</span>
-                    </p>
-                </div>
+                        </p>
+                    </div>
 
-                <div>
-                    <p>
-                        <span class="bold">{{ 'Commercial.PDF.SiteSubTitle'|trans({}, "messages", app.request.locale) }} </span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.CorporateName'|trans({}, "messages", app.request.locale) }}</p>
-                    <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                        {% if quoteRequest.isSameAddress %}{{ quoteRequest.businessName }}{% endif %}
+                    <div>
+                        <p>
+                            <span class="bold">{{ 'Commercial.PDF.SiteSubTitle'|trans({}, "messages", app.request.locale) }} </span>
+                        </p>
                     </div>
                 </div>
 
-                <div class="flex">
-                    <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                        {{ quoteRequest.businessName }}
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.CorporateName'|trans({}, "messages", app.request.locale) }}</p>
+                        <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                            {% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.businessName }}{% endif %}
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="flex offer__ref-items" style="margin-bottom: 10px;">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {% if quoteRequest.isSameAddress %}{{ quoteRequest.address }}
-                        {% else %}{{ quoteRequest.billingAddress }}{% endif %}
+                    <div class="flex">
+                        <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                            {{ quoteRequest.businessName }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >{{ quoteRequest.address }}
+                <div class="flex offer__ref-items" style="margin-bottom: 10px;">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.Address'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.address }}
+                            {% else %}{{ quoteRequest.billingAddress }}{% endif %}
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.City'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >{% if quoteRequest.isSameAddress %}{{ quoteRequest.city }}
-                        {% else %}{{ quoteRequest.billingCity }}{% endif %}
-                    </div>
-                </div>
-
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {{ quoteRequest.city }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {% if quoteRequest.isSameAddress %}{{ quoteRequest.phone }}{% endif %}
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 60px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >{{ quoteRequest.address }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {{ quoteRequest.phone }}
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.City'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >{% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.city }}
+                            {% else %}{{ quoteRequest.billingCity }}{% endif %}
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.TVAIntracomNumber'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                    </div>
-                </div>
-
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.CommandNumber'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {% if quoteRequest.isSameAddress %}{{ quoteRequest.reference }}{% endif %}
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {{ quoteRequest.city }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
-                    >
-                        {{ quoteRequest.reference }}
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.phone }}{% endif %}
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.SiretNumber'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                    </div>
-                </div>
-
-                <div class="flex">
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="flex offer__ref-items">
-                <div class="flex">
-                    <p style="width: 150px">{{ 'Commercial.PDF.CompanyType'|trans({}, "messages", app.request.locale) }}</p>
-                    <div
-                            style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {{ quoteRequest.phone }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex">
-                    <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.TVAIntracomNumber'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
                     </div>
                 </div>
 
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.CommandNumber'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.reference }}{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;"
+                        >
+                            {{ quoteRequest.reference }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.SiretNumber'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="flex offer__ref-items">
+                    <div class="flex">
+                        <p style="width: 150px">{{ 'Commercial.PDF.CompanyType'|trans({}, "messages", app.request.locale) }}</p>
+                        <div
+                                style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
 
             {# partie 7 #}
 
-            <div>
+            <div class="not-breakable-block">
                 <h2>7. {{ 'Commercial.PDF.Acceptance'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     Le contrat est constitué des conditions particulières détaillées dans le présent devis aux
@@ -814,33 +821,35 @@
             {# partie 8 #}
             <div class="other">
 
-                <h2>8. {{ 'Commercial.PDF.SignatureTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+                <div class="not-breakable-block">
+                    <h2>8. {{ 'Commercial.PDF.SignatureTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
-                <div class="flex offer__ref-items">
-                    <div>
-                        <p>
-                            {#                        <span class="bold">{{ 'Commercial.PDF.SignatureSubTitle1'|trans({}, "messages", app.request.locale) }}</span> #}
-                            <span class="bold">Pour le client</span><br>
-                            <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
-                            <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
-                            <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br><br>
-                            <span>Date (mention "Lu et approuvé")</span><br><br><br>
-                            <span></span>
-                        </p>
-                    </div>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <p>
+                                {#                        <span class="bold">{{ 'Commercial.PDF.SignatureSubTitle1'|trans({}, "messages", app.request.locale) }}</span> #}
+                                <span class="bold">Pour le client</span><br>
+                                <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
+                                <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
+                                <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br><br>
+                                <span>Date (mention "Lu et approuvé")</span><br><br><br>
+                                <span></span>
+                            </p>
+                        </div>
 
-                    <div>
-                        <p>
-                            <span class="bold">Pour {% if quoteRequest.userInCharge and quoteRequest.userInCharge.agency %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
-                            {% if quoteRequest.userInCharge is not null and quoteRequest.userInCharge.manager is not null %}
-                                <span>{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.lastName }}</span>
-                                <br>
-                                <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.firstName }}</span>
-                                <br>
-                                <br>
-                                <span>Date</span><br><br><br>
-                            {% endif %}
-                        </p>
+                        <div>
+                            <p>
+                                <span class="bold">Pour {% if quoteRequest.userInCharge and quoteRequest.userInCharge.agency %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
+                                {% if quoteRequest.userInCharge is not null and quoteRequest.userInCharge.manager is not null %}
+                                    <span>{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.lastName }}</span>
+                                    <br>
+                                    <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.firstName }}</span>
+                                    <br>
+                                    <br>
+                                    <span>Date</span><br><br><br>
+                                {% endif %}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
