@@ -202,7 +202,7 @@
                 <div class="be-recalled">
                     <a type="button"
                        class="btn btn__purple-2 btn__large type__button ml-5 catalog_next_step_button"
-                       data-url="{{ path('paprec_public_contact_request_index', {locale: locale}) }}"
+                       data-url="{{ path('paprec_public_contact_request_index', {'locale': locale}) }}?cartUuid={{ cart.id }}"
                        data-ajax="{{ path('paprec_public_catalog_addFrequency', {locale: locale, cartUuid: cart.id}) }}"><i class="fas fa-phone-alt"></i> {{ 'Public.Catalog.ToBeCall'| trans({}, "messages", locale)|upper }}
                     </a>
                 </div>
