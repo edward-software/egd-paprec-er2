@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="m-b-40">
-                        {{ 'Public.Request.Title'| trans({}, "messages", locale) }}
+                        {{ 'Public.Request.Title'| trans({}, "messages", locale) }}{% if interest is not null and interest != '' %} <br> {{ ('Public.Contact.Interest-list.'~interest)| trans({}, "messages", locale) }}{% endif %}
                     </h1>
                 </div>
             </div>
