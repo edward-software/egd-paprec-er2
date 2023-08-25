@@ -378,7 +378,7 @@
                         {% else %}
                             {% if quoteRequestLine.frequency != 'REGULAR' %}
                                 {% if quoteRequestLine.frequency %}
-                                    {{ ('General.Frequency.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
+                                    {{ ('Commercial.QuoteRequestLine.Frequency-values.'~quoteRequestLine.frequency)|trans({}, "messages", app.request.locale) }}
                                 {% endif %}
                             {% else %}
                                 {% if quoteRequestLine.frequencyInterval is not empty %}
