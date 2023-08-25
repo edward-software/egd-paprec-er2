@@ -357,9 +357,9 @@
                 <h2>2. {{ 'Commercial.PDF.Summary'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     {% if quoteRequest.civility == 'M' %}
-                        {{ 'Commercial.ConfirmEmail.Dear.M'|trans({}, "messages", locale) }},
+                        {{ 'Commercial.ConfirmEmail.Dear.M-long'|trans({}, "messages", locale) }},
                     {% elseif quoteRequest.civility == 'MME' %}
-                        {{ 'Commercial.ConfirmEmail.Dear.Mrs'|trans({}, "messages", locale) }},
+                        {{ 'Commercial.ConfirmEmail.Dear.Mrs-long'|trans({}, "messages", locale) }},
                     {% endif %}<br><br>
                     Suite à votre demande, je vous prie de trouver ci-dessous notre proposition commerciale, valable 3 mois, concernant
                     la gestion de vos déchets. Ce résumé regroupe l’ensemble des prestations souhaitées et un commercial
