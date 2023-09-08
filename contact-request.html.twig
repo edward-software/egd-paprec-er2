@@ -55,10 +55,15 @@
                                 {{ 'Public.Contact.PhoneNumberInfo'| trans({}, "messages", locale) }}
                             </span>
                             </div>
-                            <div class="col-6 form-group">
+                            <div class="col-3 form-group">
                                 <label>{{ 'Public.Contact.RecallDate'| trans({}, "messages", locale) }}* :</label>
                                 {{ form_widget(form.recallDate, {'attr': {'class': 'form-control'}}) }}
                                 {{ form_errors(form.recallDate) }}
+                            </div>
+                            <div class="col-3 form-group">
+                                <label>{{ 'Public.Contact.RecallHour'| trans({}, "messages", locale) }}* :</label>
+                                {{ form_widget(form.recallHour, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.recallHour) }}
                             </div>
                             <div class="col-12 form-group">
                                 <label>{{ 'Public.Contact.Need'| trans({}, "messages", locale) }} :</label>
