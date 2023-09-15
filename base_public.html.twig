@@ -97,39 +97,39 @@
 
             <div class="row">
                 {% if app.request.get('_route')|slice(0, 'paprec_public_devis_home'|length) == 'paprec_public_devis_home' %}
-                    <div class="col-md-4" style="margin-top: 10px"><a class="item-active purple_1" style="font-size: 15px;"
+                    <div class="col-md-4 col-xs-12" style="margin-top: 10px"><a class="item-active purple_1" style="font-size: 15px;"
                                 href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Link1'| trans({}, "messages", locale) }}</a>
                     </div>
                 {% else %}
-                    <div class="col-md-4" style="margin-top: 10px"><a class="item" style="font-size: 15px;" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Link1'| trans({}, "messages", locale) }}</a></div>
+                    <div class="col-md-4 col-xs-12" style="margin-top: 10px"><a class="item" style="font-size: 15px;" href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Navbar.Link1'| trans({}, "messages", locale) }}</a></div>
                 {% endif %}
 
                 {% if app.request.get('_route')|slice(0, 'paprec_public_regular_'|length) == 'paprec_public_regular_' or app.request.get('_route')|slice(0, 'paprec_public_ponctual_'|length) == 'paprec_public_ponctual_' %}
-                    <div class="col-md-3 item-active" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-3 col-xs-12 item-active" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link2'| trans({}, "messages", locale) }}
                     </div>
                 {% else %}
-                    <div class="col-md-3 item" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-3 col-xs-12 item" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link2'| trans({}, "messages", locale) }}
                     </div>
                 {% endif %}
 
                 {% if app.request.get('_route')|slice(0, 'paprec_public_contact_'|length) == 'paprec_public_contact_' %}
-                    <div class="col-md-3 item-active" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-3 col-xs-12 item-active" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link3'| trans({}, "messages", locale) }}
                     </div>
                 {% else %}
-                    <div class="col-md-3 item" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-3 col-xs-12 item" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link3'| trans({}, "messages", locale) }}
                     </div>
                 {% endif %}
 
                 {% if app.request.get('_route')|slice(0, 'paprec_public_confirm_'|length) == 'paprec_public_confirm_' %}
-                    <div class="col-md-2 item-active" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-2 col-xs-12 item-active" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link4'| trans({}, "messages", locale) }}
                     </div>
                 {% else %}
-                    <div class="col-md-2 item" style="margin-top: 10px; font-size: 15px;">
+                    <div class="col-md-2 col-xs-12 item" style="margin-top: 10px; font-size: 15px;">
                         {{ 'Public.Navbar.Link4'| trans({}, "messages", locale) }}
                     </div>
                 {% endif %}

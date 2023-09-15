@@ -77,6 +77,20 @@ input:focus {
 
   margin-bottom: 40px;
 
+  @media (max-width : 770px) {
+    &.row,
+    .row{
+      display: inherit !important;
+      flex-wrap: inherit !important;
+      margin-right: inherit !important;
+      margin-left: inherit !important;
+    }
+
+    .product {
+      padding-left: inherit !important;
+    }
+  }
+
   //.round-btn {
   //  height: 25px;
   //  width: 25px;
@@ -200,6 +214,15 @@ input:focus {
     &__frequency {
       text-align: left;
       margin-top: 20px;
+
+      .paprec-flex{
+        @media (max-width : 770px) {
+          flex-direction: column;
+        }
+      }
+      .frequency-field {
+        margin-right: 5px;
+      }
 
       &__container {
         display: flex;
@@ -507,6 +530,10 @@ input:focus {
 .cart {
   position: sticky;
   top: 20px;
+
+  @media (max-width : 770px) {
+    margin-top: 20px;
+  }
 
   &__block {
     &__body {

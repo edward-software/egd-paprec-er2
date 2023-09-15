@@ -154,7 +154,7 @@
                                                             {% endif %}
                                                             <!-- Group of default radios - option Regular-->
                                                             <div class="paprec-flex">
-                                                                <div class="custom-control custom-radio">
+                                                                <div class="custom-control custom-radio frequency-field">
                                                                     <input type="radio"
                                                                            class="custom-control-input"
                                                                            id="regularFrequencyButton__{{ product.id }}"
@@ -167,7 +167,7 @@
                                                                            for="regularFrequencyButton__{{ product.id }}">{{ 'Public.Catalog.REGULAR'| trans({}, "messages", locale) }}</label>
                                                                 </div>
 
-                                                                <div class="ml-3">
+                                                                <div class="">
                                                                     <input class="product__frequency__container__input text-center mr-2 frequency-input"
                                                                            size="1"
                                                                            type="number"
