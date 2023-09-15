@@ -55,7 +55,8 @@
   padding-right: 2em;
   background: $green_1;
   color: $green_1;
-  &:hover{
+
+  &:hover {
     color: #FFFFFF;
   }
 
@@ -88,7 +89,8 @@
   padding-right: 2em;
   background: $green_1;
   color: $green_1;
-  &:hover{
+
+  &:hover {
     color: #FFFFFF;
   }
 
@@ -113,12 +115,56 @@
 }
 
 .bottom-navigation {
+
+  @media (max-width: 770px) {
+
+    justify-content: center !important;
+    a[type="button"] {
+      //width: 100% !important;
+      margin-bottom: 10px;
+    }
+
+    .col-lg-5 {
+      width: inherit !important;
+    }
+
+  }
+
+  .send-request {
+    @media (max-width: 770px) {
+      margin-right: 22px;
+    }
+
+  }
+
   .be-recalled {
     a, button {
       background-color: $blue_1 !important;
       line-height: 2.5em;
-      &:hover{
+
+      &:hover {
         color: #FFFFFF;
+      }
+    }
+  }
+}
+
+.catalog-ponctual {
+  @media (max-width: 770px) {
+    .bottom-navigation {
+      display: flex;
+      //flex-direction: column;
+      .previous{
+        order: 1;
+      }
+      .next{
+        order: 2;
+        margin-left: 25px;
+      }
+
+      .be-recalled {
+        order: 3;
+        margin-right: 74px !important;
       }
     }
   }

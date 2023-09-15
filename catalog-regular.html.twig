@@ -9,7 +9,7 @@
 {% endblock %}
 {% block main_content %}
     <section class="page-section">
-        <div class="container">
+        <div class="container catalog-ponctual">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ 'Public.Catalog.Title'| trans({}, "messages", locale) }}
@@ -302,7 +302,7 @@
                 </div>
             </div>
             <div class="row mt-5 mb-5 d-flex justify-content-between bottom-navigation">
-                <div>
+                <div class="previous">
                     <a type="button"
                        class="btn btn__green btn__large type__button arrow-left ml-5"
                        href="{{ path('paprec_public_devis_index', {locale: locale}) }}">{{ 'Public.Catalog.Previous-step'| trans({}, "messages", locale)|upper }}
@@ -316,7 +316,7 @@
                     </a>
                 </div>
 
-                <div>
+                <div class="next">
                     <a type="button"
                        class="btn btn__green btn__large type__button arrow-right mr-5 catalog_next_step_button"
                        data-url="{{ path('paprec_public_contact_regulier_index', {locale: locale, cartUuid: cart.id}) }}"

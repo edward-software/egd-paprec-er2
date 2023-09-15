@@ -19,11 +19,11 @@
                 <div class="form-container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                            <div class="contact-form row">
+                                <div class="col-md-2 col-12 d-flex justify-content-end align-items-center logo-block">
                                     <img src="{{ asset('/build/static/user.png') }}" alt="" width="125" height="125">
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-10 col-12 field-block">
                                     <div class="row">
                                         <div class="col-md-12 ml-4">
                                             <h2>{{ 'Public.Contact.ContactInfoTitle'|trans({}, "messages", locale)}}</h2>
@@ -55,12 +55,12 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                            <div class="contact-form row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center logo-block">
                                     <img src="{{ asset('/build/static/building.png') }}" alt="" width="125"
                                          height="125">
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-10 field-block">
                                     <div class="row">
                                         <div class="form-group col-md-6 mt-3">
                                             {{ form_widget(form.businessName, {'attr': {'class': 'form-control', 'placeholder': ('Public.Contact.BusinessName'| trans({}, 'messages', locale)~'* :')}}) }}
@@ -69,7 +69,6 @@
                                                 Champ non renseigné
                                             </div>
                                         </div>
-
 
                                         <div class="col-md-6">
                                             <div class="form-group mt-3">
@@ -95,12 +94,12 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                            <div class="contact-form row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center logo-block">
                                     <img src="{{ asset('/build/static/mailbox.png') }}" alt="" width="125"
                                          height="125">
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-10 field-block">
                                     <div class="row">
                                         <div class="col-md-12 ml-4">
                                             <h2>{{ 'Public.Contact.AddressTitle'|trans({}, "messages", locale)}}</h2>
@@ -224,12 +223,12 @@
 
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                            <div class="contact-form row">
+                                <div class="col-md-2 d-flex justify-content-end align-items-center logo-block">
                                     <img src="{{ asset('/build/static/espace.png') }}" alt="" width="125"
                                          height="125">
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-10 field-block">
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                         </div>
@@ -262,7 +261,7 @@
                         </div>
                     </div>
                     <div class="row mt-5 mb-5 bottom-navigation">
-                        <div class="col-5">
+                        <div class="col-lg-5">
 
                             {% if cart.type == 'REGULAR' %}
                                 <a type="button"
@@ -286,7 +285,7 @@
                             {% endif %}
 
                         </div>
-                        <div class="be-recalled">
+                        <div class="be-recalled send-request">
                             <button type="submit"
                                     id="contactDetailFormSubmitButton"
                                     data-key="{{ google_recaptcha_site_key }}"
