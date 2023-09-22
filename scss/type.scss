@@ -154,17 +154,32 @@
     .bottom-navigation {
       display: flex;
       //flex-direction: column;
-      .previous{
+      .previous {
         order: 1;
+        margin-right: 25px !important;
+
+        a {
+          width: 210px;
+        }
       }
-      .next{
+
+      .next {
         order: 2;
         margin-left: 25px;
+
+        a {
+          width: 210px;
+        }
       }
 
       .be-recalled {
         order: 3;
         margin-right: 74px !important;
+        width: 258px;
+
+        a {
+          width: 235px;
+        }
       }
     }
   }
