@@ -357,11 +357,12 @@
                 <h2>2. {{ 'Commercial.PDF.Summary'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     {% if quoteRequest.civility == 'M' %}
-                        {{ 'Commercial.ConfirmEmail.Dear.M-long'|trans({}, "messages", locale) }},
-                    {% elseif quoteRequest.civility == 'MME' %}
-                        {{ 'Commercial.ConfirmEmail.Dear.Mrs-long'|trans({}, "messages", locale) }},
+                    {{ 'Commercial.ConfirmEmail.Dear.M-long'|trans({}, "messages", locale) }},
+                {% elseif quoteRequest.civility == 'MME' %}
+                    {{ 'Commercial.ConfirmEmail.Dear.Mrs-long'|trans({}, "messages", locale) }},
                     {% endif %}<br><br>
-                    Suite à votre demande, je vous prie de trouver ci-dessous notre proposition commerciale, valable 3 mois, concernant
+                    Suite à votre demande, je vous prie de trouver ci-dessous notre proposition commerciale, valable 3
+                    mois, concernant
                     la gestion de vos déchets. Ce résumé regroupe l’ensemble des prestations souhaitées et un commercial
                     se tient à votre disposition pour préciser chacune des lignes.
                 </div>
@@ -572,8 +573,14 @@
             <div class="not-breakable-block">
                 <h2>4. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
-                    {% if quoteRequest.comment %}
-                        {{ quoteRequest.comment }}
+                    {% if quoteRequest.comment or quoteRequest.interest %}
+                        {% if quoteRequest.comment %}
+                            {{ quoteRequest.comment }}
+                            <br>
+                        {% endif %}
+                        {% if quoteRequest.interest %}
+                            {{ 'Commercial.PDF.SelectedInterestIs'|trans({}, "messages", app.request.locale) }} {{ ('Public.Contact.Interest-list.'~quoteRequest.interest)| trans({}, "messages", locale) }}.
+                        {% endif %}
                     {% else %}
                         {{ 'Commercial.PDF.NoComment'|trans({}, "messages", app.request.locale) }}
                     {% endif %}
