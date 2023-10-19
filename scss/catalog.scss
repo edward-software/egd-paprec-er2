@@ -78,7 +78,7 @@ input:focus {
 
   margin-bottom: 40px;
 
-  @media (max-width: 770px) {
+  @media (max-width: 767px) {
     &.row,
     .row {
       display: inherit !important;
@@ -217,7 +217,7 @@ input:focus {
       margin-top: 20px;
 
       .paprec-flex {
-        @media (max-width: 770px) {
+        @media (max-width: 767px) {
           flex-direction: column;
         }
       }
@@ -533,7 +533,7 @@ input:focus {
   position: sticky;
   top: 20px;
 
-  @media (max-width: 770px) {
+  @media (max-width: 767px) {
     margin-top: 20px;
   }
 
@@ -659,7 +659,7 @@ input:focus {
   }
 
   .contact-form.row {
-    @media (max-width: 770px) {
+    @media (max-width: 767px) {
       display: inherit !important;
       flex-wrap: inherit !important;
       margin-right: inherit !important;
@@ -669,14 +669,28 @@ input:focus {
 
   .logo-block {
     justify-content: flex-end !important;
-    @media (max-width: 770px) {
+
+    @media (max-width: 767px) {
       justify-content: center !important;
       margin-bottom: 20px;
+
+      img{
+        height: 75px !important;
+        width: 75px !important;
+      }
     }
+
+    @media (min-width: 768px) and (max-width: 1200px) {
+      img{
+        height: 100px !important;
+        width: 100px !important;
+      }
+    }
+
   }
 
   .field-block {
-    @media (max-width: 770px) {
+    @media (max-width: 767px) {
 
     }
 

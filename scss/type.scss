@@ -116,7 +116,7 @@
 
 .bottom-navigation {
 
-  @media (max-width: 770px) {
+  @media (max-width: 767px) {
 
     justify-content: center !important;
     a[type="button"] {
@@ -131,7 +131,7 @@
   }
 
   .send-request {
-    @media (max-width: 770px) {
+    @media (max-width: 767px) {
       margin-right: 22px;
     }
 
@@ -150,7 +150,7 @@
 }
 
 .catalog-ponctual {
-  @media (max-width: 770px) {
+  @media (max-width: 767px) {
     .bottom-navigation {
       display: flex;
       //flex-direction: column;
