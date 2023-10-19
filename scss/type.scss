@@ -46,6 +46,7 @@
   }
 }
 
+@media (min-width: 768px) {
 .arrow-right {
   display: inline-block;
   height: 40px;
@@ -114,25 +115,29 @@
   bottom: -2px;
 }
 
+}
+
+
 .bottom-navigation {
 
   @media (max-width: 767px) {
 
-    justify-content: center !important;
+    display: flex !important;
+    flex-flow: row !important;
     a[type="button"] {
       //width: 100% !important;
       margin-bottom: 10px;
     }
 
-    .col-lg-5 {
-      width: inherit !important;
-    }
+    //.col-lg-5 {
+    //  width: inherit !important;
+    //}
 
   }
 
   .send-request {
     @media (max-width: 767px) {
-      margin-right: 22px;
+      margin-right: 43px;
     }
 
   }
@@ -141,6 +146,11 @@
     a, button {
       background-color: $blue_1 !important;
       line-height: 2.5em;
+
+      @media (max-width: 767px) {
+        line-height: inherit;
+        width: 100%;
+      }
 
       &:hover {
         color: #FFFFFF;
