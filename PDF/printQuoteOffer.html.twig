@@ -362,17 +362,16 @@
                     {{ 'Commercial.ConfirmEmail.Dear.Mrs-long'|trans({}, "messages", locale) }},
                     {% endif %}<br><br>
                     Suite à votre demande, je vous prie de trouver ci-dessous notre proposition commerciale, valable 3
-                    mois, concernant
-                    la gestion de vos déchets. Ce résumé regroupe l’ensemble des prestations souhaitées et un commercial
-                    se tient à votre disposition pour préciser chacune des lignes.
+                    mois, concernant la gestion de vos déchets. Ce résumé regroupe l’ensemble des prestations souhaitées
+                    et un commercial se tient à votre disposition pour préciser chacune des lignes.
                 </div>
                 <br>
                 <div>
                     <span class="bold">{{ 'Commercial.PDF.OurIntervention'|trans({}, "messages", app.request.locale) }} : </span>
                     <div>
                         <ul>
-                            <li>Mise à disposition du matériel sous 48h</li>
-                            <li>Collecte des déchets stockés dans les contenants manipulés par votre personnel</li>
+                            <li>Mise à disposition du matériel de collecte sous 48h si besoin</li>
+                            <li>Collecte des déchets stockés dans les contenants prévus à cet effet</li>
                             <li>Traitement et recyclage de vos déchets sur nos sites PAPREC, agrées et certifiés</li>
                             <li>Envoi d’un reporting mensuel</li>
                         </ul>
@@ -558,20 +557,7 @@
             {# partie 3 #}
 
             <div class="not-breakable-block">
-                <h2>3. {{ 'Commercial.PDF.Billing'|trans({}, "messages", app.request.locale)|upper }}</h2>
-                <div>
-                    La facturation sera adressée mensuellement en fonction des prix unitaires hors taxes précisés au
-                    point 2 et de l’activité réelle du contrat ou si cela est spécifiée à l’article 4 des présentes
-                    conditions particulières, sur la base d’un montant forfaitaire HT. La TVA sera appliquée aux
-                    montants hors taxes au taux de TVA en vigueur.
-                </div>
-            </div>
-
-
-            {# partie 4 #}
-
-            <div class="not-breakable-block">
-                <h2>4. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
+                <h2>3. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     {% if quoteRequest.comment or quoteRequest.interest %}
                         {% if quoteRequest.comment %}
@@ -588,44 +574,101 @@
             </div>
 
 
+            {# partie 4 #}
+
+            <div class="not-breakable-block">
+                <h2>4. {{ 'Commercial.PDF.Billing'|trans({}, "messages", app.request.locale)|upper }}</h2>
+                <div>
+                    La facturation sera adressée mensuellement en fonction des prix unitaires hors taxes précisés au
+                    point 2 et de l’activité réelle du contrat ou si cela est spécifiée à l’article 4 des présentes
+                    conditions particulières, sur la base d’un montant forfaitaire HT. La TVA sera appliquée aux
+                    montants hors taxes au taux de TVA en vigueur.
+                </div>
+            </div>
+
+
             {# partie 5 #}
             <div class="not-breakable-block">
 
                 <h2>5. {{ 'Commercial.PDF.ContactTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
 
-                <div class="flex offer__ref-items">
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryLastName1 }}
+                <div>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="bold">{{ 'Commercial.PDF.CustomerTitle'|trans({}, "messages", app.request.locale) }} : </span>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryLastName1 }}
+                        </div>
+
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.lastName }}
+                        </div>
                     </div>
 
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.lastName }}
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryFirstName1 }}
+                        </div>
+
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.firstName }}
+                        </div>
+                    </div>
+
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span>
+                        </div>
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
+                        </div>
+                    </div>
+
+                    <div class="flex offer__ref-items">
+                        <div></div>
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.email }}
+                        </div>
                     </div>
                 </div>
-
-                <div class="flex offer__ref-items">
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.signatoryFirstName1 }}
+                <div>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="bold">{{ 'Commercial.PDF.CommercialTitle'|trans({}, "messages", app.request.locale) }} : </span>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.LastName'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.userInCharge is not null %}{{ quoteRequest.userInCharge.lastName }}{% endif %}
+                        </div>
+                        <div></div>
                     </div>
 
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.firstName }}
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.FirstName'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.userInCharge is not null %}{{ quoteRequest.userInCharge.firstName }}{% endif %}
+                        </div>
+                        <div></div>
                     </div>
-                </div>
 
-                <div class="flex offer__ref-items">
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span>
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : {% if quoteRequest.userInCharge is not null %}{{ quoteRequest.userInCharge.phoneNumber }}{% endif %}</span>
+                        </div>
+                        <div></div>
                     </div>
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
-                    </div>
-                </div>
 
-                <div class="flex offer__ref-items">
-                    <div></div>
-                    <div>
-                        <span class="bold">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.email }}
+                    <div class="flex offer__ref-items">
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.Email'|trans({}, "messages", app.request.locale) }} : </span> {% if quoteRequest.userInCharge is not null %}{{ quoteRequest.userInCharge.email }}{% endif %}
+                        </div>
+                        <div></div>
                     </div>
                 </div>
             </div>
@@ -820,7 +863,7 @@
                                 <span class="bold">Pour le client</span><br>
                                 <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
                                 <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
-                                <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : </span><br><br>
+                                <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span><br><br>
                                 <span>Date (mention "Lu et approuvé")</span><br><br><br>
                                 <span></span>
                             </p>
@@ -829,10 +872,17 @@
                         <div>
                             <p>
                                 <span class="bold">Pour {% if quoteRequest.userInCharge and quoteRequest.userInCharge.agency %}{{ quoteRequest.userInCharge.agency.name }}{% endif %} </span><br>
-                                {% if quoteRequest.userInCharge is not null and quoteRequest.userInCharge.manager is not null %}
-                                    <span>{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.lastName }}</span>
+                                {% if quoteRequest.userInCharge is not null %}
+
+                                    {% set manager = quoteRequest.userInCharge %}
+                                    {% if not 'ROLE_MANAGER_COMMERCIAL' in quoteRequest.userInCharge.roles %}
+                                        {% set manager = quoteRequest.userInCharge.manager %}
+                                    {% endif %}
+
+                                    <span>{{ 'Commercial.PDF.ContactLastName'|trans({}, "messages", app.request.locale) }} : {{ manager.lastName }}</span>
                                     <br>
-                                    <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.userInCharge.manager.firstName }}</span>
+                                    <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ manager.firstName }}</span>
+                                    <br>
                                     <br>
                                     <br>
                                     <span>Date</span><br><br><br>
