@@ -560,12 +560,12 @@
                 <h2>3. {{ 'Commercial.PDF.CommentTitle'|trans({}, "messages", app.request.locale)|upper }}</h2>
                 <div>
                     {% if quoteRequest.comment or quoteRequest.interest %}
-                        {% if quoteRequest.comment %}
-                            {{ quoteRequest.comment }}
-                            <br>
-                        {% endif %}
                         {% if quoteRequest.interest %}
                             {{ 'Commercial.PDF.SelectedInterestIs'|trans({}, "messages", app.request.locale) }} {{ ('Public.Contact.Interest-list.'~quoteRequest.interest)| trans({}, "messages", locale) }}.
+                            <br>
+                        {% endif %}
+                        {% if quoteRequest.comment %}
+                            {{ quoteRequest.comment }}
                         {% endif %}
                     {% else %}
                         {{ 'Commercial.PDF.NoComment'|trans({}, "messages", app.request.locale) }}
