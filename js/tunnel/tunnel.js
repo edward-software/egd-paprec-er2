@@ -32,7 +32,7 @@ $(function () {
     //     });
     // });
 
-    if ($('.catalog-ponctual').is('div')) {
+    if ($('.catalog-ponctual, .catalog-regular, .catalog-material').is('div')) {
         /**
          * Gestion des datepickers
          */
