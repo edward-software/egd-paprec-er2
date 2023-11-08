@@ -12,20 +12,24 @@
         * {
             font-family:  "Red Hat Display", sans-serif !important;
         }
+
+        p {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-{{ 'Commercial.ConfirmContactRequestEmail.Dear'|trans({}, "messages", locale) }} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},<br><br>
+<p>{{ 'Commercial.ConfirmContactRequestEmail.Dear'|trans({}, "messages", locale) }} {{ quoteRequest.firstName }} {{ quoteRequest.lastName }},</p>
+{#<br><br>#}
+<p>{{ 'Commercial.ConfirmContactRequestEmail.Message1'| trans({'%date%': 'now'|localizeddate('short', 'medium', locale, timezone)}, "messages", locale) }}</p>
+{#<br><br>#}
+<p>{{ 'Commercial.ConfirmContactRequestEmail.Message2'| trans({}, "messages", locale) }}</p>
+{#<br><br>#}
+<p>{{ 'Commercial.ConfirmContactRequestEmail.Regards'| trans({}, "messages", locale) }}</p>
+{#<br><br>#}
+<p>{{ 'Commercial.ConfirmContactRequestEmail.Partner'| trans({}, "messages", locale) }}</p>
 
-{{ 'Commercial.ConfirmContactRequestEmail.Message1'| trans({'%date%': 'now'|localizeddate('short', 'medium', locale, timezone)}, "messages", locale) }}
-
-<br><br>
-{{ 'Commercial.ConfirmContactRequestEmail.Message2'| trans({}, "messages", locale) }}
-<br><br>
-{{ 'Commercial.ConfirmContactRequestEmail.Regards'| trans({}, "messages", locale) }}
-<br><br>
-{{ 'Commercial.ConfirmContactRequestEmail.Partner'| trans({}, "messages", locale) }}
-<br><br>
+{#<br><br>#}
 <i>{{ 'Commercial.ConfirmContactRequestEmail.NoReply'| trans({}, "messages", locale) }}</i>
 <br><br>
 
