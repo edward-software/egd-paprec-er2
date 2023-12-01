@@ -622,8 +622,16 @@
 
                     <div class="flex offer__ref-items">
                         <div>
-                            <span class="">{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span>
+                            <span class="">{{ 'Commercial.PDF.SignatoryTitle'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryTitle1 }}</span>
+
                         </div>
+                        <div>
+                            <span class="">{{ 'Commercial.PDF.ContactQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex offer__ref-items">
+                        <div></div>
                         <div>
                             <span class="">{{ 'Commercial.PDF.PhoneNumber'|trans({}, "messages", app.request.locale) }} : </span> {{ quoteRequest.phone }}
                         </div>
@@ -863,7 +871,7 @@
                                 <span class="bold">Pour le client</span><br>
                                 <span>{{ 'Commercial.PDF.SignatoryLastName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryLastName1 }}</span><br>
                                 <span>{{ 'Commercial.PDF.SignatoryFirstName'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryFirstName1 }}</span><br>
-                                <span>{{ 'Commercial.PDF.SignatoryQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span><br><br>
+                                <span>{{ 'Commercial.PDF.SignatoryTitle'|trans({}, "messages", app.request.locale) }} : {{ quoteRequest.signatoryTitle1 }}</span><br><br>
                                 <span>Date (mention "Lu et approuvé")</span><br><br><br>
                                 <span></span>
                             </p>
@@ -883,8 +891,7 @@
                                     <br>
                                     <span>{{ 'Commercial.PDF.ContactFirstName'|trans({}, "messages", app.request.locale) }} : {{ manager.firstName }}</span>
                                     <br>
-                                    <br>
-                                    <br>
+                                    <span>{{ 'Commercial.PDF.ContactQuality'|trans({}, "messages", app.request.locale) }} : {{ ('General.' ~ quoteRequest.civility)|trans }}</span><br><br>
                                     <span>Date</span><br><br><br>
                                 {% endif %}
                             </p>
