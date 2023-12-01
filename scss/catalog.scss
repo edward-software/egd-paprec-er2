@@ -550,16 +550,44 @@ input:focus {
         bottom: 45px;
         position: relative;
 
+        @media (max-width: 767px) {
+          bottom: 30px;
+        }
+
+        @media (min-width: 768px) and (max-width: 1200px) {
+          bottom: 35px;
+        }
+
         .circle {
           width: 90px;
           height: 90px;
           border-radius: 45px;
           background: $blue_1;
 
+          @media (max-width: 767px) {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+          }
+
+          @media (min-width: 768px) and (max-width: 1200px) {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+          }
+
           img {
             max-width: 80%;
             height: auto;
             margin: 10px;
+
+            @media (max-width: 767px) {
+              max-width: 60%;
+            }
+
+            @media (min-width: 768px) and (max-width: 1200px) {
+              max-width: 70%;
+            }
           }
         }
       }
@@ -671,21 +699,21 @@ input:focus {
     justify-content: flex-end !important;
     left: 35px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 1200px) {
       justify-content: center !important;
       margin-bottom: 20px;
       left: inherit;
 
       img{
-        height: 75px !important;
-        width: 75px !important;
+        height: 60px !important;
+        width: 60px !important;
       }
     }
 
     @media (min-width: 768px) and (max-width: 1200px) {
       img{
-        height: 100px !important;
-        width: 100px !important;
+        height: 75px !important;
+        width: 75px !important;
       }
     }
 
@@ -709,5 +737,14 @@ input:focus {
       font-size: 16px;
       color: $blue_1;
     }
+  }
+}
+
+.catalog-regular, .catalog-material, .catalog-ponctual {
+  h2{
+    text-transform: lowercase
+  }
+  h2::first-letter {
+    text-transform: uppercase;
   }
 }
