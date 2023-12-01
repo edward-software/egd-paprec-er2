@@ -701,7 +701,7 @@
                     <div class="flex">
                         <p style="width: 150px">{{ 'Commercial.PDF.CorporateName'|trans({}, "messages", app.request.locale) }}</p>
                         <div style="width: 280px; height: 30px; background-color: #F2F2F2; border: none;margin: 5px 0;">
-                            {% if quoteRequest.isSameAddress or (quoteRequest.billingAddress is null and quoteRequest.billingCity is null) %}{{ quoteRequest.businessName }}{% endif %}
+                            {{ quoteRequest.businessName }}
                         </div>
                     </div>
 
